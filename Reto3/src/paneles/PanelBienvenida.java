@@ -18,17 +18,17 @@ public class PanelBienvenida extends JPanel {
 		setVisible(true);
 		setLayout(null);
 		setFont(new Font("Tahoma", Font.BOLD, 11));
-		setBackground(Color.decode("#0f4c5c"));
-		JLabel mensajeBienvenida = new JLabel("Bienvenido/a al Cine Elorrieta.");
+		setBackground(Color.decode("#142850"));
+		JLabel mensajeBienvenida = new JLabel("Bienvenido/a a Cines ESA");
 		mensajeBienvenida.setForeground(Color.decode("#ffffff"));
 		mensajeBienvenida.setHorizontalAlignment(SwingConstants.CENTER);
-		mensajeBienvenida.setFont(new Font("Malgun Gothic", Font.BOLD, 32));
-		mensajeBienvenida.setBounds(143, 246, 502, 39);
+		mensajeBienvenida.setFont(new Font("Malgun Gothic", Font.BOLD, 60));
+		mensajeBienvenida.setBounds(168, 273, 816, 114);
 		add(mensajeBienvenida);
-
+		
 		/*
-		 * Funcionalidad de la ventana
-		 */
+		* Funcionalidad de la ventana
+		*/
 		addMouseListener(new MouseListener() {
 
 			@Override

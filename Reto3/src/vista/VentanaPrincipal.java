@@ -4,6 +4,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import paneles.PanelBienvenida;
+import paneles.PanelLogin;
+import paneles.PanelRegistro;
+import paneles.PanelSeleccionCine;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -22,10 +25,10 @@ public class VentanaPrincipal extends JFrame {
 		setIconImage(icono.getImage());
 	}
 
-/**
- * Cambio de paneles
- * 
- */
+	/**
+	 * Cambio de paneles
+	 * 
+	 */
 	public void cambiarDePanel(int i) {
 
 		switch (i) {
@@ -34,8 +37,20 @@ public class VentanaPrincipal extends JFrame {
 			break;
 
 		}
+		case 1: {
+			setContentPane(new PanelLogin(this));
+			break;
+		}
+		case 2: {
+			setContentPane(new PanelRegistro(this));
+			break;
+		}
+		case 3: {
+			setContentPane(new PanelSeleccionCine(this));
+			break;
+		}
 
-		}	
+		}
 	}
 
 	public static void main(String[] args) {

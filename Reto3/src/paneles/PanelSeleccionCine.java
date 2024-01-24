@@ -20,9 +20,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-public class PanelDePrueba extends JPanel {
+public class PanelSeleccionCine extends JPanel {
 
-	public PanelDePrueba(VentanaPrincipal v) {
+	public PanelSeleccionCine(VentanaPrincipal v) {
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);
@@ -51,9 +51,6 @@ public class PanelDePrueba extends JPanel {
 		comboBox.setBounds(546, 317, 285, 28);
 		comboBox.setForeground(Color.decode("#BE6DB7"));
 		comboBox.setFont(new Font("Verdana", Font.PLAIN, 16));
-		comboBox.setOpaque(false);
-		
-		comboBox.setBackground(Color.decode("#C67ACE"));
 		add(comboBox);
 		
 		// BOTÓN PRINCIPAL

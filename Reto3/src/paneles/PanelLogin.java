@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import controlador.GestionBD;
+import controlador.GestionDeLaInformacion;
 import vista.VentanaPrincipal;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -20,6 +22,7 @@ import java.awt.event.MouseAdapter;
 public class PanelLogin extends JPanel {
 	private JPasswordField passwordField;
 	private JTextField textFieldDNI;
+	private GestionBD gestionBD = new GestionBD();
 
 	public PanelLogin(VentanaPrincipal v) {
 		setSize(1200, 720);
@@ -59,7 +62,11 @@ public class PanelLogin extends JPanel {
 		btnPrincipal.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				v.cambiarDePanel(3);
+				String dni = textFieldDNI.getText();
+				System.out.println(dni);
+//				String pass = passwordField.getText();
+//				System.out.println(pass);
+				gestionBD.traerDNIyContraseña(dni);
 			}
 		});
 		btnPrincipal.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -79,7 +86,6 @@ public class PanelLogin extends JPanel {
 		lblSinCuenta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				v.cambiarDePanel(2);
 			}
 		});
 		lblSinCuenta.setFont(new Font("Tahoma", Font.PLAIN, 16));

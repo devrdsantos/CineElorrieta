@@ -7,11 +7,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import vista.VentanaPrincipal;
+
 public class GestionBD {
 	private Connection conexion;
+//	private VentanaPrincipal ventana = new VentanaPrincipal();
 
 	public GestionBD() {
 		iniciarconexion();
+		
 	}
 
 	public void iniciarconexion() {
@@ -54,12 +58,12 @@ public class GestionBD {
 	        while (resultadoConsulta.next()) {
 	            System.out.println("DNI: " + resultadoConsulta.getString(1));
 	            System.out.println("Contraseña: " + resultadoConsulta.getString(2));
+	            //ventana.cambiarDePanel(3);
 	        }
 
 	        System.out.println("Cerrando Consulta..");
 	        consultaPreparada.close();
 	    } catch (SQLException e) {
-	        e.printStackTrace();
 	        System.out.println("Conexion incorrecta");
 	    }
 	}

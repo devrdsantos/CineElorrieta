@@ -3,13 +3,18 @@ package vista;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import controlador.GestionBD;
 import paneles.PanelBienvenida;
 import paneles.PanelLogin;
 import paneles.PanelRegistro;
 import paneles.PanelSeleccionCine;
 
-public class VentanaPrincipal extends JFrame {
 
+
+public class VentanaPrincipal extends JFrame {
+	
+	
+	
 	public VentanaPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1200, 720);
@@ -54,10 +59,9 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public static void main(String[] args) {
-
+		GestionBD gestion = new GestionBD();
 		VentanaPrincipal v = new VentanaPrincipal();
 		v.cambiarDePanel(0);
-
 	}
 
 }

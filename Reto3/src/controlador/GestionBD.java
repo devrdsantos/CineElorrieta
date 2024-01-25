@@ -41,23 +41,30 @@ public class GestionBD {
 		System.out.println("Cerrado");
 	}
 
-	public void traerDNIyContraseña(String dni) {
-		try {
-			System.out.println("Iniciando consulta..");
-			String query = "SELECT * FROM usuario WHERE DNi = ?";
-			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
-			consultaPreparada.setString(1, dni);
-//			consultaPreparada.setString(2,contraseña);
-			ResultSet resultadoConsulta = consultaPreparada.executeQuery(query);
-			while (resultadoConsulta.next()) {
-				System.out.println(resultadoConsulta.getString(1) + "\t" + resultadoConsulta.getString(2) + "\t"
-						+ resultadoConsulta.getString(3) + "\t" + resultadoConsulta.getString(4) + "\t"
-						+ resultadoConsulta.getString(5));
-			}
-			System.out.println("Cerrando Consulta..");
-			consultaPreparada.close();
-		} catch (SQLException e) {
-			System.out.println("Conexion incorrecta");
-		}
+	public void traerDNIyContraseña(String dni, String pass) {
+	    try {
+	        System.out.println("Iniciando consulta..");
+	        String query = "SELECT DNI, password FROM usuario WHERE DNI = ? AND password = ?";
+	        PreparedStatement consultaPreparada = conexion.prepareStatement(query);
+	        consultaPreparada.setString(1, dni);
+	        consultaPreparada.setNString(2, pass);
+
+	        ResultSet resultadoConsulta = consultaPreparada.executeQuery();
+
+	        while (resultadoConsulta.next()) {
+	            System.out.println("DNI: " + resultadoConsulta.getString(1));
+	            System.out.println("Contraseña: " + resultadoConsulta.getString(2));
+	        }
+
+	        System.out.println("Cerrando Consulta..");
+	        consultaPreparada.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        System.out.println("Conexion incorrecta");
+	    }
 	}
+	
+	
+	
+	
 }

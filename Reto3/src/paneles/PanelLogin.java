@@ -63,10 +63,10 @@ public class PanelLogin extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String dni = textFieldDNI.getText();
-				System.out.println(dni);
-//				String pass = passwordField.getText();
-//				System.out.println(pass);
-				gestionBD.traerDNIyContraseña(dni);
+				
+				String pass = passwordField.getText();
+			
+				gestionBD.traerDNIyContraseña(dni, pass);
 			}
 		});
 		btnPrincipal.setFont(new Font("Verdana", Font.BOLD, 16));

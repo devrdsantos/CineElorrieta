@@ -17,7 +17,6 @@ public class GestionBD {
 
 	public GestionBD() {
 		iniciarconexion();
-		
 	}
 
 	public void iniciarconexion() {
@@ -47,7 +46,7 @@ public class GestionBD {
 		System.out.println("Cerrado");
 	}
 
-	public void verificarLogin(String dni, String pass) {
+	public void verificarLogin(String dni, String pass, VentanaPrincipal v) {
 	    try {
 	        System.out.println("Iniciando consulta..");
 	        String query = "SELECT DNI, password FROM usuario WHERE DNI = ? AND password = ?";
@@ -59,7 +58,7 @@ public class GestionBD {
 	        
 	        if (resultadoConsulta.next() && dni.equals(resultadoConsulta.getString(1)) && pass.equals(resultadoConsulta.getString(2))) {
             	JOptionPane.showMessageDialog(null,"\nInicio correcto!!");
-	        	//ventana.cambiarDePanel(3);
+	        	v.cambiarDePanel(3);
 	        } else {
 	        	JOptionPane.showMessageDialog(null, "Sentencias incorrectas!!");
 	        }

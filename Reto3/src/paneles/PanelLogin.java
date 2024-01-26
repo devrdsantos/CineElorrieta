@@ -63,12 +63,13 @@ public class PanelLogin extends JPanel {
 
 				String pass = passwordField.getText();
 				
-				gestionBD.verificarLogin(dni, pass);
+				gestionBD.verificarLogin(dni, pass, v);
 			}
 		});
 		btnPrincipal.setFont(new Font("Verdana", Font.BOLD, 16));
 		btnPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		btnPrincipal.setOpaque(true);

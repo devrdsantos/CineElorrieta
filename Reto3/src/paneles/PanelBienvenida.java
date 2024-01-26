@@ -41,7 +41,7 @@ public class PanelBienvenida extends JPanel {
 				 * Este variable es el sustituto de thread sleep Indica que luego de presionar
 				 * el click pasen 3 segundos y cambie de panel
 				 */
-				long tiempoDeActivacion = System.currentTimeMillis() + 3000;
+				long tiempoDeActivacion = System.currentTimeMillis() + 1500;
 				while (System.currentTimeMillis() < tiempoDeActivacion) {
 				}
 				v.cambiarDePanel(1);

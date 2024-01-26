@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import controlador.GestionDeLaInformacion;
 import vista.VentanaPrincipal;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -23,6 +24,7 @@ public class PanelRegistro extends JPanel {
 	private JTextField textFieldDNI;
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
+	private GestionDeLaInformacion gestionINF = new GestionDeLaInformacion();
 
 	public PanelRegistro(VentanaPrincipal v) {
 		setSize(1200, 720);
@@ -62,6 +64,13 @@ public class PanelRegistro extends JPanel {
 		btnPrincipal.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				String dniFormulario = textFieldDNI.getText();
+				String passFormulario =  passwordField.getText();
+				String nombreFormulario = textFieldNombre.getText();
+				String apelldioFormulario = textFieldApellido.getText();
+//				gestionINF.recojerInformacionFormulario(dniFormulario, passFormulario, nombreFormulario, apelldioFormulario);
+				
+				
 				v.cambiarDePanel(1);
 			}
 		});

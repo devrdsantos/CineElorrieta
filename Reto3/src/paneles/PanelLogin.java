@@ -84,6 +84,7 @@ public class PanelLogin extends JPanel {
 		lblSinCuenta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				v.cambiarDePanel(2);
 			}
 		});
 		lblSinCuenta.setFont(new Font("Tahoma", Font.PLAIN, 16));

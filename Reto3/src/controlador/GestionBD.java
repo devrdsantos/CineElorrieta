@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -57,11 +58,11 @@ public class GestionBD {
 	        ResultSet resultadoConsulta = consultaPreparada.executeQuery(); 
 	        
 	        if (resultadoConsulta.next() && dni.equals(resultadoConsulta.getString(1)) && pass.equals(resultadoConsulta.getString(2))) {
-            	JOptionPane.showMessageDialog(null,"\nInicio correcto!!");
-	        	v.cambiarDePanel(3);
-	        } else {
-	        	JOptionPane.showMessageDialog(null, "Sentencias incorrectas!!");
-	        }
+	         	JOptionPane.showMessageDialog(null,"\nInicio correcto!!");
+		        	v.cambiarDePanel(3);
+		        } else {
+		        	JOptionPane.showMessageDialog(null, "Sentencias incorrectas!!");
+		        }
 	        
 //	        while (resultadoConsulta.next()) {
 //	            System.out.println("DNI: " + resultadoConsulta.getString(1));
@@ -76,6 +77,20 @@ public class GestionBD {
 	        System.out.println("Conexion incorrecta");
 	       
 	    }
+	}
+
+	public void insertUsuario(ArrayList<String> datosUsuario) {
+//		try {
+//			Statement consulta = conexion.createStatement();
+//
+//			String insert = "INSERT INTO usuario VALUES (" + datosUsuario + ")";
+//			consulta.executeUpdate(insert);
+//
+//			consulta.close();
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
 	}
 	
 }

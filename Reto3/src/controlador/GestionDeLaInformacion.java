@@ -1,5 +1,7 @@
 package controlador;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,11 +14,12 @@ public class GestionDeLaInformacion {
 
 	private GestionBD gestionBD;
 	private ArrayList<String> DatosUsuario;
+	ArrayList<String> cines;
 
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
 		DatosUsuario = new ArrayList<String>();
-
+		cines = new ArrayList<String>();
 	}
 
 	public void verificarLogin(String dni, String pass, String dniBD, String passBD, VentanaPrincipal v) {
@@ -74,5 +77,9 @@ public class GestionDeLaInformacion {
 		DatosUsuario.add(sexoFormulario);
 
 		gestionBD.insertUsuario(DatosUsuario, v);
+	}
+	
+	public void añadirCinesAlArray(ResultSet resultado) {
+		//Añadir cines al ArrayList cines
 	}
 }

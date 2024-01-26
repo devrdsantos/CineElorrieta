@@ -15,9 +15,11 @@ import vista.VentanaPrincipal;
 public class GestionBD {
 	private Connection conexion;
 	//private VentanaPrincipal ventana = new VentanaPrincipal();
+//	private GestionDeLaInformacion gestionINF;
 
 	public GestionBD() {
 		iniciarconexion();
+//		gestionINF = new GestionDeLaInformacion();
 	}
 
 	public void iniciarconexion() {
@@ -94,5 +96,24 @@ public class GestionBD {
 			v.cambiarDePanel(2);
 		}
 	}
+	
+//	public void sacarCines() {
+//		try {
+//	        System.out.println("Iniciando consulta..");
+//	        String query = "SELECT NombreCine FROM 'cines'";
+//	        PreparedStatement consultaPreparada = conexion.prepareStatement(query);
+//
+//	        ResultSet resultadoConsulta = consultaPreparada.executeQuery(); 
+//	       
+//	        gestionINF.añadirCinesAlArray(resultadoConsulta);
+//	        
+//	        System.out.println("Cerrando Consulta..");
+//	        consultaPreparada.close();
+//	    } catch (SQLException e) {
+//	        System.out.println("Conexion incorrecta");
+//	     
+//	    }
+//		  
+//	}
 	
 }

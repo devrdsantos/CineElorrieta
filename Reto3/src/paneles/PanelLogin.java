@@ -72,6 +72,7 @@ public class PanelLogin extends JPanel {
 		btnPrincipal.setFont(new Font("Verdana", Font.BOLD, 16));
 		btnPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			
 			}
 		});
 		btnPrincipal.setOpaque(true);
@@ -86,6 +87,7 @@ public class PanelLogin extends JPanel {
 		lblSinCuenta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				v.cambiarDePanel(2);
 			}
 		});
 		lblSinCuenta.setFont(new Font("Tahoma", Font.PLAIN, 16));

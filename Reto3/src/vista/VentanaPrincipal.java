@@ -59,7 +59,6 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		GestionBD gestion = new GestionBD();
 		VentanaPrincipal v = new VentanaPrincipal();
 		v.cambiarDePanel(1);
 	}

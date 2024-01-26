@@ -7,11 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 import vista.VentanaPrincipal;
 
 public class GestionBD {
 	private Connection conexion;
-//	private VentanaPrincipal ventana = new VentanaPrincipal();
+	//private VentanaPrincipal ventana = new VentanaPrincipal();
 
 	public GestionBD() {
 		iniciarconexion();
@@ -45,7 +47,7 @@ public class GestionBD {
 		System.out.println("Cerrado");
 	}
 
-	public void traerDNIyContraseña(String dni, String pass) {
+	public void verificarLogin(String dni, String pass) {
 	    try {
 	        System.out.println("Iniciando consulta..");
 	        String query = "SELECT DNI, password FROM usuario WHERE DNI = ? AND password = ?";
@@ -53,22 +55,28 @@ public class GestionBD {
 	        consultaPreparada.setString(1, dni);
 	        consultaPreparada.setNString(2, pass);
 
-	        ResultSet resultadoConsulta = consultaPreparada.executeQuery();
-
-	        while (resultadoConsulta.next()) {
-	            System.out.println("DNI: " + resultadoConsulta.getString(1));
-	            System.out.println("Contraseña: " + resultadoConsulta.getString(2));
-	            //ventana.cambiarDePanel(3);
+	        ResultSet resultadoConsulta = consultaPreparada.executeQuery(); 
+	        
+	        if (resultadoConsulta.next() && dni.equals(resultadoConsulta.getString(1)) && pass.equals(resultadoConsulta.getString(2))) {
+            	JOptionPane.showMessageDialog(null,"\nInicio correcto!!");
+	        	//ventana.cambiarDePanel(3);
+	        } else {
+	        	JOptionPane.showMessageDialog(null, "Sentencias incorrectas!!");
 	        }
-
+	        
+//	        while (resultadoConsulta.next()) {
+//	            System.out.println("DNI: " + resultadoConsulta.getString(1));
+//	            System.out.println("Contraseña: " + resultadoConsulta.getString(2));
+//	            
+//	            
+//	        }
+	        
 	        System.out.println("Cerrando Consulta..");
 	        consultaPreparada.close();
 	    } catch (SQLException e) {
 	        System.out.println("Conexion incorrecta");
+	       
 	    }
 	}
-	
-	
-	
 	
 }

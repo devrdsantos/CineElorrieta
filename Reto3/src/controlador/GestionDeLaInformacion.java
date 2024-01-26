@@ -29,7 +29,7 @@ public class GestionDeLaInformacion {
 	}
 
 	public void recojerInformacionFormulario(String dniFormulario, String passFormulario, String nombreFormulario,
-			String apellidoFormulario, String sexoFormulario) {
+			String apellidoFormulario, String sexoFormulario, VentanaPrincipal v) {
 
 		String textoDNI = dniFormulario;
 		Pattern patron = Pattern.compile("^[0-9]{8}[A-Z]$", Pattern.CASE_INSENSITIVE);
@@ -64,13 +64,15 @@ public class GestionDeLaInformacion {
 		String textoApellido = apellidoFormulario;
 		Pattern patron3 = Pattern.compile("^[a-z]+$", Pattern.CASE_INSENSITIVE);
 		Matcher apellido = patron3.matcher(textoApellido);
-
+		
 		if (!apellido.find()) {
 			JOptionPane.showMessageDialog(null, "Apellido no valido");
 		} else {
 			DatosUsuario.add(apellido.group());
 		}
+		
+		DatosUsuario.add(sexoFormulario);
 
-		gestionBD.insertUsuario(DatosUsuario);
+		gestionBD.insertUsuario(DatosUsuario, v);
 	}
 }

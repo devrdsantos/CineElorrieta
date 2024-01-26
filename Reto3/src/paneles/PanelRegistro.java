@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -13,6 +14,7 @@ import controlador.GestionDeLaInformacion;
 import vista.VentanaPrincipal;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -60,32 +62,7 @@ public class PanelRegistro extends JPanel {
 		add(textFieldDNI);
 		textFieldDNI.setColumns(10);
 		
-		JButton btnPrincipal = new JButton("Crear cuenta");
-		btnPrincipal.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String dniFormulario = textFieldDNI.getText();
-				String passFormulario =  passwordField.getText();
-				String nombreFormulario = textFieldNombre.getText();
-				String apelldioFormulario = textFieldApellido.getText();
-//				gestionINF.recojerInformacionFormulario(dniFormulario, passFormulario, nombreFormulario, apelldioFormulario);
-				
-				
-				v.cambiarDePanel(1);
-			}
-		});
-		btnPrincipal.setFont(new Font("Verdana", Font.BOLD, 16));
-		btnPrincipal.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnPrincipal.setOpaque(true);
-		btnPrincipal.setContentAreaFilled(true);
-		btnPrincipal.setForeground(Color.decode("#FFFFFF"));
-		btnPrincipal.setBorderPainted(false);
-		btnPrincipal.setBackground(Color.decode("#C67ACE"));
-		btnPrincipal.setBounds(462, 551, 150, 39);
-		add(btnPrincipal);
+		
 		
 		JLabel lblTienesCuenta = new JLabel("¿Ya tienes una cuenta?");
 		lblTienesCuenta.addMouseListener(new MouseAdapter() {
@@ -121,6 +98,10 @@ public class PanelRegistro extends JPanel {
 		rdbtnSexoHombre.setBounds(719, 461, 109, 34);
 		add(rdbtnSexoHombre);
 		
+		ButtonGroup bg=new ButtonGroup();    
+		bg.add(rdbtnSexoHombre);
+		bg.add(rdbtnSexoMujer);    
+		
 		JLabel lblNombre = new JLabel("Ingresa tu nombre:");
 		lblNombre.setForeground(Color.WHITE);
 		lblNombre.setFont(new Font("Verdana", Font.PLAIN, 18));
@@ -142,6 +123,35 @@ public class PanelRegistro extends JPanel {
 		textFieldApellido.setColumns(10);
 		textFieldApellido.setBounds(597, 404, 266, 34);
 		add(textFieldApellido);
+		
+		JButton btnPrincipal = new JButton("Crear cuenta");
+		btnPrincipal.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String dniFormulario = textFieldDNI.getText();
+				String passFormulario =  passwordField.getText();
+				String nombreFormulario = textFieldNombre.getText();
+				String apelldioFormulario = textFieldApellido.getText();
+				String sexoFormulario = "";
+				if(rdbtnSexoHombre.isSelected()) {
+					sexoFormulario = rdbtnSexoHombre.getText();
+				}
+				if(rdbtnSexoMujer.isSelected()) {
+					sexoFormulario = rdbtnSexoMujer.getText();
+				}
+				gestionINF.recojerInformacionFormulario(dniFormulario, passFormulario, nombreFormulario, apelldioFormulario, sexoFormulario, v);
+				
+				
+			}
+		});
+		btnPrincipal.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnPrincipal.setOpaque(true);
+		btnPrincipal.setContentAreaFilled(true);
+		btnPrincipal.setForeground(Color.decode("#FFFFFF"));
+		btnPrincipal.setBorderPainted(false);
+		btnPrincipal.setBackground(Color.decode("#C67ACE"));
+		btnPrincipal.setBounds(462, 551, 150, 39);
+		add(btnPrincipal);
 		
 	}
 }

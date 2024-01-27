@@ -26,7 +26,7 @@ public class GestionBD {
 		System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/usuario", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost/usuario", "root", "");
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la libreria");
@@ -84,13 +84,15 @@ public class GestionBD {
 	public void insertUsuario(ArrayList<String> datosUsuario, VentanaPrincipal v) {
 		try {
 			Statement consulta = conexion.createStatement();
-
+			
 			String insert = "INSERT INTO usuario VALUES ('"+datosUsuario.get(0)+"','"+datosUsuario.get(1)+"','"+datosUsuario.get(2)+"','"+datosUsuario.get(3)+"', '"+datosUsuario.get(4)+"')";
+			
+			System.out.println(datosUsuario);
 			consulta.executeUpdate(insert);
 			JOptionPane.showMessageDialog(null, "Usuario creado correctamente!!");
 			v.cambiarDePanel(1);
 			consulta.close();
-
+			
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Campos invalidos!!");
 			v.cambiarDePanel(2);

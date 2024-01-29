@@ -9,14 +9,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
-
-import modelo.Cine;
 import vista.VentanaPrincipal;
 
 public class GestionBD {
 	private Connection conexion;
 	//private VentanaPrincipal ventana = new VentanaPrincipal();
-	private GestionDeLaInformacion gestionINF;
+//	private GestionDeLaInformacion gestionINF;
 
 	public GestionBD() {
 		iniciarconexion();
@@ -27,7 +25,7 @@ public class GestionBD {
 		//System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost/usuario", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/usuario", "root", "");
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la libreria");

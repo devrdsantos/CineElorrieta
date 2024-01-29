@@ -9,7 +9,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
-
 import vista.VentanaPrincipal;
 
 public class GestionBD {
@@ -19,7 +18,7 @@ public class GestionBD {
 
 	public GestionBD() {
 		iniciarconexion();
-//		gestionINF = new GestionDeLaInformacion();
+		
 	}
 
 	/*
@@ -33,7 +32,7 @@ public class GestionBD {
 	 * de aviso para cada caso
 	 */
 	public void iniciarconexion() {
-		System.out.println("Conectando...");
+		//System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/cine", "root", "");
@@ -43,7 +42,7 @@ public class GestionBD {
 		} catch (SQLException e) {
 			System.out.println("No se ha encotrado la base de datos");
 		}
-		System.out.println("Conexion iniciada");
+		//System.out.println("Conexion iniciada");
 	}
 
 	/*
@@ -133,34 +132,38 @@ public class GestionBD {
 
 			String insert = "INSERT INTO usuario VALUES ('" + datosUsuario.get(0) + "','" + datosUsuario.get(1) + "','"
 					+ datosUsuario.get(2) + "','" + datosUsuario.get(3) + "', '" + datosUsuario.get(4) + "')";
+
 			consulta.executeUpdate(insert);
 			JOptionPane.showMessageDialog(null, "Usuario creado correctamente");
 			v.cambiarDePanel(1);
 			consulta.close();
-
+			
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Campos inválidos");
 			v.cambiarDePanel(2);
 		}
 	}
 
-//	public void sacarCines() {
-//		try {
-//	        System.out.println("Iniciando consulta..");
-//	        String query = "SELECT NombreCine FROM 'cines'";
-//	        PreparedStatement consultaPreparada = conexion.prepareStatement(query);
-//
-//	        ResultSet resultadoConsulta = consultaPreparada.executeQuery(); 
-//	       
-//	        gestionINF.añadirCinesAlArray(resultadoConsulta);
-//	        
-//	        System.out.println("Cerrando Consulta..");
-//	        consultaPreparada.close();
-//	    } catch (SQLException e) {
-//	        System.out.println("Conexion incorrecta");
-//	     
-//	    }
-//		  
-//	}
+	
+	public ArrayList<String> sacarCines() {
+		ArrayList<String> cines = new ArrayList<String>();;
+		try {
+	        System.out.println("Iniciando consulta..");
+	        String query = "SELECT NombreCine FROM cines";
+	        PreparedStatement consultaPreparada = conexion.prepareStatement(query);
+
+	        ResultSet resultadoConsulta = consultaPreparada.executeQuery(); 
+	        
+	        while (resultadoConsulta.next()) {
+	        	cines.add(resultadoConsulta.getString(1));
+	        }        
+	        System.out.println("Cerrando Consulta cine..");
+	        consultaPreparada.close();
+	    } catch (SQLException e) {
+	        System.out.println("Conexion incorrecta cine");
+	        e.printStackTrace();
+	    }
+		 return cines;
+	}
 
 }

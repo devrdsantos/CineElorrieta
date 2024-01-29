@@ -8,19 +8,21 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
+import modelo.Cine;
 import vista.VentanaPrincipal;
 
 public class GestionDeLaInformacion {
 
 	private GestionBD gestionBD;
 	private ArrayList<String> DatosUsuario;
-	ArrayList<String> cines;
+	
 
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
 		DatosUsuario = new ArrayList<String>();
-		cines = new ArrayList<String>();
+		
 	}
+
 
 	/*
 	 * metodo recojerInformacionFormulario param dniFormulario param passFormulario
@@ -38,6 +40,8 @@ public class GestionDeLaInformacion {
 	 * Para el caso del nombre: solo letras | Caso negativo "Nombre no valido"
 	 * Para el caso del apellido: solo letras | Caso negativo "Apellido no valido"
 	 */
+
+
 	public void recojerInformacionFormulario(String dniFormulario, String passFormulario, String nombreFormulario,
 			String apellidoFormulario, String sexoFormulario, VentanaPrincipal v) {
 
@@ -86,7 +90,12 @@ public class GestionDeLaInformacion {
 		gestionBD.insertUsuario(DatosUsuario, v);
 	}
 
-	public void añadirCinesAlArray(ResultSet resultado) {
-		// Añadir cines al ArrayList cines
+
+	
+	public ArrayList<String> almacenarCines() {		
+		ArrayList<String> cines = gestionBD.sacarCines();
+		return cines;
+
 	}
+
 }

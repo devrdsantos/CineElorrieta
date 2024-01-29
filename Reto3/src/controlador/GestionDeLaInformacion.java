@@ -8,20 +8,22 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
+import modelo.Cine;
 import vista.VentanaPrincipal;
 
 public class GestionDeLaInformacion {
 
 	private GestionBD gestionBD;
 	private ArrayList<String> DatosUsuario;
-	ArrayList<String> cines;
+	
 
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
 		DatosUsuario = new ArrayList<String>();
-		cines = new ArrayList<String>();
+		
 	}
 
+	//NO ES NECESARIO ESTE METODO
 	public void verificarLogin(String dni, String pass, String dniBD, String passBD, VentanaPrincipal v) {
 //		 if (resultadoConsulta.next() && dni.equals(resultadoConsulta.getString(1)) && pass.equals(resultadoConsulta.getString(2))) {
 //         	JOptionPane.showMessageDialog(null,"\nInicio correcto!!");
@@ -79,7 +81,15 @@ public class GestionDeLaInformacion {
 		gestionBD.insertUsuario(DatosUsuario, v);
 	}
 	
-	public void añadirCinesAlArray(ResultSet resultado) {
-		//Añadir cines al ArrayList cines
+	public ArrayList<String> almacenarCines() {		
+		ArrayList<String> cines = gestionBD.sacarCines();
+		return cines;
 	}
+//		try {
+//			cines.add(resultado.getString(1));
+//			System.out.println(cines.get(0));
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
 }

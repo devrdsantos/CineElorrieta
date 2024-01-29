@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import controlador.GestionBD;
+import controlador.GestionDeLaInformacion;
 import vista.VentanaPrincipal;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -22,6 +24,10 @@ import javax.swing.DefaultComboBoxModel;
 
 public class PanelSeleccionCine extends JPanel {
 
+//	private GestionDeLaInformacion gestionINF = new GestionDeLaInformacion();
+	private GestionBD gestionBD = new GestionBD();
+	private GestionDeLaInformacion gestionINF = new GestionDeLaInformacion();
+	
 	public PanelSeleccionCine(VentanaPrincipal v) {
 		setSize(1200, 720);
 		setVisible(true);
@@ -46,18 +52,21 @@ public class PanelSeleccionCine extends JPanel {
 		
 		
 		// COMBOBOX CINES
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"","Cine Elorrieta", "Cine Zubiarte", "Cine Getxo"}));
+		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setBounds(546, 317, 285, 28);
 		comboBox.setForeground(Color.decode("#BE6DB7"));
 		comboBox.setFont(new Font("Verdana", Font.PLAIN, 16));
 		add(comboBox);
+		for (int i = 0; i < gestionINF.almacenarCines().size(); i++) {
+			comboBox.addItem(gestionINF.almacenarCines().get(i));
+		}
 		
 		// BOTÓN PRINCIPAL
 				JButton btnPrincipal = new JButton("Siguiente");
 				btnPrincipal.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
+						gestionBD.sacarCines();
 					}
 				});
 				btnPrincipal.setFont(new Font("Verdana", Font.BOLD, 16));

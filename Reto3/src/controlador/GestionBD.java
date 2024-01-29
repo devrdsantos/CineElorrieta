@@ -26,7 +26,7 @@ public class GestionBD {
 		System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/usuario", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/cine", "root", "");
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la libreria");
@@ -46,12 +46,12 @@ public class GestionBD {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Cerrado");
+		System.out.println("Conexión cerrada");
 	}
 
 	public void verificarLogin(String dni, String pass, VentanaPrincipal v) {
 	    try {
-	        System.out.println("Iniciando consulta..");
+	        System.out.println("Iniciando consulta...");
 	        String query = "SELECT DNI, password FROM usuario WHERE DNI = ? AND password = ?";
 	        PreparedStatement consultaPreparada = conexion.prepareStatement(query);
 	        consultaPreparada.setString(1, dni);
@@ -60,10 +60,10 @@ public class GestionBD {
 	        ResultSet resultadoConsulta = consultaPreparada.executeQuery(); 
 	        
 	        if (resultadoConsulta.next() && dni.equals(resultadoConsulta.getString(1)) && pass.equals(resultadoConsulta.getString(2))) {
-	         	JOptionPane.showMessageDialog(null,"\nInicio correcto!!");
+	         	JOptionPane.showMessageDialog(null,"\nSe ha iniciado sesión");
 		        	v.cambiarDePanel(3);
 		        } else {
-		        	JOptionPane.showMessageDialog(null, "Sentencias incorrectas!!");
+		        	JOptionPane.showMessageDialog(null, "Los valores ingresados no son correctos");
 		        }
 	        
 //	        while (resultadoConsulta.next()) {
@@ -73,10 +73,10 @@ public class GestionBD {
 //	            
 //	        }
 	        
-	        System.out.println("Cerrando Consulta..");
+	        System.out.println("Cerrando consulta...");
 	        consultaPreparada.close();
 	    } catch (SQLException e) {
-	        System.out.println("Conexion incorrecta");
+	        System.out.println("Conexion incorrecta con la base de datos");
 	       
 	    }
 	}
@@ -87,12 +87,12 @@ public class GestionBD {
 
 			String insert = "INSERT INTO usuario VALUES ('"+datosUsuario.get(0)+"','"+datosUsuario.get(1)+"','"+datosUsuario.get(2)+"','"+datosUsuario.get(3)+"', '"+datosUsuario.get(4)+"')";
 			consulta.executeUpdate(insert);
-			JOptionPane.showMessageDialog(null, "Usuario creado correctamente!!");
+			JOptionPane.showMessageDialog(null, "Usuario creado correctamente");
 			v.cambiarDePanel(1);
 			consulta.close();
 
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Campos invalidos!!");
+			JOptionPane.showMessageDialog(null, "Campos inválidos");
 			v.cambiarDePanel(2);
 		}
 	}

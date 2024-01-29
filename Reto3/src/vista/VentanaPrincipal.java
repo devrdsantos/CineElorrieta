@@ -5,16 +5,15 @@ import javax.swing.JFrame;
 
 import controlador.GestionBD;
 import paneles.PanelBienvenida;
+import paneles.PanelDePrueba;
 import paneles.PanelLogin;
 import paneles.PanelRegistro;
 import paneles.PanelSeleccionCine;
-
-
+import paneles.PanelSeleccionFuncion;
+import paneles.PanelSeleccionPelicula;
 
 public class VentanaPrincipal extends JFrame {
-	
-	
-	
+
 	public VentanaPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1200, 720);
@@ -38,7 +37,7 @@ public class VentanaPrincipal extends JFrame {
 
 		switch (i) {
 		case 0: {
-			setContentPane(new PanelBienvenida(this));
+			setContentPane(new PanelBienvenida(this)); // PanelBienvenida
 			break;
 
 		}
@@ -54,13 +53,21 @@ public class VentanaPrincipal extends JFrame {
 			setContentPane(new PanelSeleccionCine(this));
 			break;
 		}
+		case 4: {
+			setContentPane(new PanelSeleccionPelicula(this));
+			break;
+		}
+		case 5: {
+			setContentPane(new PanelSeleccionFuncion(this));
+			break;
+		}
 		}
 	}
 
 	public static void main(String[] args) {
 		VentanaPrincipal v = new VentanaPrincipal();
 		v.setVisible(true);
-		v.cambiarDePanel(1);
+		v.cambiarDePanel(5); // 1
 	}
 
 }

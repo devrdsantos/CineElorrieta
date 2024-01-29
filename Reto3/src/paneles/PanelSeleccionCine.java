@@ -58,6 +58,7 @@ public class PanelSeleccionCine extends JPanel {
 				btnPrincipal.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
+						v.cambiarDePanel(4);
 					}
 				});
 				btnPrincipal.setFont(new Font("Verdana", Font.BOLD, 16));

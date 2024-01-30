@@ -4,11 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import controlador.GestionBD;
+import modelo.Pelicula;
 import vista.VentanaPrincipal;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -22,6 +25,11 @@ import javax.swing.DefaultComboBoxModel;
 
 public class PanelSeleccionPelicula extends JPanel {
 
+	private ArrayList<Pelicula> peliculas = new ArrayList<Pelicula>();
+	private String[] urlPeliculas = {};
+	private int peliActual;
+	private GestionBD gestion = new GestionBD();
+	
 	public PanelSeleccionPelicula (VentanaPrincipal v) {
 		setSize(1200, 720);
 		setVisible(true);
@@ -132,6 +140,19 @@ public class PanelSeleccionPelicula extends JPanel {
 		JButton btnAnterior = new JButton("Anterior");
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				gestion.sacarInformacionPeliculas();
+//				if (peliActual == montes.size() - 1) {
+//					System.out.println("ERROR, no hay mas elementos");
+//				} else {
+//					peliActual = peliActual + 1;
+//					lblNombreMonte.setText(montes.get(peliActual).getNombre());
+//					lblProvinciaMonte.setText(montes.get(peliActual).getProvincia());
+//					lblAlturaMonte.setText(String.valueOf(montes.get(peliActual).getAltura()));
+//					lblCoordenadasMonte.setText(montes.get(peliActual).getCoordenadas());
+//					lblMacizoMonte.setText(montes.get(peliActual).getMacizo());
+//					lblRutaMonte.setText(montes.get(peliActual).getRutaHabitual());
+//				}
 			}
 		});
 		btnAnterior.setOpaque(true);

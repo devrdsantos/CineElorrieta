@@ -35,7 +35,7 @@ public class GestionBD {
 		//System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/cine", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto3", "root", "");
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la libreria");
@@ -149,7 +149,7 @@ public class GestionBD {
 		ArrayList<String> cines = new ArrayList<String>();;
 		try {
 	        System.out.println("Iniciando consulta..");
-	        String query = "SELECT NombreCine FROM cines";
+	        String query = "SELECT NombreCine FROM cine";
 	        PreparedStatement consultaPreparada = conexion.prepareStatement(query);
 
 	        ResultSet resultadoConsulta = consultaPreparada.executeQuery(); 

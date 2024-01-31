@@ -248,5 +248,7 @@ public class PanelDePrueba extends JPanel {
 		lblTituloPelicula1_4.setBounds(33, 11, 59, 23);
 		panelBotonFuncion_4.add(lblTituloPelicula1_4);
 		
+		
+		
 	}
 }

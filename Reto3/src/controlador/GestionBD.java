@@ -10,13 +10,14 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import modelo.Cine;
 import modelo.Pelicula;
 import vista.VentanaPrincipal;
 
 public class GestionBD {
 	private Connection conexion;
 	// private VentanaPrincipal ventana = new VentanaPrincipal();
-//	private GestionDeLaInformacion gestionINF;
+	private GestionDeLaInformacion gestionINF;
 
 	public GestionBD() {
 		iniciarconexion();
@@ -37,7 +38,7 @@ public class GestionBD {
 		// System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto03", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost/reto03", "root", "");
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la libreria");
@@ -84,18 +85,17 @@ public class GestionBD {
 	 * "Los valores ingresados no son correctos" y se reiniciaran los campos.
 	 * 
 	 */
-	public void verificarLogin(String dni, String pass, VentanaPrincipal v) {
+	public void verificarLogin(String dni, String pass, VentanaPrincipal v) throws Exception {
+		gestionINF = new GestionDeLaInformacion();
 		try {
 			System.out.println("Iniciando consulta...");
-			String query = "SELECT DNI, password FROM usuario WHERE DNI = ? AND password = ?";
+			String query = "SELECT DNI, password FROM usuario WHERE DNI = ?";
 			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
 			consultaPreparada.setString(1, dni);
-			consultaPreparada.setNString(2, pass);
 
 			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
-
-			if (resultadoConsulta.next() && dni.equals(resultadoConsulta.getString(1))
-					&& pass.equals(resultadoConsulta.getString(2))) {
+			String passDesencriptada = sacarPasswordEncriptada(dni);
+			if (resultadoConsulta.next() && dni.equals(resultadoConsulta.getString(1))) {
 				JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión");
 				v.cambiarDePanel(3);
 			} else {
@@ -129,10 +129,11 @@ public class GestionBD {
 	 * correctamente nos mostrara un mensaje "Campos Invalidos"
 	 */
 	public void insertUsuario(ArrayList<String> datosUsuario, VentanaPrincipal v) {
+		gestionINF = new GestionDeLaInformacion();
 		try {
 			Statement consulta = conexion.createStatement();
-
-			String insert = "INSERT INTO usuario VALUES ('" + datosUsuario.get(0) + "','" + datosUsuario.get(1) + "','"
+			String passEncriptada = gestionINF.encriptar(datosUsuario.get(1));
+			String insert = "INSERT INTO usuario VALUES ('" + datosUsuario.get(0) + "','" + passEncriptada + "','"
 					+ datosUsuario.get(2) + "','" + datosUsuario.get(3) + "', '" + datosUsuario.get(4) + "')";
 
 			consulta.executeUpdate(insert);
@@ -146,18 +147,18 @@ public class GestionBD {
 		}
 	}
 
-	public ArrayList<String> sacarCines() {
-		ArrayList<String> cines = new ArrayList<String>();
-		;
+	public ArrayList<Cine> sacarCines() {
+		ArrayList<Cine> cines = new ArrayList<Cine>();
 		try {
 			// System.out.println("Iniciando consulta..");
-			String query = "SELECT NombreCine FROM cine";
+			String query = "SELECT * FROM cine";
 			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
 
 			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
 
 			while (resultadoConsulta.next()) {
-				cines.add(resultadoConsulta.getString(1));
+				cines.add(new Cine(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
+						resultadoConsulta.getString(3), resultadoConsulta.getString(4)));
 			}
 			// System.out.println("Cerrando Consulta cine..");
 			consultaPreparada.close();
@@ -170,7 +171,6 @@ public class GestionBD {
 
 	public ArrayList<Pelicula> sacarInformacionPeliculas() {
 		ArrayList<Pelicula> peliculas = new ArrayList<Pelicula>();
-		;
 		try {
 			// System.out.println("Iniciando consulta..");
 			String query = "SELECT * FROM `pelicula`";
@@ -180,7 +180,8 @@ public class GestionBD {
 
 			while (resultadoConsulta.next()) {
 				peliculas.add(new Pelicula(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
-						resultadoConsulta.getString(3), resultadoConsulta.getString(4), resultadoConsulta.getString(5)));
+						resultadoConsulta.getString(3), resultadoConsulta.getString(4),
+						resultadoConsulta.getString(5)));
 			}
 			// System.out.println("Cerrando Consulta cine..");
 			consultaPreparada.close();
@@ -188,8 +189,28 @@ public class GestionBD {
 			System.out.println("Conexion incorrecta cine");
 			e.printStackTrace();
 		}
-		//System.out.println(peliculas.get(0));
+		// System.out.println(peliculas.get(0));
 		return peliculas;
+	}
+
+	public String sacarPasswordEncriptada(String dni) throws Exception {
+		String passDesencriptada = "";
+		try {
+			System.out.println("Iniciando consulta sacarPasswordEncriptada...");
+			String query = "SELECT password FROM usuario WHERE DNI = ?";
+			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
+			consultaPreparada.setString(1, dni);
+			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
+			if (resultadoConsulta.next()) {
+				System.out.println("hola");
+				passDesencriptada = gestionINF.desencriptar(resultadoConsulta.getString(1));
+			}
+//			System.out.println("Cerrando consulta...");
+			consultaPreparada.close();
+		} catch (SQLException e) {
+			System.out.println("Conexion incorrecta con la base de datosxxx");
+		}
+		return passDesencriptada;
 	}
 
 }

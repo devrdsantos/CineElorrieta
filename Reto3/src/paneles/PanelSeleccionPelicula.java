@@ -21,16 +21,14 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
-import javax.swing.JRadioButton;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+
 
 public class PanelSeleccionPelicula extends JPanel {
 
 	private String[] urlPeliculas = {};
 	private int peliActual;
 	private GestionBD gestion = new GestionBD();
-	//private Cine cine = new Cine();
+	private Cine cine = new Cine();
 	ArrayList<Pelicula> peli = gestion.sacarInformacionPeliculas();
 	
 	public PanelSeleccionPelicula (VentanaPrincipal v) {
@@ -79,7 +77,7 @@ public class PanelSeleccionPelicula extends JPanel {
 
 		// (!) LBL CINE SELECCIONADO (TRAE DATOS DE BD!!!!)
 		JLabel lblCineSeleccionado = new JLabel();
-		//lblCineSeleccionado.setText(cine.getNombreCine());
+		lblCineSeleccionado.setText(cine.getNombreCine());
 		lblCineSeleccionado.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCineSeleccionado.setForeground(Color.decode("#C67ACE"));
 		lblCineSeleccionado.setFont(new Font("Verdana", Font.BOLD, 16));

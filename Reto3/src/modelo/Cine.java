@@ -24,7 +24,7 @@ public class Cine {
 		this.idCine = idCine;
 	}
 	public void setNombreCine(String nombreCine) {
-		this.nombreCine = nombreCine;
+		System.out.println(this.nombreCine);
 	}
 	
 	public String getNombreCine() {

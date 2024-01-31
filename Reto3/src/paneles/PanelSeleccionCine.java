@@ -58,7 +58,7 @@ public class PanelSeleccionCine extends JPanel {
 		comboBox.setFont(new Font("Verdana", Font.PLAIN, 16));
 		add(comboBox);
 		for (int i = 0; i < gestionINF.almacenarCines().size(); i++) {
-			comboBox.addItem(gestionINF.almacenarCines().get(i));
+			comboBox.addItem(gestionINF.almacenarCines().get(i).getNombreCine());
 		}
 
 		// BOTÓN PRINCIPAL

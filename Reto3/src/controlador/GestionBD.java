@@ -35,6 +35,7 @@ public class GestionBD {
 		//System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
+
 			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto3", "root", "");
 
 		} catch (ClassNotFoundException e) {
@@ -148,8 +149,12 @@ public class GestionBD {
 	public ArrayList<String> sacarCines() {
 		ArrayList<String> cines = new ArrayList<String>();;
 		try {
+
 	        System.out.println("Iniciando consulta..");
 	        String query = "SELECT NombreCine FROM cine";
+
+	        //System.out.println("Iniciando consulta..");
+
 	        PreparedStatement consultaPreparada = conexion.prepareStatement(query);
 
 	        ResultSet resultadoConsulta = consultaPreparada.executeQuery(); 
@@ -157,7 +162,7 @@ public class GestionBD {
 	        while (resultadoConsulta.next()) {
 	        	cines.add(resultadoConsulta.getString(1));
 	        }        
-	        System.out.println("Cerrando Consulta cine..");
+	        //System.out.println("Cerrando Consulta cine..");
 	        consultaPreparada.close();
 	    } catch (SQLException e) {
 	        System.out.println("Conexion incorrecta cine");

@@ -23,13 +23,12 @@ public class Cine {
 	public void setIdCine(int idCine) {
 		this.idCine = idCine;
 	}
-
-	public String getNombreCine() {
-		return nombreCine;
-	}
-
 	public void setNombreCine(String nombreCine) {
 		this.nombreCine = nombreCine;
+	}
+	
+	public String getNombreCine() {
+		return nombreCine;
 	}
 
 	public String getLocalidadCine() {

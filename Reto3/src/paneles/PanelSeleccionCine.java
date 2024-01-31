@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 
 import controlador.GestionBD;
 import controlador.GestionDeLaInformacion;
+import modelo.Cine;
 import vista.VentanaPrincipal;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -65,7 +66,9 @@ public class PanelSeleccionCine extends JPanel {
 		btnPrincipal.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
+				String cineSeleccionado = (String) comboBox.getSelectedItem();
+				//System.out.println(cineSeleccionado);
+				gestionINF.recojerCineSeleccionado(cineSeleccionado);
 				v.cambiarDePanel(4);
 
 				gestionBD.sacarCines();

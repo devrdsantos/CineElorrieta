@@ -2,24 +2,48 @@ package modelo;
 
 public class Pelicula {
 
-	private String nombrePelicula, genero;
-	private int duracionPelicula, idPelicula, precioPelicula;
+	private int idPelicula;
+	private String NombrePelicula;
+	private String duracion;
+	private String genero;
+	private String sinopsis;
 	
-	public Pelicula(String nombrePelicula, String genero, int duracionPelicula, int idPelicula, int precioPelicula) {
+	public Pelicula() {
 		
-		this.nombrePelicula = nombrePelicula;
-		this.genero = genero;
-		this.duracionPelicula = duracionPelicula;
+	}
+	
+	public Pelicula(int idPelicula, String nombrePelicula, String duracion, String genero, String sinopsis) {
 		this.idPelicula = idPelicula;
-		this.precioPelicula = precioPelicula;
+		this.NombrePelicula = nombrePelicula;
+		this.duracion = duracion;
+		this.genero = genero;
+		this.sinopsis = sinopsis;
+	}
+
+
+
+	public int getIdPelicula() {
+		return idPelicula;
+	}
+
+	public void setIdPelicula(int idPelicula) {
+		this.idPelicula = idPelicula;
 	}
 
 	public String getNombrePelicula() {
-		return nombrePelicula;
+		return NombrePelicula;
 	}
 
 	public void setNombrePelicula(String nombrePelicula) {
-		this.nombrePelicula = nombrePelicula;
+		this.NombrePelicula = nombrePelicula;
+	}
+
+	public String getDuracion() {
+		return duracion;
+	}
+
+	public void setDuracion(String duracion) {
+		this.duracion = duracion;
 	}
 
 	public String getGenero() {
@@ -30,36 +54,18 @@ public class Pelicula {
 		this.genero = genero;
 	}
 
-	public int getDuracionPelicula() {
-		return duracionPelicula;
+	public String getSinopsis() {
+		return sinopsis;
 	}
 
-	public void setDuracionPelicula(int duracionPelicula) {
-		this.duracionPelicula = duracionPelicula;
-	}
-
-	public int getIdPelicula() {
-		return idPelicula;
-	}
-
-	public void setIdPelicula(int idPelicula) {
-		this.idPelicula = idPelicula;
-	}
-
-	public int getPrecioPelicula() {
-		return precioPelicula;
-	}
-
-	public void setPrecioPelicula(int precioPelicula) {
-		this.precioPelicula = precioPelicula;
+	public void setSinopsis(String sinopsis) {
+		this.sinopsis = sinopsis;
 	}
 
 	@Override
 	public String toString() {
-		return "Pelicula [nombrePelicula=" + nombrePelicula + ", genero=" + genero + ", duracionPelicula="
-				+ duracionPelicula + ", idPelicula=" + idPelicula + ", precioPelicula=" + precioPelicula + "]";
+		return "IdPelicula:" + idPelicula + ", NombrePelicula:" + NombrePelicula + ", Duracion:" + duracion
+				+ ", Genero:" + genero+ ", Sinopsis:" + sinopsis;
 	}
-	
-	
 	
 }

@@ -175,5 +175,7 @@ public class PanelDePrueba extends JPanel {
 		
 
 		
+		
+		
 	}
 }

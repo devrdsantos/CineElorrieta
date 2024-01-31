@@ -15,11 +15,12 @@ public class GestionDeLaInformacion {
 
 	private GestionBD gestionBD;
 	private ArrayList<String> DatosUsuario;
-	
+	private Cine cine;
 
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
 		DatosUsuario = new ArrayList<String>();
+		
 		
 	}
 
@@ -96,6 +97,11 @@ public class GestionDeLaInformacion {
 		ArrayList<String> cines = gestionBD.sacarCines();
 		return cines;
 
+	}
+	
+	public void recojerCineSeleccionado(String cineSeleccionado) {
+		cine = new Cine();
+		cine.setNombreCine(cineSeleccionado);
 	}
 
 }

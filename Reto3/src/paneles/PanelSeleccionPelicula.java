@@ -2,23 +2,19 @@ package paneles;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import vista.VentanaPrincipal;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import javax.swing.JRadioButton;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
 public class PanelSeleccionPelicula extends JPanel {
 
@@ -76,10 +72,11 @@ public class PanelSeleccionPelicula extends JPanel {
 		
 		/* --- GRUPO --- 1 */
 		// LABEL TITULO PELICULA
-		JLabel lblTituloPelicula1 = new JLabel("<html>Título Película 1<br>Título Película 1 <br> Soy el título de una película</html>");
+		JLabel lblTituloPelicula1 = new JLabel("<html>La increíble pero cierta historia de Caperucita Roja y el Lobo </html>");
+		lblTituloPelicula1.setVerticalAlignment(SwingConstants.TOP);
 		lblTituloPelicula1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTituloPelicula1.setFont(new Font("Verdana", Font.BOLD, 18));
-		lblTituloPelicula1.setBounds(747, 151, 353, 83);
+		lblTituloPelicula1.setBounds(747, 151, 353, 59);
 		lblTituloPelicula1.setForeground(Color.decode("#86A7FC"));
 		add(lblTituloPelicula1);
 
@@ -97,7 +94,7 @@ public class PanelSeleccionPelicula extends JPanel {
 		lblDuracionPelicula1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDuracionPelicula1.setForeground(Color.WHITE);
 		lblDuracionPelicula1.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblDuracionPelicula1.setBounds(747, 234, 96, 34);
+		lblDuracionPelicula1.setBounds(747, 208, 96, 34);
 		add(lblDuracionPelicula1);
 
 		// LABEL DURACIÓN PELICULA (TRAÍDO DE LA BD)
@@ -105,7 +102,7 @@ public class PanelSeleccionPelicula extends JPanel {
 		lblDuracionPelicula1BD.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDuracionPelicula1BD.setForeground(Color.WHITE);
 		lblDuracionPelicula1BD.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblDuracionPelicula1BD.setBounds(838, 233, 40, 34);
+		lblDuracionPelicula1BD.setBounds(747, 233, 40, 34);
 		add(lblDuracionPelicula1BD);
 
 		// LABEL DURACIÓN PELICULA - MINUTOS
@@ -113,7 +110,7 @@ public class PanelSeleccionPelicula extends JPanel {
 		lblMinutos1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblMinutos1.setForeground(Color.WHITE);
 		lblMinutos1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblMinutos1.setBounds(876, 234, 66, 34);
+		lblMinutos1.setBounds(785, 234, 66, 34);
 		add(lblMinutos1);
 		
 		// BTN PRINCIPAL -- SELECCIONAR PELICULA
@@ -124,7 +121,7 @@ public class PanelSeleccionPelicula extends JPanel {
 		btnSeleccionarPelicula1.setContentAreaFilled(true);
 		btnSeleccionarPelicula1.setBorderPainted(false);
 		btnSeleccionarPelicula1.setBackground(new Color(198, 122, 206));
-		btnSeleccionarPelicula1.setBounds(747, 290, 195, 34);
+		btnSeleccionarPelicula1.setBounds(747, 491, 195, 34);
 		add(btnSeleccionarPelicula1);
 		
 		// BTN ANTERIOR
@@ -158,6 +155,25 @@ public class PanelSeleccionPelicula extends JPanel {
 		btnSiguiente.setBackground(new Color(134, 167, 252));
 		btnSiguiente.setBounds(596, 612, 125, 34);
 		add(btnSiguiente);
+		
+		// LBL Sinopsis
+		JLabel lblSinopsis = new JLabel("Sinopsis:");
+		lblSinopsis.setHorizontalAlignment(SwingConstants.LEFT);
+		lblSinopsis.setForeground(Color.WHITE);
+		lblSinopsis.setFont(new Font("Verdana", Font.BOLD, 16));
+		lblSinopsis.setBounds(747, 270, 96, 34);
+		add(lblSinopsis);
+		
+		// LBL Sinopsis traída de la BD - MÁX 300 carateres
+		JLabel lblSinopsisBD = new JLabel("<html>\"Bruno, un niño de ocho años, se muda a una zona aislada por el ascenso nazi de su padre. Ignorando advertencias maternas, explora y conoce a Shmuel al otro lado de la alambrada. Su amistad inocente trae consecuencias trágicas en un contexto adulto.\"</html>");
+		lblSinopsisBD.setHorizontalAlignment(SwingConstants.LEFT);
+		lblSinopsisBD.setBounds(747, 304, 312, 180);
+		add(lblSinopsisBD);
+		lblSinopsisBD.setVerticalAlignment(SwingConstants.TOP);
+		lblSinopsisBD.setForeground(new Color(255, 255, 255));
+		lblSinopsisBD.setFont(new Font("Verdana", Font.PLAIN, 16));
+		
+		
 
 		
 	}

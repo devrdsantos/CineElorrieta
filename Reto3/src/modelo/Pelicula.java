@@ -4,7 +4,7 @@ public class Pelicula {
 
 	private int idPelicula;
 	private String NombrePelicula;
-	private int duracion;
+	private String duracion;
 	private String genero;
 	private String sinopsis;
 	
@@ -12,7 +12,7 @@ public class Pelicula {
 		
 	}
 	
-	public Pelicula(int idPelicula, String nombrePelicula, int duracion, String genero, String sinopsis) {
+	public Pelicula(int idPelicula, String nombrePelicula, String duracion, String genero, String sinopsis) {
 		this.idPelicula = idPelicula;
 		this.NombrePelicula = nombrePelicula;
 		this.duracion = duracion;
@@ -38,11 +38,11 @@ public class Pelicula {
 		this.NombrePelicula = nombrePelicula;
 	}
 
-	public int getDuracion() {
+	public String getDuracion() {
 		return duracion;
 	}
 
-	public void setDuracion(int duracion) {
+	public void setDuracion(String duracion) {
 		this.duracion = duracion;
 	}
 
@@ -64,8 +64,8 @@ public class Pelicula {
 
 	@Override
 	public String toString() {
-		return "Pelicula [idPelicula=" + idPelicula + ", NombrePelicula=" + NombrePelicula + ", duracion=" + duracion
-				+ ", genero=" + genero + ", sinopsis=" + sinopsis + "]";
+		return "IdPelicula:" + idPelicula + ", NombrePelicula:" + NombrePelicula + ", Duracion:" + duracion
+				+ ", Genero:" + genero+ ", Sinopsis:" + sinopsis;
 	}
 	
 }

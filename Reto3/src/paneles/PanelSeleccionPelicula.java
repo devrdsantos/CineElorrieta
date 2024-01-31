@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import controlador.GestionBD;
+import modelo.Cine;
 import modelo.Pelicula;
 import vista.VentanaPrincipal;
 import javax.swing.JPasswordField;
@@ -25,10 +26,11 @@ import javax.swing.DefaultComboBoxModel;
 
 public class PanelSeleccionPelicula extends JPanel {
 
-	private ArrayList<Pelicula> peliculas = new ArrayList<Pelicula>();
 	private String[] urlPeliculas = {};
 	private int peliActual;
 	private GestionBD gestion = new GestionBD();
+	//private Cine cine = new Cine();
+	ArrayList<Pelicula> peli = gestion.sacarInformacionPeliculas();
 	
 	public PanelSeleccionPelicula (VentanaPrincipal v) {
 		setSize(1200, 720);
@@ -75,7 +77,8 @@ public class PanelSeleccionPelicula extends JPanel {
 		add(lblPeliculasEnCartelera);
 
 		// (!) LBL CINE SELECCIONADO (TRAE DATOS DE BD!!!!)
-		JLabel lblCineSeleccionado = new JLabel("CINE SELECCIONADO");
+		JLabel lblCineSeleccionado = new JLabel();
+		//lblCineSeleccionado.setText(cine.getNombreCine());
 		lblCineSeleccionado.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCineSeleccionado.setForeground(Color.decode("#C67ACE"));
 		lblCineSeleccionado.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -84,7 +87,8 @@ public class PanelSeleccionPelicula extends JPanel {
 		
 		/* --- GRUPO --- 1 */
 		// LABEL TITULO PELICULA
-		JLabel lblTituloPelicula1 = new JLabel("<html>Título Película 1<br>Título Película 1 <br> Soy el título de una película</html>");
+		peliActual = 0;
+		JLabel lblTituloPelicula1 = new JLabel(peli.get(peliActual).getNombrePelicula());
 		lblTituloPelicula1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTituloPelicula1.setFont(new Font("Verdana", Font.BOLD, 18));
 		lblTituloPelicula1.setBounds(747, 151, 353, 83);
@@ -109,7 +113,7 @@ public class PanelSeleccionPelicula extends JPanel {
 		add(lblDuracionPelicula1);
 
 		// LABEL DURACIÓN PELICULA (TRAÍDO DE LA BD)
-		JLabel lblDuracionPelicula1BD = new JLabel("160");
+		JLabel lblDuracionPelicula1BD = new JLabel(peli.get(peliActual).getDuracion());
 		lblDuracionPelicula1BD.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDuracionPelicula1BD.setForeground(Color.WHITE);
 		lblDuracionPelicula1BD.setFont(new Font("Verdana", Font.PLAIN, 16));
@@ -141,18 +145,6 @@ public class PanelSeleccionPelicula extends JPanel {
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				gestion.sacarInformacionPeliculas();
-//				if (peliActual == montes.size() - 1) {
-//					System.out.println("ERROR, no hay mas elementos");
-//				} else {
-//					peliActual = peliActual + 1;
-//					lblNombreMonte.setText(montes.get(peliActual).getNombre());
-//					lblProvinciaMonte.setText(montes.get(peliActual).getProvincia());
-//					lblAlturaMonte.setText(String.valueOf(montes.get(peliActual).getAltura()));
-//					lblCoordenadasMonte.setText(montes.get(peliActual).getCoordenadas());
-//					lblMacizoMonte.setText(montes.get(peliActual).getMacizo());
-//					lblRutaMonte.setText(montes.get(peliActual).getRutaHabitual());
-//				}
 			}
 		});
 		btnAnterior.setOpaque(true);
@@ -169,6 +161,13 @@ public class PanelSeleccionPelicula extends JPanel {
 		JButton btnSiguiente = new JButton("Siguiente");
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (peliActual == peli.size() - 1) {
+					System.out.println("ERROR, no hay mas elementos");
+				} else {
+					peliActual = peliActual + 1;
+					lblTituloPelicula1.setText(peli.get(peliActual).getNombrePelicula());
+					lblDuracionPelicula1BD.setText(peli.get(peliActual).getDuracion());
+				}
 			}
 		});
 		btnSiguiente.setOpaque(true);

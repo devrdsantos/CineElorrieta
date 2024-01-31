@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -139,46 +140,61 @@ public class PanelSeleccionPelicula extends JPanel {
 		btnSeleccionarPelicula1.setBounds(747, 290, 195, 34);
 		add(btnSeleccionarPelicula1);
 		
+		// BTN SIGUIENTEs
+				JButton btnSiguiente = new JButton("Siguiente");
+				btnSiguiente.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (peliActual == peli.size() - 1 ) {
+							JOptionPane.showMessageDialog(null, "No hay más elementos");
+//							btnSiguiente.setFocusable(false);
+//							btnSiguiente.setEnabled(false);
+						} else {
+							peliActual = peliActual + 1;
+							lblTituloPelicula1.setText(peli.get(peliActual).getNombrePelicula());
+							lblDuracionPelicula1BD.setText(peli.get(peliActual).getDuracion());
+//							btnSiguiente.setFocusable(true);
+//							btnSiguiente.setEnabled(true);
+						}
+					}
+				});
+				btnSiguiente.setOpaque(true);
+				btnSiguiente.setForeground(Color.WHITE);
+				btnSiguiente.setFont(new Font("Verdana", Font.BOLD, 14));
+				btnSiguiente.setContentAreaFilled(true);
+				btnSiguiente.setBorderPainted(false);
+				btnSiguiente.setBackground(new Color(134, 167, 252));
+				btnSiguiente.setBounds(596, 612, 125, 34);
+				add(btnSiguiente);
+		
 		// BTN ANTERIOR
 		// CUANDO NO HAY ANTERIOR PERMANECERÁ CON ESTE ESTILO, QUE ES EL DISABLED, SINO CAMBIA Y ES IGUAL QUE EL BTN SIGUIENTE
 		JButton btnAnterior = new JButton("Anterior");
 		btnAnterior.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(peliActual == 0) {
+					JOptionPane.showMessageDialog(null, "No hay más");
+//					btnAnterior.setFocusable(false);
+//					btnAnterior.setEnabled(false);
+				} else {
+					peliActual = peliActual - 1;
+					lblTituloPelicula1.setText(peli.get(peliActual).getNombrePelicula());
+					lblDuracionPelicula1BD.setText(peli.get(peliActual).getDuracion());
+//					btnAnterior.setFocusable(true);
+//					btnAnterior.setEnabled(true);
+				}
 				
 			}
 		});
 		btnAnterior.setOpaque(true);
-		btnAnterior.setForeground(Color.decode("#A9A9A9"));
+		//btnAnterior.setForeground(Color.decode("#A9A9A9"));
+		btnAnterior.setForeground(Color.WHITE);
 		btnAnterior.setFont(new Font("Verdana", Font.BOLD, 14));
 		btnAnterior.setContentAreaFilled(true);
 		btnAnterior.setBorderPainted(false);
-		btnAnterior.setBackground(Color.decode("#F3EEEA"));
+		//btnAnterior.setBackground(Color.decode("#F3EEEA"));
+		btnAnterior.setBackground(new Color(134, 167, 252));
 		btnAnterior.setBounds(247, 612, 125, 34);
 		add(btnAnterior);
-		
-		
-		// BTN SIGUIENTE
-		JButton btnSiguiente = new JButton("Siguiente");
-		btnSiguiente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (peliActual == peli.size() - 1) {
-					System.out.println("ERROR, no hay mas elementos");
-				} else {
-					peliActual = peliActual + 1;
-					lblTituloPelicula1.setText(peli.get(peliActual).getNombrePelicula());
-					lblDuracionPelicula1BD.setText(peli.get(peliActual).getDuracion());
-				}
-			}
-		});
-		btnSiguiente.setOpaque(true);
-		btnSiguiente.setForeground(Color.WHITE);
-		btnSiguiente.setFont(new Font("Verdana", Font.BOLD, 14));
-		btnSiguiente.setContentAreaFilled(true);
-		btnSiguiente.setBorderPainted(false);
-		btnSiguiente.setBackground(new Color(134, 167, 252));
-		btnSiguiente.setBounds(596, 612, 125, 34);
-		add(btnSiguiente);
-
 		
 	}
 }

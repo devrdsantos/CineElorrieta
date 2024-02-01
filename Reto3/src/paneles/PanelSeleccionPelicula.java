@@ -73,25 +73,27 @@ public class PanelSeleccionPelicula extends JPanel {
 		lblPeliculasEnCartelera.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPeliculasEnCartelera.setForeground(new Color(134, 167, 252));
 		lblPeliculasEnCartelera.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblPeliculasEnCartelera.setBounds(361, 91, 273, 49);
+		lblPeliculasEnCartelera.setBounds(43, 91, 273, 49);
 		add(lblPeliculasEnCartelera);
 
 		// (!) LBL CINE SELECCIONADO (TRAE DATOS DE BD!!!!)
 		JLabel lblCineSeleccionado = new JLabel();
+		lblCineSeleccionado.setText("NOMBRE DEL CINE");
 		//lblCineSeleccionado.setText(cine.getNombreCine());
 		lblCineSeleccionado.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCineSeleccionado.setForeground(Color.decode("#C67ACE"));
+		lblCineSeleccionado.setForeground(new Color(211, 213, 248));
 		lblCineSeleccionado.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblCineSeleccionado.setBounds(619, 91, 222, 49);
+		lblCineSeleccionado.setBounds(301, 91, 222, 49);
 		add(lblCineSeleccionado);
 		
 		/* --- GRUPO --- 1 */
 		// LABEL TITULO PELICULA
 		peliActual = 0;
-		JLabel lblTituloPelicula1 = new JLabel(peli.get(peliActual).getNombrePelicula());
+		JLabel lblTituloPelicula1 = new JLabel("<html>Nombre de una película de ciencia ficción</html>");
+		lblTituloPelicula1.setVerticalAlignment(SwingConstants.TOP);
 		lblTituloPelicula1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTituloPelicula1.setFont(new Font("Verdana", Font.BOLD, 18));
-		lblTituloPelicula1.setBounds(747, 151, 353, 83);
+		lblTituloPelicula1.setBounds(717, 151, 321, 59);
 		lblTituloPelicula1.setForeground(Color.decode("#86A7FC"));
 		add(lblTituloPelicula1);
 
@@ -101,7 +103,7 @@ public class PanelSeleccionPelicula extends JPanel {
 		lblFoto1.setBackground(Color.decode("#ffffff"));
 		lblFoto1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFoto1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblFoto1.setBounds(247, 151, 474, 450);
+		lblFoto1.setBounds(371, 151, 323, 450);
 		add(lblFoto1);
 
 		// LABEL DURACIÓN PELICULA
@@ -109,7 +111,7 @@ public class PanelSeleccionPelicula extends JPanel {
 		lblDuracionPelicula1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDuracionPelicula1.setForeground(Color.WHITE);
 		lblDuracionPelicula1.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblDuracionPelicula1.setBounds(747, 234, 96, 34);
+		lblDuracionPelicula1.setBounds(717, 204, 96, 34);
 		add(lblDuracionPelicula1);
 
 		// LABEL DURACIÓN PELICULA (TRAÍDO DE LA BD)
@@ -117,7 +119,7 @@ public class PanelSeleccionPelicula extends JPanel {
 		lblDuracionPelicula1BD.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDuracionPelicula1BD.setForeground(Color.WHITE);
 		lblDuracionPelicula1BD.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblDuracionPelicula1BD.setBounds(838, 233, 40, 34);
+		lblDuracionPelicula1BD.setBounds(717, 230, 40, 34);
 		add(lblDuracionPelicula1BD);
 
 		// LABEL DURACIÓN PELICULA - MINUTOS
@@ -125,7 +127,7 @@ public class PanelSeleccionPelicula extends JPanel {
 		lblMinutos1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblMinutos1.setForeground(Color.WHITE);
 		lblMinutos1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblMinutos1.setBounds(876, 234, 66, 34);
+		lblMinutos1.setBounds(755, 231, 66, 34);
 		add(lblMinutos1);
 		
 		// BTN PRINCIPAL -- SELECCIONAR PELICULA
@@ -136,7 +138,7 @@ public class PanelSeleccionPelicula extends JPanel {
 		btnSeleccionarPelicula1.setContentAreaFilled(true);
 		btnSeleccionarPelicula1.setBorderPainted(false);
 		btnSeleccionarPelicula1.setBackground(new Color(198, 122, 206));
-		btnSeleccionarPelicula1.setBounds(747, 290, 195, 34);
+		btnSeleccionarPelicula1.setBounds(717, 478, 195, 34);
 		add(btnSeleccionarPelicula1);
 		
 		// BTN ANTERIOR
@@ -153,7 +155,7 @@ public class PanelSeleccionPelicula extends JPanel {
 		btnAnterior.setContentAreaFilled(true);
 		btnAnterior.setBorderPainted(false);
 		btnAnterior.setBackground(Color.decode("#F3EEEA"));
-		btnAnterior.setBounds(247, 612, 125, 34);
+		btnAnterior.setBounds(371, 612, 125, 34);
 		add(btnAnterior);
 		
 		
@@ -176,10 +178,23 @@ public class PanelSeleccionPelicula extends JPanel {
 		btnSiguiente.setContentAreaFilled(true);
 		btnSiguiente.setBorderPainted(false);
 		btnSiguiente.setBackground(new Color(134, 167, 252));
-		btnSiguiente.setBounds(596, 612, 125, 34);
+		btnSiguiente.setBounds(570, 612, 125, 34);
 		add(btnSiguiente);
+		
+		JLabel lblSinopsis = new JLabel("Sinopsis:");
+		lblSinopsis.setHorizontalAlignment(SwingConstants.LEFT);
+		lblSinopsis.setForeground(Color.WHITE);
+		lblSinopsis.setFont(new Font("Verdana", Font.BOLD, 16));
+		lblSinopsis.setBounds(717, 265, 96, 34);
+		add(lblSinopsis);
+		
+		JLabel lblenUnRemoto = new JLabel("<html>En un remoto pueblo, un oscuro secreto despierta a una entidad malévola. Los lugareños luchan por sobrevivir mientras enfrentan sus peores pesadillas. La clave para la supervivencia yace en revelar la verdad antes de que la noche eterna se apodere de sus almas.</html>");
+		lblenUnRemoto.setHorizontalAlignment(SwingConstants.LEFT);
+		lblenUnRemoto.setForeground(Color.WHITE);
+		lblenUnRemoto.setFont(new Font("Verdana", Font.PLAIN, 16));
+		lblenUnRemoto.setBounds(717, 295, 321, 172);
+		add(lblenUnRemoto);
 
 		
 	}
-
 }

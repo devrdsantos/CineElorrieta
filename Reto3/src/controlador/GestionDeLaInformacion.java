@@ -8,30 +8,42 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
+import modelo.Cine;
 import vista.VentanaPrincipal;
 
 public class GestionDeLaInformacion {
 
 	private GestionBD gestionBD;
 	private ArrayList<String> DatosUsuario;
-	ArrayList<String> cines;
+	private Cine cine;
 
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
 		DatosUsuario = new ArrayList<String>();
-		cines = new ArrayList<String>();
+		
+		
 	}
 
-	public void verificarLogin(String dni, String pass, String dniBD, String passBD, VentanaPrincipal v) {
-//		 if (resultadoConsulta.next() && dni.equals(resultadoConsulta.getString(1)) && pass.equals(resultadoConsulta.getString(2))) {
-//         	JOptionPane.showMessageDialog(null,"\nInicio correcto!!");
-//	        	v.cambiarDePanel(3);
-//	        } else {
-//	        	JOptionPane.showMessageDialog(null, "Sentencias incorrectas!!");
-//	        }
-	}
 
-	public void recojerInformacionFormulario(String dniFormulario, String passFormulario, String nombreFormulario,
+	/*
+	 * metodo recojerInformacionFormulario param dniFormulario param passFormulario
+	 * param apellidoFormulario param sexoFormulario param VentanaPrincipal
+	 * 
+	 * Le pasamos como parametro los datos que obtenemos en el panel de Formulario y
+	 * le pasamos la VentanaPrincipal para utilizar el metodo cambiarDePanel
+	 * 
+	 * Este metodo comprueba que la informacion ingresada en el formulario sea
+	 * correcta y cumpla con los patrones correspondientes de cada campo
+	 * 
+	 * Para el caso del dni: 8 numeros y 1 letra | Caso negativo "DNI no valido"
+	 * Para el caso de la password: mas de 6 caracteres menos de 14 º Caso negativo
+	 * "Contraseña no valida"
+	 * Para el caso del nombre: solo letras | Caso negativo "Nombre no valido"
+	 * Para el caso del apellido: solo letras | Caso negativo "Apellido no valido"
+	 */
+
+
+	public void recogerInformacionFormulario(String dniFormulario, String passFormulario, String nombreFormulario,
 			String apellidoFormulario, String sexoFormulario, VentanaPrincipal v) {
 
 		String textoDNI = dniFormulario;
@@ -49,7 +61,7 @@ public class GestionDeLaInformacion {
 		Matcher pass = patron1.matcher(textoPass);
 
 		if (!pass.find()) {
-			JOptionPane.showMessageDialog(null, "Contraseña no valido");
+			JOptionPane.showMessageDialog(null, "Contraseña no valida");
 		} else {
 			DatosUsuario.add(pass.group());
 		}
@@ -67,19 +79,29 @@ public class GestionDeLaInformacion {
 		String textoApellido = apellidoFormulario;
 		Pattern patron3 = Pattern.compile("^[a-z]+$", Pattern.CASE_INSENSITIVE);
 		Matcher apellido = patron3.matcher(textoApellido);
-		
+
 		if (!apellido.find()) {
 			JOptionPane.showMessageDialog(null, "Apellido no valido");
 		} else {
 			DatosUsuario.add(apellido.group());
 		}
-		
+
 		DatosUsuario.add(sexoFormulario);
 
 		gestionBD.insertUsuario(DatosUsuario, v);
 	}
+
+
 	
-	public void añadirCinesAlArray(ResultSet resultado) {
-		//Añadir cines al ArrayList cines
+	public ArrayList<String> almacenarCines() {		
+		ArrayList<String> cines = gestionBD.sacarCines();
+		return cines;
+
 	}
+	
+	public void recojerCineSeleccionado(String cineSeleccionado) {
+		cine = new Cine();
+		cine.setNombreCine(cineSeleccionado);
+	}
+
 }

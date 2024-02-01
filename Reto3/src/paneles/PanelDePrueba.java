@@ -97,7 +97,7 @@ public class PanelDePrueba extends JPanel {
 		btnSeleccionarPelicula1.setContentAreaFilled(true);
 		btnSeleccionarPelicula1.setBorderPainted(false);
 		btnSeleccionarPelicula1.setBackground(new Color(198, 122, 206));
-		btnSeleccionarPelicula1.setBounds(364, 675, 195, 34);
+		btnSeleccionarPelicula1.setBounds(379, 545, 195, 34);
 		add(btnSeleccionarPelicula1);
 		
 		// BTN ANTERIOR
@@ -237,6 +237,8 @@ public class PanelDePrueba extends JPanel {
 		panelBotonFuncion_4.add(lblTituloPelicula1_4);
 		
 	
+		
+		
 		
 		
 		

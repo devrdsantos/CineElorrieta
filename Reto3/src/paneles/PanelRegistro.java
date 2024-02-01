@@ -139,7 +139,7 @@ public class PanelRegistro extends JPanel {
 				if(rdbtnSexoMujer.isSelected()) {
 					sexoFormulario = rdbtnSexoMujer.getText();
 				}
-				gestionINF.recojerInformacionFormulario(dniFormulario, passFormulario, nombreFormulario, apelldioFormulario, sexoFormulario, v);
+				gestionINF.recogerInformacionFormulario(dniFormulario, passFormulario, nombreFormulario, apelldioFormulario, sexoFormulario, v);
 				
 				
 			}

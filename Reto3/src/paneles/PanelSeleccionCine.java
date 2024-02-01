@@ -68,7 +68,7 @@ public class PanelSeleccionCine extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				String cineSeleccionado = (String) comboBox.getSelectedItem();
 				//System.out.println(cineSeleccionado);
-				gestionINF.recojerCineSeleccionado(cineSeleccionado);
+				gestionINF.recogerCineSeleccionado(cineSeleccionado);
 				v.cambiarDePanel(4);
 
 				gestionBD.sacarCines();

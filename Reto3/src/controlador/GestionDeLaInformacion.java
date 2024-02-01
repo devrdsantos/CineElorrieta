@@ -48,7 +48,7 @@ public class GestionDeLaInformacion {
 	 */
 
 
-	public void recojerInformacionFormulario(String dniFormulario, String passFormulario, String nombreFormulario,
+	public void recogerInformacionFormulario(String dniFormulario, String passFormulario, String nombreFormulario,
 			String apellidoFormulario, String sexoFormulario, VentanaPrincipal v) {
 
 		String textoDNI = dniFormulario;
@@ -104,7 +104,7 @@ public class GestionDeLaInformacion {
 
 	}
 	
-	public void recojerCineSeleccionado(String cineSeleccionado) {
+	public void recogerCineSeleccionado(String cineSeleccionado) {
 		cine = new Cine();
 		cine.setNombreCine(cineSeleccionado);
 	}

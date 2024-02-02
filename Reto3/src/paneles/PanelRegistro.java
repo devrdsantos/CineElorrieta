@@ -27,7 +27,7 @@ public class PanelRegistro extends JPanel {
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
 	private GestionDeLaInformacion gestionINF = new GestionDeLaInformacion();
-
+	
 	public PanelRegistro(VentanaPrincipal v) {
 		setSize(1200, 720);
 		setVisible(true);
@@ -128,6 +128,7 @@ public class PanelRegistro extends JPanel {
 		btnPrincipal.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+	
 				String dniFormulario = textFieldDNI.getText();
 				String passFormulario =  passwordField.getText();
 				String nombreFormulario = textFieldNombre.getText();

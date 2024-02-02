@@ -13,6 +13,7 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JOptionPane;
 
 import modelo.Cine;
+import modelo.Usuario;
 import vista.VentanaPrincipal;
 
 public class GestionDeLaInformacion {
@@ -20,15 +21,13 @@ public class GestionDeLaInformacion {
 	private GestionBD gestionBD;
 	private ArrayList<String> DatosUsuario;
 	private Cine cine;
-	private final String CLAVE_ENCRIPTADA  = "clavecompartidanorevelarnuncamas";
-	
+	private final String CLAVE_ENCRIPTADA = "clavecompartidanorevelarnuncamas";
+
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
 		DatosUsuario = new ArrayList<String>();
-		
-		
-	}
 
+	}
 
 	/*
 	 * metodo recojerInformacionFormulario param dniFormulario param passFormulario
@@ -42,11 +41,10 @@ public class GestionDeLaInformacion {
 	 * 
 	 * Para el caso del dni: 8 numeros y 1 letra | Caso negativo "DNI no valido"
 	 * Para el caso de la password: mas de 6 caracteres menos de 14 º Caso negativo
-	 * "Contraseña no valida"
-	 * Para el caso del nombre: solo letras | Caso negativo "Nombre no valido"
-	 * Para el caso del apellido: solo letras | Caso negativo "Apellido no valido"
+	 * "Contraseña no valida" Para el caso del nombre: solo letras | Caso negativo
+	 * "Nombre no valido" Para el caso del apellido: solo letras | Caso negativo
+	 * "Apellido no valido"
 	 */
-
 
 	public void recogerInformacionFormulario(String dniFormulario, String passFormulario, String nombreFormulario,
 			String apellidoFormulario, String sexoFormulario, VentanaPrincipal v) {
@@ -96,42 +94,44 @@ public class GestionDeLaInformacion {
 		gestionBD.insertUsuario(DatosUsuario, v);
 	}
 
-
-	
-	public ArrayList<Cine> almacenarCines() {		
+	public ArrayList<Cine> almacenarCines() {
 		ArrayList<Cine> cines = gestionBD.sacarCines();
 		return cines;
-
 	}
-	
+
 	public void recogerCineSeleccionado(String cineSeleccionado) {
 		cine = new Cine();
 		cine.setNombreCine(cineSeleccionado);
+		pasarNombreCine();
 	}
 
 	public String encriptar(String mensaje) throws Exception {
 		Key claveAES = new SecretKeySpec(CLAVE_ENCRIPTADA.getBytes(), "AES");
 		Cipher cipher = Cipher.getInstance("AES");
 		cipher.init(Cipher.ENCRYPT_MODE, claveAES);
-		
+
 		byte[] mensajeEncriptado = cipher.doFinal(mensaje.getBytes());
-		
+
 		return Base64.getEncoder().encodeToString(mensajeEncriptado);
 	}
-	
+
 	public String desencriptar(String mensajeEncriptado) throws Exception {
-		
+
 		byte[] mensajeBytes = Base64.getDecoder().decode(mensajeEncriptado);
-		
+
 		Key ClaveaAES = new SecretKeySpec(CLAVE_ENCRIPTADA.getBytes(), "AES");
-		
+
 		Cipher cipher = Cipher.getInstance("AES");
-		
+
 		cipher.init(Cipher.DECRYPT_MODE, ClaveaAES);
-		
+
 		String desencriptado = new String(cipher.doFinal(mensajeBytes));
-				
+
 		return desencriptado;
 	}
-	
+
+	public String pasarNombreCine() {
+		String nombreCine = cine.getNombreCine();
+		return nombreCine;
+	}
 }

@@ -49,7 +49,7 @@ public class PanelDePrueba extends JPanel {
 		seleccionaFuncion.setHorizontalAlignment(SwingConstants.CENTER);
 		seleccionaFuncion.setForeground(Color.decode("#ffffff"));
 		seleccionaFuncion.setFont(new Font("Verdana", Font.BOLD, 32));
-		seleccionaFuncion.setBounds(285, 38, 584, 59);
+		seleccionaFuncion.setBounds(285, 66, 584, 59);
 		add(seleccionaFuncion);
 
 		// BOTÓN SECUNDARIO - - VOLVER ATRÁS
@@ -78,7 +78,7 @@ public class PanelDePrueba extends JPanel {
 		lblFunciones.setHorizontalAlignment(SwingConstants.LEFT);
 		lblFunciones.setForeground(new Color(134, 167, 252));
 		lblFunciones.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblFunciones.setBounds(43, 91, 222, 49);
+		lblFunciones.setBounds(43, 154, 222, 49);
 		add(lblFunciones);
 
 		// (!) LBL CINE SELECCIONADO (TRAE DATOS DE BD!!!!)
@@ -88,7 +88,7 @@ public class PanelDePrueba extends JPanel {
 		lblPeliculaSeleccionada.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPeliculaSeleccionada.setForeground(new Color(211, 213, 248));
 		lblPeliculaSeleccionada.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblPeliculaSeleccionada.setBounds(267, 91, 797, 49);
+		lblPeliculaSeleccionada.setBounds(267, 154, 797, 49);
 		add(lblPeliculaSeleccionada);
 		
 		/* --- GRUPO --- 1 */
@@ -97,25 +97,25 @@ public class PanelDePrueba extends JPanel {
 		
 		JDateChooser dateChooserDia = new JDateChooser();
 		dateChooserDia.getCalendarButton().setFont(new Font("Verdana", Font.PLAIN, 14));
-		dateChooserDia.setBounds(327, 192, 142, 28);
+		dateChooserDia.setBounds(327, 255, 142, 28);
 		add(dateChooserDia);
 
 		JLabel lblEligeDia = new JLabel("Elige un día:");
 		lblEligeDia.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblEligeDia.setBounds(210, 190, 115, 28);
+		lblEligeDia.setBounds(210, 253, 115, 28);
 		lblEligeDia.setForeground(Color.decode("#FFFFFF"));
 		add(lblEligeDia);
 		
 		JLabel lblEligeUnaFuncin = new JLabel("Elige una función:");
 		lblEligeUnaFuncin.setForeground(Color.WHITE);
 		lblEligeUnaFuncin.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblEligeUnaFuncin.setBounds(595, 190, 171, 28);
+		lblEligeUnaFuncin.setBounds(595, 253, 171, 28);
 		add(lblEligeUnaFuncin);
 		
 		JPanel panelHoraSalaFuncion1 = new JPanel();
 		panelHoraSalaFuncion1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(116, 131, 201)));
 		panelHoraSalaFuncion1.setBackground(Color.decode("#142850"));
-		panelHoraSalaFuncion1.setBounds(593, 238, 188, 126);
+		panelHoraSalaFuncion1.setBounds(593, 301, 188, 126);
 		add(panelHoraSalaFuncion1);
 		panelHoraSalaFuncion1.setLayout(null);
 		JLabel lblTituloPelicula1 = new JLabel("20:30");
@@ -139,7 +139,7 @@ public class PanelDePrueba extends JPanel {
 				panelHoraSalaFuncion1_1.setLayout(null);
 				panelHoraSalaFuncion1_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(116, 131, 201)));
 				panelHoraSalaFuncion1_1.setBackground(new Color(20, 40, 80));
-				panelHoraSalaFuncion1_1.setBounds(806, 238, 188, 126);
+				panelHoraSalaFuncion1_1.setBounds(806, 301, 188, 126);
 				add(panelHoraSalaFuncion1_1);
 				
 				JLabel lblTituloPelicula1_1 = new JLabel("20:30");
@@ -162,7 +162,7 @@ public class PanelDePrueba extends JPanel {
 				panelHoraSalaFuncion1_2.setLayout(null);
 				panelHoraSalaFuncion1_2.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(116, 131, 201)));
 				panelHoraSalaFuncion1_2.setBackground(new Color(20, 40, 80));
-				panelHoraSalaFuncion1_2.setBounds(595, 390, 188, 126);
+				panelHoraSalaFuncion1_2.setBounds(595, 453, 188, 126);
 				add(panelHoraSalaFuncion1_2);
 				
 				JLabel lblTituloPelicula1_2 = new JLabel("20:30");

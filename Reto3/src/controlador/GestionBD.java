@@ -26,24 +26,21 @@ public class GestionBD {
 	/*
 	 * [MÉTODO] Iniciar Conexion - - - - - - - - - - - - - -
 	 * 
-	 * Se utiliza para conectarse a la BD 
-	 * Este método se utiliza cada vez que cambiamos de panel ya que lo incluimos en el
-	 * constructor vacio de GestionBD
+	 * Se utiliza para conectarse a la BD Este método se utiliza cada vez que
+	 * cambiamos de panel ya que lo incluimos en el constructor vacio de GestionBD
 	 * 
-	 * Si la conexion es correcta se mostrara en consola "Conexion iniciada" 
-	 * Si es incorrecta hay dos opciones: 
-	 * 1. Que no se haya encontrado la libreria o 
-	 * 2. Que no se haya encontrado la base de datos Ambos tienen mensajes de aviso para cada caso
+	 * Si la conexion es correcta se mostrara en consola "Conexion iniciada" Si es
+	 * incorrecta hay dos opciones: 1. Que no se haya encontrado la libreria o 2.
+	 * Que no se haya encontrado la base de datos Ambos tienen mensajes de aviso
+	 * para cada caso
 	 */
 	public void iniciarconexion() {
 		// System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/reto3", "root", "");
 
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/reto03", "root", "");
-
-			
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la Libreria.");
 		} catch (SQLException e) {
@@ -53,9 +50,8 @@ public class GestionBD {
 	}
 
 	/*
-	 * [MÉTODO] Cerrar conexión  - - - - - - - - - - - - - -
-	 * Se utiliza para cerrar la conexion con la BD
-	 * Muestra un mensaje "Conexion cerrada"
+	 * [MÉTODO] Cerrar conexión - - - - - - - - - - - - - - Se utiliza para cerrar
+	 * la conexion con la BD Muestra un mensaje "Conexion cerrada"
 	 */
 	public void cerrarConexion() {
 		System.out.println("Cerrando...");
@@ -71,8 +67,8 @@ public class GestionBD {
 	}
 
 	/*
-	 * [MÉTODO] Verificar Login  - - - - - - - - - - - - - -
-	 * Recibe tres parámetros: String dni, String pass y el objeto VentanaPrincipal
+	 * [MÉTODO] Verificar Login - - - - - - - - - - - - - - Recibe tres parámetros:
+	 * String dni, String pass y el objeto VentanaPrincipal
 	 * 
 	 * metodo verificarLogin param dni = este parametro tomara el valor del dni que
 	 * traiga de la bdd param pass = este parametro tomara el valor del password que
@@ -155,7 +151,6 @@ public class GestionBD {
 		}
 	}
 
-
 	public ArrayList<String> sacarCines() {
 		ArrayList<String> cines = new ArrayList<String>();
 		;
@@ -190,7 +185,8 @@ public class GestionBD {
 
 			while (resultadoConsulta.next()) {
 				peliculas.add(new Pelicula(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
-						resultadoConsulta.getString(3), resultadoConsulta.getString(4), resultadoConsulta.getString(5)));
+						resultadoConsulta.getString(3), resultadoConsulta.getString(4),
+						resultadoConsulta.getString(5)));
 			}
 			// System.out.println("Cerrando Consulta cine..");
 			consultaPreparada.close();
@@ -198,7 +194,7 @@ public class GestionBD {
 			System.out.println("Conexion incorrecta cine");
 			e.printStackTrace();
 		}
-		//System.out.println(peliculas.get(0));
+		// System.out.println(peliculas.get(0));
 		return peliculas;
 	}
 

@@ -57,7 +57,7 @@ public class PanelSeleccionFuncion extends JPanel {
 		btnSecundario.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				v.cambiarDePanel(3);
+				v.cambiarDePanel(4);
 			}
 		});
 		btnSecundario.setFont(new Font("Verdana", Font.PLAIN, 16));

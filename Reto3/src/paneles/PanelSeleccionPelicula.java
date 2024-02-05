@@ -132,6 +132,12 @@ public class PanelSeleccionPelicula extends JPanel {
 		
 		// BTN PRINCIPAL -- SELECCIONAR PELICULA
 		JButton btnSeleccionarPelicula1 = new JButton("Seleccionar película");
+		btnSeleccionarPelicula1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				v.cambiarDePanel(5);
+			}
+		});
 		btnSeleccionarPelicula1.setOpaque(true);
 		btnSeleccionarPelicula1.setForeground(Color.WHITE);
 		btnSeleccionarPelicula1.setFont(new Font("Verdana", Font.BOLD, 14));

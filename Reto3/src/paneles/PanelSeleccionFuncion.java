@@ -47,25 +47,25 @@ public class PanelSeleccionFuncion extends JPanel {
 		add(seleccionaPelicula);
 
 		// BOTÓN SECUNDARIO - - VOLVER ATRÁS
-		JButton btnSecundario = new JButton("<html><u>Volver a Seleccionar Película<u><html>");
-		btnSecundario.addMouseListener(new MouseAdapter() {
+		JButton btnVolver = new JButton("<html><u>Volver a Seleccionar Película<u><html>");
+		btnVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				v.cambiarDePanel(3);
 			}
 		});
-		btnSecundario.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnSecundario.addActionListener(new ActionListener() {
+		btnVolver.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnSecundario.setOpaque(true);
-		btnSecundario.setContentAreaFilled(true);
-		btnSecundario.setForeground(Color.decode("#C67ACE"));
-		btnSecundario.setBorderPainted(false);
-		btnSecundario.setBackground(Color.decode("#142850"));
-		btnSecundario.setBounds(21, 23, 263, 39);
-		add(btnSecundario);
+		btnVolver.setOpaque(true);
+		btnVolver.setContentAreaFilled(true);
+		btnVolver.setForeground(Color.decode("#C67ACE"));
+		btnVolver.setBorderPainted(false);
+		btnVolver.setBackground(Color.decode("#142850"));
+		btnVolver.setBounds(21, 23, 263, 39);
+		add(btnVolver);
 
 		// LBL PELICULAS EN CARTELERA
 		JLabel lblPeliculasEnCartelera = new JLabel("Estas son las funciones disponibles para la película");
@@ -84,33 +84,33 @@ public class PanelSeleccionFuncion extends JPanel {
 		add(lblCineSeleccionado);
 
 		// LABEL DURACIÓN PELICULA
-		JLabel lblDuracionPelicula1 = new JLabel("lunes 29/01");
-		lblDuracionPelicula1.setOpaque(true);
-		lblDuracionPelicula1.setBackground(new Color(37, 72, 150));
-		lblDuracionPelicula1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDuracionPelicula1.setForeground(Color.WHITE);
-		lblDuracionPelicula1.setFont(new Font("Verdana", Font.BOLD, 14));
-		lblDuracionPelicula1.setBounds(48, 190, 144, 34);
-		add(lblDuracionPelicula1);
+		JLabel lblDuracionPelicula = new JLabel("lunes 29/01");
+		lblDuracionPelicula.setOpaque(true);
+		lblDuracionPelicula.setBackground(new Color(37, 72, 150));
+		lblDuracionPelicula.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDuracionPelicula.setForeground(Color.WHITE);
+		lblDuracionPelicula.setFont(new Font("Verdana", Font.BOLD, 14));
+		lblDuracionPelicula.setBounds(48, 190, 144, 34);
+		add(lblDuracionPelicula);
 
 		// LABEL DURACIÓN PELICULA - MINUTOS
-		JLabel lblMinutos1 = new JLabel("martes 30/01");
-		lblMinutos1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMinutos1.setForeground(Color.WHITE);
-		lblMinutos1.setFont(new Font("Verdana", Font.PLAIN, 14));
-		lblMinutos1.setBounds(193, 190, 144, 34);
-		add(lblMinutos1);
+		JLabel lblMinutos = new JLabel("martes 30/01");
+		lblMinutos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMinutos.setForeground(Color.WHITE);
+		lblMinutos.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblMinutos.setBounds(193, 190, 144, 34);
+		add(lblMinutos);
 		
 		// BTN PRINCIPAL -- SELECCIONAR PELICULA
-		JButton btnSeleccionarPelicula1 = new JButton("Seleccionar película");
-		btnSeleccionarPelicula1.setOpaque(true);
-		btnSeleccionarPelicula1.setForeground(Color.WHITE);
-		btnSeleccionarPelicula1.setFont(new Font("Verdana", Font.BOLD, 14));
-		btnSeleccionarPelicula1.setContentAreaFilled(true);
-		btnSeleccionarPelicula1.setBorderPainted(false);
-		btnSeleccionarPelicula1.setBackground(new Color(198, 122, 206));
-		btnSeleccionarPelicula1.setBounds(364, 675, 195, 34);
-		add(btnSeleccionarPelicula1);
+		JButton btnSeleccionarPelicula = new JButton("Seleccionar película");
+		btnSeleccionarPelicula.setOpaque(true);
+		btnSeleccionarPelicula.setForeground(Color.WHITE);
+		btnSeleccionarPelicula.setFont(new Font("Verdana", Font.BOLD, 14));
+		btnSeleccionarPelicula.setContentAreaFilled(true);
+		btnSeleccionarPelicula.setBorderPainted(false);
+		btnSeleccionarPelicula.setBackground(new Color(198, 122, 206));
+		btnSeleccionarPelicula.setBounds(364, 675, 195, 34);
+		add(btnSeleccionarPelicula);
 		
 		// BTN ANTERIOR
 		// CUANDO NO HAY ANTERIOR PERMANECERÁ CON ESTE ESTILO, QUE ES EL DISABLED, SINO CAMBIA Y ES IGUAL QUE EL BTN SIGUIENTE
@@ -144,12 +144,12 @@ public class PanelSeleccionFuncion extends JPanel {
 		btnSiguiente.setBounds(596, 612, 125, 34);
 		add(btnSiguiente);
 		
-		JLabel lblMircoles = new JLabel("miércoles 30/01");
-		lblMircoles.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMircoles.setForeground(Color.WHITE);
-		lblMircoles.setFont(new Font("Verdana", Font.PLAIN, 14));
-		lblMircoles.setBounds(343, 189, 144, 34);
-		add(lblMircoles);
+		JLabel lblMiercoles = new JLabel("miércoles 30/01");
+		lblMiercoles.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMiercoles.setForeground(Color.WHITE);
+		lblMiercoles.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblMiercoles.setBounds(343, 189, 144, 34);
+		add(lblMiercoles);
 		
 		JLabel lblJueves = new JLabel("jueves 30/01");
 		lblJueves.setHorizontalAlignment(SwingConstants.CENTER);

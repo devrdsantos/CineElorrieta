@@ -102,11 +102,11 @@ public class PanelRegistro extends JPanel {
 		bg.add(rdbtnSexoHombre);
 		bg.add(rdbtnSexoMujer);    
 		
-		JLabel lblNombre = new JLabel("Ingresa tu nombre:");
-		lblNombre.setForeground(Color.WHITE);
-		lblNombre.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblNombre.setBounds(396, 337, 193, 28);
-		add(lblNombre);
+		JLabel lblIngresaTuNombre = new JLabel("Ingresa tu nombre:");
+		lblIngresaTuNombre.setForeground(Color.WHITE);
+		lblIngresaTuNombre.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblIngresaTuNombre.setBounds(396, 337, 193, 28);
+		add(lblIngresaTuNombre);
 		
 		textFieldNombre = new JTextField();
 		textFieldNombre.setColumns(10);
@@ -124,8 +124,8 @@ public class PanelRegistro extends JPanel {
 		textFieldApellido.setBounds(597, 404, 266, 34);
 		add(textFieldApellido);
 		
-		JButton btnPrincipal = new JButton("Crear cuenta");
-		btnPrincipal.addMouseListener(new MouseAdapter() {
+		JButton btnCrearCuenta = new JButton("Crear cuenta");
+		btnCrearCuenta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 	
@@ -145,14 +145,14 @@ public class PanelRegistro extends JPanel {
 				
 			}
 		});
-		btnPrincipal.setFont(new Font("Verdana", Font.BOLD, 16));
-		btnPrincipal.setOpaque(true);
-		btnPrincipal.setContentAreaFilled(true);
-		btnPrincipal.setForeground(Color.decode("#FFFFFF"));
-		btnPrincipal.setBorderPainted(false);
-		btnPrincipal.setBackground(Color.decode("#C67ACE"));
-		btnPrincipal.setBounds(462, 551, 150, 39);
-		add(btnPrincipal);
+		btnCrearCuenta.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnCrearCuenta.setOpaque(true);
+		btnCrearCuenta.setContentAreaFilled(true);
+		btnCrearCuenta.setForeground(Color.decode("#FFFFFF"));
+		btnCrearCuenta.setBorderPainted(false);
+		btnCrearCuenta.setBackground(Color.decode("#C67ACE"));
+		btnCrearCuenta.setBounds(462, 551, 150, 39);
+		add(btnCrearCuenta);
 		
 	}
 }

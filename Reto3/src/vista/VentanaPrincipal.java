@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import controlador.GestionBD;
+import controlador.GestionDeLaInformacion;
 import paneles.PanelBienvenida;
 import paneles.PanelDePrueba;
 import paneles.PanelLogin;
@@ -14,6 +15,8 @@ import paneles.PanelSeleccionPelicula;
 
 public class VentanaPrincipal extends JFrame {
 
+	private GestionDeLaInformacion gestionINF = new GestionDeLaInformacion();
+	
 	public VentanaPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1200, 720);
@@ -46,15 +49,15 @@ public class VentanaPrincipal extends JFrame {
 			break;
 		}
 		case 2: {
-			setContentPane(new PanelRegistro(this));
+			setContentPane(new PanelRegistro(this, this.gestionINF));
 			break;
 		}
 		case 3: {
-			setContentPane(new PanelSeleccionCine(this));
+			setContentPane(new PanelSeleccionCine(this, this.gestionINF));
 			break;
 		}
 		case 4: {
-			setContentPane(new PanelSeleccionPelicula(this));
+			setContentPane(new PanelSeleccionPelicula(this, this.gestionINF));
 			break;
 		}
 		case 5: {

@@ -26,9 +26,8 @@ public class PanelRegistro extends JPanel {
 	private JTextField textFieldDNI;
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
-	private GestionDeLaInformacion gestionINF = new GestionDeLaInformacion();
 	
-	public PanelRegistro(VentanaPrincipal v) {
+	public PanelRegistro(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);

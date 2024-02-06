@@ -242,11 +242,9 @@ public class PanelSeleccionPelicula extends JPanel {
 			"multimedia/Intocable.png", "multimedia/GHB.png", "multimedia/Coco.png", "multimedia/SDLA.png" };
 	private int peliActual;
 	private GestionBD gestion = new GestionBD();
-    private GestionDeLaInformacion gestionINF = new GestionDeLaInformacion();
-    private Cine cine;
 	ArrayList<Pelicula> peli = gestion.sacarInformacionPeliculas();
 
-	public PanelSeleccionPelicula(VentanaPrincipal v) {
+	public PanelSeleccionPelicula(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);
@@ -292,7 +290,7 @@ public class PanelSeleccionPelicula extends JPanel {
 
 		// (!) LBL CINE SELECCIONADO (TRAE DATOS DE BD!!!!)
 		JLabel lblCineSeleccionado = new JLabel();
-		lblCineSeleccionado.setText("");
+		lblCineSeleccionado.setText(gestionINF.pasarNombreCine());
 		// lblCineSeleccionado.setText(cine.getNombreCine());
 		lblCineSeleccionado.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCineSeleccionado.setForeground(new Color(211, 213, 248));

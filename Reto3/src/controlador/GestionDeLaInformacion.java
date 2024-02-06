@@ -99,12 +99,6 @@ public class GestionDeLaInformacion {
 		return cines;
 	}
 
-	public void recogerCineSeleccionado(String cineSeleccionado) {
-		cine = new Cine();
-		cine.setNombreCine(cineSeleccionado);
-		pasarNombreCine();
-	}
-
 	public String encriptar(String mensaje) throws Exception {
 		Key claveAES = new SecretKeySpec(CLAVE_ENCRIPTADA.getBytes(), "AES");
 		Cipher cipher = Cipher.getInstance("AES");
@@ -128,6 +122,12 @@ public class GestionDeLaInformacion {
 		String desencriptado = new String(cipher.doFinal(mensajeBytes));
 
 		return desencriptado;
+	}
+	
+	public void recogerCineSeleccionado(String cineSeleccionado) {
+		cine = new Cine();
+		cine.setNombreCine(cineSeleccionado);
+		pasarNombreCine();
 	}
 
 	public String pasarNombreCine() {

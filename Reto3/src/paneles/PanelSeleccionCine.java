@@ -27,9 +27,8 @@ public class PanelSeleccionCine extends JPanel {
 
 //	private GestionDeLaInformacion gestionINF = new GestionDeLaInformacion();
 	private GestionBD gestionBD = new GestionBD();
-	private GestionDeLaInformacion gestionINF = new GestionDeLaInformacion();
 
-	public PanelSeleccionCine(VentanaPrincipal v) {
+	public PanelSeleccionCine(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);

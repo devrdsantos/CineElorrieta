@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import controlador.GestionBD;
 import controlador.GestionDeLaInformacion;
+import modelo.Funcion;
 import modelo.Pelicula;
 import vista.VentanaPrincipal;
 import javax.swing.JButton;
@@ -21,7 +22,7 @@ import com.toedter.calendar.JDateChooser;
 public class PanelSeleccionFuncion extends JPanel {
 
 	private GestionBD gestion = new GestionBD();
-	ArrayList<Pelicula> peli = gestion.sacarInformacionPeliculas();
+	ArrayList<Funcion> funciones = gestion.sacarInformacionDeUnaPelicula(1);
 
 	public PanelSeleccionFuncion(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);
@@ -119,9 +120,12 @@ public class PanelSeleccionFuncion extends JPanel {
 		add(btnPrincipal);
 
 		// [!] COMBOBOX - SELECCIÓN FUNCIÓN - TRAE DATOS DE BD --> SALA Y HORA
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(545, 301, 274, 28);
-		add(comboBox);
+		JComboBox<String> comboBoxFunciones = new JComboBox<String>();
+		comboBoxFunciones.setBounds(545, 301, 274, 28);
+		add(comboBoxFunciones);
+		for (int i = 0; i < funciones.size(); i++) {
+			comboBoxFunciones.addItem(funciones.get(i).getHorafuncion() + " - Sala " + funciones.get(i).getIdfuncion());
+		}
 
 		// PANEL CONTENEDOR DEL PRECIO DE LA FUNCIÓN
 		JPanel panel = new JPanel();

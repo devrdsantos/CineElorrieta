@@ -25,9 +25,10 @@ public class PanelSeleccionPelicula extends JPanel {
 			"multimedia/Intocable.png", "multimedia/GHB.png", "multimedia/Coco.png", "multimedia/SDLA.png" };
 	private int peliActual;
 	private GestionBD gestion = new GestionBD();
-	ArrayList<Pelicula> peli = gestion.sacarInformacionPeliculas();
+
 
 	public PanelSeleccionPelicula(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
+		ArrayList<Pelicula> peli = gestionINF.almacenarPeliculas();
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);
@@ -134,6 +135,7 @@ public class PanelSeleccionPelicula extends JPanel {
 		btnSeleccionarPelicula.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				v.cambiarDePanel(5);
+				gestion.sacarInformacionDeUnaPelicula(peli.get(peliActual).getIdPelicula());
 			}
 		});
 		btnSeleccionarPelicula.setOpaque(true);

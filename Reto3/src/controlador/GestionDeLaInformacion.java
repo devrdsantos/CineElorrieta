@@ -13,6 +13,8 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JOptionPane;
 
 import modelo.Cine;
+import modelo.Funcion;
+import modelo.Pelicula;
 import modelo.Usuario;
 import vista.VentanaPrincipal;
 
@@ -133,5 +135,10 @@ public class GestionDeLaInformacion {
 	public String pasarNombreCine() {
 		String nombreCine = cine.getNombreCine();
 		return nombreCine;
+	}
+	
+	public ArrayList<Pelicula> almacenarPeliculas() {
+		ArrayList<Pelicula> peliculas = gestionBD.sacarInformacionPeliculas();
+		return peliculas;
 	}
 }

@@ -99,8 +99,8 @@ public class GestionBD {
 			consultaPreparada.setString(1, dni);
 
 			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
-			//String passDesencriptada = sacarPasswordEncriptada(dni);
-			if (resultadoConsulta.next() && dni.equals(resultadoConsulta.getString(1))) {
+			String passDesencriptada = sacarPasswordEncriptada(dni);
+			if (resultadoConsulta.next() && dni.equals(resultadoConsulta.getString(1)) && pass.equals(passDesencriptada) ) {
 				JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión");
 				v.cambiarDePanel(3);
 			} else {
@@ -207,7 +207,6 @@ public class GestionBD {
 			consultaPreparada.setString(1, dni);
 			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
 			if (resultadoConsulta.next()) {
-				System.out.println("hola");
 				passDesencriptada = gestionINF.desencriptar(resultadoConsulta.getString(1));
 			}
 //			System.out.println("Cerrando consulta...");

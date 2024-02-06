@@ -36,6 +36,7 @@ import java.awt.ScrollPane;
 import java.awt.List;
 import java.awt.TextField;
 import javax.swing.JMenu;
+import java.awt.Panel;
 
 public class PanelSeleccionFuncion extends JPanel {
 
@@ -147,6 +148,44 @@ public class PanelSeleccionFuncion extends JPanel {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(545, 301, 274, 28);
 		add(comboBox);
+		
+		// PANEL CONTENEDOR DEL PRECIO DE LA FUNCIÓN
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(30, 61, 125));
+		panel.setBounds(359, 425, 400, 92);
+		add(panel);
+		panel.setLayout(null);
+		
+		// LBL PRECIO DE FUNCIÒN ELEGIDA
+		JLabel lblPrecioFuncion = new JLabel("La función elegida tiene un precio de");
+		lblPrecioFuncion.setBounds(45, 11, 305, 21);
+		lblPrecioFuncion.setFont(new Font("Verdana", Font.PLAIN, 16));
+		lblPrecioFuncion.setForeground(new Color(255, 255, 255));
+		panel.add(lblPrecioFuncion);
+		
+		// [!] LBL PRECIO TRAÍDO DE BD
+		JLabel lblPrecioBD = new JLabel("20");
+		lblPrecioBD.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPrecioBD.setForeground(Color.WHITE);
+		lblPrecioBD.setFont(new Font("Verdana", Font.BOLD, 16));
+		lblPrecioBD.setBounds(164, 35, 32, 21);
+		panel.add(lblPrecioBD);
+		
+		// LBL EUROS
+		JLabel lblEuros = new JLabel("€");
+		lblEuros.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEuros.setForeground(Color.WHITE);
+		lblEuros.setFont(new Font("Verdana", Font.BOLD, 16));
+		lblEuros.setBounds(197, 35, 12, 21);
+		panel.add(lblEuros);
+		
+		// LBL POR PERSONA
+		JLabel lblPorPersona = new JLabel("Por persona");
+		lblPorPersona.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPorPersona.setForeground(Color.WHITE);
+		lblPorPersona.setFont(new Font("Verdana", Font.PLAIN, 16));
+		lblPorPersona.setBounds(123, 57, 120, 21);
+		panel.add(lblPorPersona);
 
 
 	}

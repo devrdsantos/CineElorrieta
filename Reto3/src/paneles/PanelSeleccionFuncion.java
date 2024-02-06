@@ -3,7 +3,11 @@ package paneles;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -82,6 +86,23 @@ public class PanelSeleccionFuncion extends JPanel {
 		JDateChooser dateChooserDia = new JDateChooser();
 		dateChooserDia.getCalendarButton().setFont(new Font("Verdana", Font.PLAIN, 14));
 		dateChooserDia.setBounds(280, 301, 142, 28);
+		
+		//Para que coja la fecha actual 
+		/*
+		dateChooserDia.setMinSelectableDate(new Date());
+		*/
+		
+		//Para darle un maximo y un minimo de fechas elegibles
+		/*
+		try {
+		    String date = "12 Feb 2024";
+		    Date date2 = new SimpleDateFormat("dd MMM yyyy").parse(date);
+		    dateChooserDia.setMinSelectableDate(date2);
+		    dateChooserDia.setMaxSelectableDate(date2);
+		} catch (Exception e) {
+		    System.out.println(e);
+		}
+		*/
 		add(dateChooserDia);
 
 		// LBL ELIGE UN DÌA

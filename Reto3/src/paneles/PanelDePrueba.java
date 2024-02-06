@@ -4,17 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 
 import controlador.GestionBD;
+import controlador.GestionDeLaInformacion;
 import modelo.Cine;
-import modelo.Funcion;
-import modelo.Pelicula;
 import vista.VentanaPrincipal;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -25,27 +22,12 @@ import java.awt.event.MouseAdapter;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import com.toedter.calendar.JDateChooser;
-import javax.swing.border.CompoundBorder;
-import javax.swing.UIManager;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.MatteBorder;
-import com.toedter.calendar.JDayChooser;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
-import java.awt.ScrollPane;
-import java.awt.List;
-import java.awt.TextField;
-import javax.swing.JMenu;
-import java.awt.Panel;
-import javax.swing.JSeparator;
 
 public class PanelDePrueba extends JPanel {
 
-	private String[] urlPeliculas = {};
-	private int peliActual;
-	private GestionBD gestion = new GestionBD();
-	// private Cine cine = new Cine();
-	ArrayList<Pelicula> peli = gestion.sacarInformacionPeliculas();
+//	private GestionDeLaInformacion gestionINF = new GestionDeLaInformacion();
+	private GestionBD gestionBD = new GestionBD();
+	private GestionDeLaInformacion gestionINF = new GestionDeLaInformacion();
 
 	public PanelDePrueba(VentanaPrincipal v) {
 		setSize(1200, 720);
@@ -55,76 +37,65 @@ public class PanelDePrueba extends JPanel {
 		setBackground(Color.decode("#142850"));
 
 		// MSJ BIENVENIDA
-		JLabel seleccionaFuncion = new JLabel("<html>A continuación se muestra la selección que has realizado</html>");
-		seleccionaFuncion.setHorizontalAlignment(SwingConstants.CENTER);
-		seleccionaFuncion.setForeground(Color.decode("#ffffff"));
-		seleccionaFuncion.setFont(new Font("Verdana", Font.BOLD, 20));
-		seleccionaFuncion.setBounds(203, 119, 680, 49);
-		add(seleccionaFuncion);
+		JLabel mensajeBienvenida = new JLabel("Iniciaste sesión en Cines ESA");
+		mensajeBienvenida.setHorizontalAlignment(SwingConstants.CENTER);
+		mensajeBienvenida.setForeground(Color.decode("#ffffff"));
+		mensajeBienvenida.setFont(new Font("Verdana", Font.BOLD, 32));
+		mensajeBienvenida.setBounds(302, 169, 584, 78);
+		add(mensajeBienvenida);
 
-		// LBL FUNCIONES
-		JLabel lblFunciones = new JLabel("Película:");
-		lblFunciones.setHorizontalAlignment(SwingConstants.LEFT);
-		lblFunciones.setForeground(new Color(134, 167, 252));
-		lblFunciones.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblFunciones.setBounds(159, 212, 75, 49);
-		add(lblFunciones);
+		// LABEL SELECCIONA UN CINE
+		JLabel lblDNI = new JLabel("Selecciona un cine:");
+		lblDNI.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblDNI.setBounds(359, 313, 193, 28);
+		lblDNI.setForeground(Color.decode("#FFFFFF"));
+		add(lblDNI);
 
-		// (!) LBL CINE SELECCIONADO (TRAE DATOS DE BD!!!!)
-		JLabel lblPeliculaSeleccionada = new JLabel();
-		lblPeliculaSeleccionada.setVerticalAlignment(SwingConstants.TOP);
-		lblPeliculaSeleccionada.setText("<html>NOMBRE DE LA PELÍCULA</html>");
-		// lblCineSeleccionado.setText(cine.getNombreCine());
-		lblPeliculaSeleccionada.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPeliculaSeleccionada.setForeground(new Color(211, 213, 248));
-		lblPeliculaSeleccionada.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblPeliculaSeleccionada.setBounds(235, 226, 797, 49);
-		add(lblPeliculaSeleccionada);
+		// COMBOBOX CINES
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setBounds(546, 317, 285, 28);
+		comboBox.setForeground(Color.decode("#BE6DB7"));
+		comboBox.setFont(new Font("Verdana", Font.PLAIN, 16));
+		add(comboBox);
+		for (int i = 0; i < gestionINF.almacenarCines().size(); i++) {
+			comboBox.addItem(gestionINF.almacenarCines().get(i));
+		}
 
-	
-		peliActual = 0;
-		
-		JLabel lblEnUnosSegundos = new JLabel("En unos segundos serás redirigido al inicio...");
-		lblEnUnosSegundos.setForeground(Color.WHITE);
-		lblEnUnosSegundos.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblEnUnosSegundos.setBounds(359, 481, 400, 21);
-		add(lblEnUnosSegundos);
-		
-		JSeparator separator = new JSeparator();
-		separator.setBackground(new Color(134, 167, 255));
-		separator.setBounds(167, 450, 800, 8);
-		add(separator);
-		
-		JLabel lblCine = new JLabel("Cine:");
-		lblCine.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCine.setForeground(new Color(134, 167, 252));
-		lblCine.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblCine.setBounds(171, 288, 56, 49);
-		add(lblCine);
-		
-		JLabel lblNombreDelCine = new JLabel();
-		lblNombreDelCine.setText("NOMBRE DEL CINE");
-		lblNombreDelCine.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNombreDelCine.setForeground(new Color(211, 213, 248));
-		lblNombreDelCine.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblNombreDelCine.setBounds(235, 289, 797, 49);
-		add(lblNombreDelCine);
-		
-		JLabel lblFuncin = new JLabel("Función:");
-		lblFuncin.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblFuncin.setForeground(new Color(134, 167, 252));
-		lblFuncin.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblFuncin.setBounds(156, 362, 72, 49);
-		add(lblFuncin);
-		
-		JLabel lblSalaYHora = new JLabel();
-		lblSalaYHora.setText("SALA Y HORA");
-		lblSalaYHora.setHorizontalAlignment(SwingConstants.LEFT);
-		lblSalaYHora.setForeground(new Color(211, 213, 248));
-		lblSalaYHora.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblSalaYHora.setBounds(235, 363, 797, 49);
-		add(lblSalaYHora);
+		// BOTÓN PRINCIPAL
+		JButton btnPrincipal = new JButton("Siguiente");
+		btnPrincipal.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String cineSeleccionado = (String) comboBox.getSelectedItem();
+				//System.out.println(cineSeleccionado);
+				gestionINF.recojerCineSeleccionado(cineSeleccionado);
+				v.cambiarDePanel(4);
 
+				gestionBD.sacarCines();
 
+			}
+		});
+		btnPrincipal.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnPrincipal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnPrincipal.setOpaque(true);
+		btnPrincipal.setContentAreaFilled(true);
+		btnPrincipal.setForeground(Color.decode("#FFFFFF"));
+		btnPrincipal.setBorderPainted(false);
+		btnPrincipal.setBackground(Color.decode("#C67ACE"));
+		btnPrincipal.setBounds(421, 489, 150, 39);
+		add(btnPrincipal);
+		
+		JButton btnFinalizaTuCompra = new JButton("Finaliza tu compra");
+		btnFinalizaTuCompra.setOpaque(true);
+		btnFinalizaTuCompra.setForeground(Color.WHITE);
+		btnFinalizaTuCompra.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnFinalizaTuCompra.setContentAreaFilled(true);
+		btnFinalizaTuCompra.setBorderPainted(false);
+		btnFinalizaTuCompra.setBackground(new Color(134, 167, 255));
+		btnFinalizaTuCompra.setBounds(594, 489, 200, 39);
+		add(btnFinalizaTuCompra);
 	}
 }

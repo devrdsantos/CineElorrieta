@@ -53,25 +53,29 @@ public class PanelDePrueba extends JPanel {
 		add(seleccionaFuncion);
 
 		// BOTÓN SECUNDARIO - - VOLVER ATRÁS
-		JButton btnSecundario = new JButton("<html><u>Volver a Seleccionar Película<u><html>");
-		btnSecundario.addMouseListener(new MouseAdapter() {
+
+		JButton btnVolver = new JButton("<html><u>Volver a Seleccionar Cine<u><html>");
+		btnVolver.addMouseListener(new MouseAdapter() {
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				v.cambiarDePanel(3);
 			}
 		});
-		btnSecundario.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnSecundario.addActionListener(new ActionListener() {
+		btnVolver.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnSecundario.setOpaque(true);
-		btnSecundario.setContentAreaFilled(true);
-		btnSecundario.setForeground(Color.decode("#C67ACE"));
-		btnSecundario.setBorderPainted(false);
-		btnSecundario.setBackground(Color.decode("#142850"));
-		btnSecundario.setBounds(21, 23, 273, 39);
-		add(btnSecundario);
+
+		btnVolver.setOpaque(true);
+		btnVolver.setContentAreaFilled(true);
+		btnVolver.setForeground(Color.decode("#C67ACE"));
+		btnVolver.setBorderPainted(false);
+		btnVolver.setBackground(Color.decode("#142850"));
+		btnVolver.setBounds(21, 23, 254, 39);
+		add(btnVolver);
+
 
 		// LBL PELICULAS EN CARTELERA
 		JLabel lblFunciones = new JLabel("Funciones para la película");

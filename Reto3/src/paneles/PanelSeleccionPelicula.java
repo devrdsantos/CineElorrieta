@@ -242,11 +242,9 @@ public class PanelSeleccionPelicula extends JPanel {
 			"multimedia/Intocable.png", "multimedia/GHB.png", "multimedia/Coco.png", "multimedia/SDLA.png" };
 	private int peliActual;
 	private GestionBD gestion = new GestionBD();
-    private GestionDeLaInformacion gestionINF = new GestionDeLaInformacion();
-    private Cine cine;
 	ArrayList<Pelicula> peli = gestion.sacarInformacionPeliculas();
 
-	public PanelSeleccionPelicula(VentanaPrincipal v) {
+	public PanelSeleccionPelicula(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);
@@ -262,25 +260,25 @@ public class PanelSeleccionPelicula extends JPanel {
 		add(seleccionaPelicula);
 
 		// BOTÓN SECUNDARIO - - VOLVER ATRÁS
-		JButton btnSecundario = new JButton("<html><u>Volver a Seleccionar Cine<u><html>");
-		btnSecundario.addMouseListener(new MouseAdapter() {
+		JButton btnVoler = new JButton("<html><u>Volver a Seleccionar Cine<u><html>");
+		btnVoler.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				v.cambiarDePanel(3);
 			}
 		});
-		btnSecundario.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnSecundario.addActionListener(new ActionListener() {
+		btnVoler.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnVoler.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnSecundario.setOpaque(true);
-		btnSecundario.setContentAreaFilled(true);
-		btnSecundario.setForeground(Color.decode("#C67ACE"));
-		btnSecundario.setBorderPainted(false);
-		btnSecundario.setBackground(Color.decode("#142850"));
-		btnSecundario.setBounds(21, 23, 254, 39);
-		add(btnSecundario);
+		btnVoler.setOpaque(true);
+		btnVoler.setContentAreaFilled(true);
+		btnVoler.setForeground(Color.decode("#C67ACE"));
+		btnVoler.setBorderPainted(false);
+		btnVoler.setBackground(Color.decode("#142850"));
+		btnVoler.setBounds(21, 23, 254, 39);
+		add(btnVoler);
 
 		// LBL PELICULAS EN CARTELERA
 		JLabel lblPeliculasEnCartelera = new JLabel("Películas en cartelera para:");
@@ -292,7 +290,7 @@ public class PanelSeleccionPelicula extends JPanel {
 
 		// (!) LBL CINE SELECCIONADO (TRAE DATOS DE BD!!!!)
 		JLabel lblCineSeleccionado = new JLabel();
-		lblCineSeleccionado.setText("");
+		lblCineSeleccionado.setText(gestionINF.pasarNombreCine());
 		// lblCineSeleccionado.setText(cine.getNombreCine());
 		lblCineSeleccionado.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCineSeleccionado.setForeground(new Color(211, 213, 248));
@@ -303,76 +301,76 @@ public class PanelSeleccionPelicula extends JPanel {
 		/* --- GRUPO --- 1 */
 		// LABEL TITULO PELICULA
 		peliActual = 0;
-		JLabel lblTituloPelicula1 = new JLabel();
-		lblTituloPelicula1.setText(peli.get(peliActual).getNombrePelicula());
-		lblTituloPelicula1.setVerticalAlignment(SwingConstants.TOP);
-		lblTituloPelicula1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTituloPelicula1.setFont(new Font("Verdana", Font.BOLD, 18));
-		lblTituloPelicula1.setBounds(717, 151, 321, 59);
-		lblTituloPelicula1.setForeground(Color.decode("#86A7FC"));
-		add(lblTituloPelicula1);
+		JLabel lblTituloPelicula = new JLabel();
+		lblTituloPelicula.setText(peli.get(peliActual).getNombrePelicula());
+		lblTituloPelicula.setVerticalAlignment(SwingConstants.TOP);
+		lblTituloPelicula.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTituloPelicula.setFont(new Font("Verdana", Font.BOLD, 18));
+		lblTituloPelicula.setBounds(717, 151, 321, 59);
+		lblTituloPelicula.setForeground(Color.decode("#86A7FC"));
+		add(lblTituloPelicula);
 
 		// LABEL FOTO PELICULA
-		JLabel lblFoto1 = new JLabel();
+		JLabel lblFotoPortadaPelicula = new JLabel();
 		// lblFoto1.setOpaque(true);
 		ImageIcon icono = new ImageIcon(urlPeliculas[peliActual]);
-		lblFoto1.setIcon(icono);
+		lblFotoPortadaPelicula.setIcon(icono);
 		// lblFoto1.setBackground(Color.decode("#ffffff"));
 		// lblFoto1.setHorizontalAlignment(SwingConstants.CENTER);
 		// lblFoto1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblFoto1.setBounds(381, 151, 323, 450);
-		add(lblFoto1);
+		lblFotoPortadaPelicula.setBounds(381, 151, 323, 450);
+		add(lblFotoPortadaPelicula);
 
 		// LABEL DURACIÓN PELICULA
-		JLabel lblDuracionPelicula1 = new JLabel("Duración: ");
-		lblDuracionPelicula1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDuracionPelicula1.setForeground(Color.WHITE);
-		lblDuracionPelicula1.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblDuracionPelicula1.setBounds(717, 204, 96, 34);
-		add(lblDuracionPelicula1);
+		JLabel lblDuracionPelicula = new JLabel("Duración: ");
+		lblDuracionPelicula.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDuracionPelicula.setForeground(Color.WHITE);
+		lblDuracionPelicula.setFont(new Font("Verdana", Font.BOLD, 16));
+		lblDuracionPelicula.setBounds(717, 204, 96, 34);
+		add(lblDuracionPelicula);
 
 		// LABEL DURACIÓN PELICULA (TRAÍDO DE LA BD)
-		JLabel lblDuracionPelicula1BD = new JLabel(peli.get(peliActual).getDuracion());
-		lblDuracionPelicula1BD.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDuracionPelicula1BD.setForeground(Color.WHITE);
-		lblDuracionPelicula1BD.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblDuracionPelicula1BD.setBounds(717, 230, 40, 34);
-		add(lblDuracionPelicula1BD);
+		JLabel lblDuracionPeliculaBD = new JLabel(peli.get(peliActual).getDuracion());
+		lblDuracionPeliculaBD.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDuracionPeliculaBD.setForeground(Color.WHITE);
+		lblDuracionPeliculaBD.setFont(new Font("Verdana", Font.PLAIN, 16));
+		lblDuracionPeliculaBD.setBounds(717, 230, 40, 34);
+		add(lblDuracionPeliculaBD);
 
 		// LABEL DURACIÓN PELICULA - MINUTOS
-		JLabel lblMinutos1 = new JLabel("minutos");
-		lblMinutos1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblMinutos1.setForeground(Color.WHITE);
-		lblMinutos1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblMinutos1.setBounds(755, 231, 66, 34);
-		add(lblMinutos1);
+		JLabel lblMinutos = new JLabel("minutos");
+		lblMinutos.setHorizontalAlignment(SwingConstants.LEFT);
+		lblMinutos.setForeground(Color.WHITE);
+		lblMinutos.setFont(new Font("Verdana", Font.PLAIN, 16));
+		lblMinutos.setBounds(755, 231, 66, 34);
+		add(lblMinutos);
 
 		// BTN PRINCIPAL -- SELECCIONAR PELICULA
-		JButton btnSeleccionarPelicula1 = new JButton("Seleccionar película");
+		JButton btnSeleccionarPelicula = new JButton("Seleccionar película");
 
-		btnSeleccionarPelicula1.addActionListener(new ActionListener() {
+		btnSeleccionarPelicula.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				v.cambiarDePanel(5);
 			}
 		});
-		btnSeleccionarPelicula1.setOpaque(true);
-		btnSeleccionarPelicula1.setForeground(Color.WHITE);
-		btnSeleccionarPelicula1.setFont(new Font("Verdana", Font.BOLD, 14));
-		btnSeleccionarPelicula1.setContentAreaFilled(true);
-		btnSeleccionarPelicula1.setBorderPainted(false);
-		btnSeleccionarPelicula1.setBackground(new Color(198, 122, 206));
-		btnSeleccionarPelicula1.setBounds(717, 478, 195, 34);
-		add(btnSeleccionarPelicula1);
+		btnSeleccionarPelicula.setOpaque(true);
+		btnSeleccionarPelicula.setForeground(Color.WHITE);
+		btnSeleccionarPelicula.setFont(new Font("Verdana", Font.BOLD, 14));
+		btnSeleccionarPelicula.setContentAreaFilled(true);
+		btnSeleccionarPelicula.setBorderPainted(false);
+		btnSeleccionarPelicula.setBackground(new Color(198, 122, 206));
+		btnSeleccionarPelicula.setBounds(717, 478, 195, 34);
+		add(btnSeleccionarPelicula);
 
 		// LABEL QUE TIENE QUE MOSTRAR LA SINOPSIS DE LA PELICULA
-		JTextPane txtpnsinopsisBD = new JTextPane();
-		txtpnsinopsisBD.setEditable(false);
-		txtpnsinopsisBD.setText(peli.get(peliActual).getSinopsis());
-		txtpnsinopsisBD.setForeground(Color.WHITE);
-		txtpnsinopsisBD.setBackground(Color.decode("#142850"));
-		txtpnsinopsisBD.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtpnsinopsisBD.setBounds(716, 297, 329, 174);
-		add(txtpnsinopsisBD);
+		JTextPane txtSinopsisBD = new JTextPane();
+		txtSinopsisBD.setEditable(false);
+		txtSinopsisBD.setText(peli.get(peliActual).getSinopsis());
+		txtSinopsisBD.setForeground(Color.WHITE);
+		txtSinopsisBD.setBackground(Color.decode("#142850"));
+		txtSinopsisBD.setFont(new Font("Verdana", Font.PLAIN, 16));
+		txtSinopsisBD.setBounds(716, 297, 329, 174);
+		add(txtSinopsisBD);
 
 		// BTN ANTERIOR
 		// CUANDO NO HAY ANTERIOR PERMANECERÁ CON ESTE ESTILO, QUE ES EL DISABLED, SINO
@@ -386,13 +384,13 @@ public class PanelSeleccionPelicula extends JPanel {
 //					btnAnterior.setEnabled(false);
 				} else {
 					peliActual = peliActual - 1;
-					lblTituloPelicula1.setText(peli.get(peliActual).getNombrePelicula());
-					lblDuracionPelicula1BD.setText(peli.get(peliActual).getDuracion());
-					txtpnsinopsisBD.setText(peli.get(peliActual).getSinopsis());
+					lblTituloPelicula.setText(peli.get(peliActual).getNombrePelicula());
+					lblDuracionPeliculaBD.setText(peli.get(peliActual).getDuracion());
+					txtSinopsisBD.setText(peli.get(peliActual).getSinopsis());
 //					btnAnterior.setFocusable(true);
 //					btnAnterior.setEnabled(true);
 					ImageIcon icono = new ImageIcon(urlPeliculas[peliActual]);
-					lblFoto1.setIcon(icono);
+					lblFotoPortadaPelicula.setIcon(icono);
 				}
 			}
 		});
@@ -416,13 +414,13 @@ public class PanelSeleccionPelicula extends JPanel {
 
 				} else {
 					peliActual = peliActual + 1;
-					lblTituloPelicula1.setText(peli.get(peliActual).getNombrePelicula());
-					lblDuracionPelicula1BD.setText(peli.get(peliActual).getDuracion());
-					txtpnsinopsisBD.setText(peli.get(peliActual).getSinopsis());
+					lblTituloPelicula.setText(peli.get(peliActual).getNombrePelicula());
+					lblDuracionPeliculaBD.setText(peli.get(peliActual).getDuracion());
+					txtSinopsisBD.setText(peli.get(peliActual).getSinopsis());
 //							btnSiguiente.setFocusable(true);
 //							btnSiguiente.setEnabled(true);
 					ImageIcon icono = new ImageIcon(urlPeliculas[peliActual]);
-					lblFoto1.setIcon(icono);
+					lblFotoPortadaPelicula.setIcon(icono);
 				}
 			}
 		});

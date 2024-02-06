@@ -27,9 +27,8 @@ public class PanelSeleccionCine extends JPanel {
 
 //	private GestionDeLaInformacion gestionINF = new GestionDeLaInformacion();
 	private GestionBD gestionBD = new GestionBD();
-	private GestionDeLaInformacion gestionINF = new GestionDeLaInformacion();
 
-	public PanelSeleccionCine(VentanaPrincipal v) {
+	public PanelSeleccionCine(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);
@@ -45,28 +44,28 @@ public class PanelSeleccionCine extends JPanel {
 		add(mensajeBienvenida);
 
 		// LABEL SELECCIONA UN CINE
-		JLabel lblDNI = new JLabel("Selecciona un cine:");
-		lblDNI.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblDNI.setBounds(359, 313, 193, 28);
-		lblDNI.setForeground(Color.decode("#FFFFFF"));
-		add(lblDNI);
+		JLabel lblSeleccionarCine = new JLabel("Selecciona un cine:");
+		lblSeleccionarCine.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblSeleccionarCine.setBounds(359, 313, 193, 28);
+		lblSeleccionarCine.setForeground(Color.decode("#FFFFFF"));
+		add(lblSeleccionarCine);
 
 		// COMBOBOX CINES
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setBounds(546, 317, 285, 28);
-		comboBox.setForeground(Color.decode("#BE6DB7"));
-		comboBox.setFont(new Font("Verdana", Font.PLAIN, 16));
-		add(comboBox);
+		JComboBox<String> comboBoxCines = new JComboBox<String>();
+		comboBoxCines.setBounds(546, 317, 285, 28);
+		comboBoxCines.setForeground(Color.decode("#BE6DB7"));
+		comboBoxCines.setFont(new Font("Verdana", Font.PLAIN, 16));
+		add(comboBoxCines);
 		for (int i = 0; i < gestionINF.almacenarCines().size(); i++) {
-			comboBox.addItem(gestionINF.almacenarCines().get(i).getNombreCine());
+			comboBoxCines.addItem(gestionINF.almacenarCines().get(i).getNombreCine());
 		}
 
 		// BOTÓN PRINCIPAL
-		JButton btnPrincipal = new JButton("Siguiente");
-		btnPrincipal.addMouseListener(new MouseAdapter() {
+		JButton btnSiguente = new JButton("Siguiente");
+		btnSiguente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String cineSeleccionado = (String) comboBox.getSelectedItem();
+				String cineSeleccionado = (String) comboBoxCines.getSelectedItem();
 				//System.out.println(cineSeleccionado);
 				gestionINF.recogerCineSeleccionado(cineSeleccionado);
 				v.cambiarDePanel(4);
@@ -75,17 +74,17 @@ public class PanelSeleccionCine extends JPanel {
 
 			}
 		});
-		btnPrincipal.setFont(new Font("Verdana", Font.BOLD, 16));
-		btnPrincipal.addActionListener(new ActionListener() {
+		btnSiguente.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnSiguente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnPrincipal.setOpaque(true);
-		btnPrincipal.setContentAreaFilled(true);
-		btnPrincipal.setForeground(Color.decode("#FFFFFF"));
-		btnPrincipal.setBorderPainted(false);
-		btnPrincipal.setBackground(Color.decode("#C67ACE"));
-		btnPrincipal.setBounds(490, 489, 150, 39);
-		add(btnPrincipal);
+		btnSiguente.setOpaque(true);
+		btnSiguente.setContentAreaFilled(true);
+		btnSiguente.setForeground(Color.decode("#FFFFFF"));
+		btnSiguente.setBorderPainted(false);
+		btnSiguente.setBackground(Color.decode("#C67ACE"));
+		btnSiguente.setBounds(490, 489, 150, 39);
+		add(btnSiguente);
 	}
 }

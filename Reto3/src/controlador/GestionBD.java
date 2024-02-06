@@ -25,33 +25,34 @@ public class GestionBD {
 	}
 
 	/*
-	 * metodo iniciar conexion Se utiliza para conectarse a la base de datos este
-	 * metodo se utiliza cada vez que cambiamos de panel ya que lo incluimos en el
-	 * constructor vacio de GestionBD
+	 * [MÉTODO] Iniciar Conexion - - - - - - - - - - - - - -
 	 * 
-	 * Si la conexion es correcta se mostrara en consola "Conexion iniciada" Si la
-	 * conexion es incorrecta hay dos opciones: 1. Que no se haya encontrado la
-	 * libreria 2. Que no se haya encontrado la base de datos Ambos tienen mensajes
-	 * de aviso para cada caso
+	 * Se utiliza para conectarse a la BD Este método se utiliza cada vez que
+	 * cambiamos de panel ya que lo incluimos en el constructor vacio de GestionBD
+	 * 
+	 * Si la conexion es correcta se mostrara en consola "Conexion iniciada" Si es
+	 * incorrecta hay dos opciones: 1. Que no se haya encontrado la libreria o 2.
+	 * Que no se haya encontrado la base de datos Ambos tienen mensajes de aviso
+	 * para cada caso
 	 */
 	public void iniciarconexion() {
 		// System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto03", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto3", "root", "");
 
 		} catch (ClassNotFoundException e) {
-			System.out.println("No se ha encontrado la libreria");
+			System.out.println("No se ha encontrado la Libreria.");
 		} catch (SQLException e) {
-			System.out.println("No se ha encotrado la base de datos");
+			System.out.println("No se ha encontrado la BD.");
 		}
 		// System.out.println("Conexion iniciada");
 	}
 
 	/*
-	 * metodo cerrarConexion se utiliza para cerrar la conexion con la base de datos
-	 * muestra un mensaje "Conexion cerrada"
+	 * [MÉTODO] Cerrar conexión - - - - - - - - - - - - - - Se utiliza para cerrar
+	 * la conexion con la BD Muestra un mensaje "Conexion cerrada"
 	 */
 	public void cerrarConexion() {
 		System.out.println("Cerrando...");
@@ -63,10 +64,13 @@ public class GestionBD {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Conexión cerrada");
+		System.out.println("Conexión cerrada.");
 	}
 
 	/*
+	 * [MÉTODO] Verificar Login - - - - - - - - - - - - - - Recibe tres parámetros:
+	 * String dni, String pass y el objeto VentanaPrincipal
+	 * 
 	 * metodo verificarLogin param dni = este parametro tomara el valor del dni que
 	 * traiga de la bdd param pass = este parametro tomara el valor del password que
 	 * traiga de la bdd param ventanaPrincipal = le pasamos como parametro la
@@ -95,7 +99,7 @@ public class GestionBD {
 			consultaPreparada.setString(1, dni);
 
 			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
-			String passDesencriptada = sacarPasswordEncriptada(dni);
+			//String passDesencriptada = sacarPasswordEncriptada(dni);
 			if (resultadoConsulta.next() && dni.equals(resultadoConsulta.getString(1))) {
 				JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión");
 				v.cambiarDePanel(3);
@@ -147,7 +151,6 @@ public class GestionBD {
 			v.cambiarDePanel(2);
 		}
 	}
-
 
 	public ArrayList<Cine> sacarCines() {
 		ArrayList<Cine> cines = new ArrayList<Cine>();

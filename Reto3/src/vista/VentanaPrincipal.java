@@ -9,6 +9,7 @@ import paneles.PanelBienvenida;
 import paneles.PanelDePrueba;
 import paneles.PanelLogin;
 import paneles.PanelRegistro;
+import paneles.PanelResumenCompra;
 import paneles.PanelSeleccionCine;
 import paneles.PanelSeleccionFuncion;
 import paneles.PanelSeleccionPelicula;
@@ -42,7 +43,6 @@ public class VentanaPrincipal extends JFrame {
 		case 0: {
 			setContentPane(new PanelBienvenida(this)); // PanelBienvenida
 			break;
-
 		}
 		case 1: {
 			setContentPane(new PanelLogin(this));
@@ -65,6 +65,10 @@ public class VentanaPrincipal extends JFrame {
 			break;
 		}
 		case 6: {
+			setContentPane(new PanelResumenCompra(this));
+			break;
+		}
+		case 7: {
 			setContentPane(new PanelDePrueba(this));
 			break;
 		}
@@ -74,7 +78,7 @@ public class VentanaPrincipal extends JFrame {
 	public static void main(String[] args) {
 		VentanaPrincipal v = new VentanaPrincipal();
 		v.setVisible(true);
-		v.cambiarDePanel(5);
-	}
+		v.cambiarDePanel(0);
 
+	}
 }

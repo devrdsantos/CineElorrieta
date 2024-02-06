@@ -3,13 +3,12 @@ package paneles;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import controlador.GestionBD;
+import controlador.GestionDeLaInformacion;
 import modelo.Pelicula;
 import vista.VentanaPrincipal;
 import javax.swing.JButton;
@@ -21,13 +20,10 @@ import com.toedter.calendar.JDateChooser;
 
 public class PanelSeleccionFuncion extends JPanel {
 
-	private String[] urlPeliculas = {};
-	private int peliActual;
 	private GestionBD gestion = new GestionBD();
-	// private Cine cine = new Cine();
 	ArrayList<Pelicula> peli = gestion.sacarInformacionPeliculas();
 
-	public PanelSeleccionFuncion(VentanaPrincipal v) {
+	public PanelSeleccionFuncion(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);
@@ -80,8 +76,6 @@ public class PanelSeleccionFuncion extends JPanel {
 		lblPeliculaSeleccionada.setFont(new Font("Verdana", Font.BOLD, 16));
 		lblPeliculaSeleccionada.setBounds(267, 158, 797, 49);
 		add(lblPeliculaSeleccionada);
-
-		peliActual = 0;
 
 		// CALENDARIO
 		JDateChooser dateChooserDia = new JDateChooser();

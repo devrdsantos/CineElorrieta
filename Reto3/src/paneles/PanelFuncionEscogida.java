@@ -4,49 +4,18 @@ package paneles;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-
 import controlador.GestionBD;
-import modelo.Cine;
-import modelo.Funcion;
 import modelo.Pelicula;
 import vista.VentanaPrincipal;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import javax.swing.JRadioButton;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import com.toedter.calendar.JDateChooser;
-import javax.swing.border.CompoundBorder;
-import javax.swing.UIManager;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.MatteBorder;
-import com.toedter.calendar.JDayChooser;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
-import java.awt.ScrollPane;
-import java.awt.List;
-import java.awt.TextField;
-import javax.swing.JMenu;
-import java.awt.Panel;
 import javax.swing.JSeparator;
 
 public class PanelFuncionEscogida extends JPanel {
 
-	private String[] urlPeliculas = {};
-	private int peliActual;
 	private GestionBD gestion = new GestionBD();
-	// private Cine cine = new Cine();
 	ArrayList<Pelicula> peli = gestion.sacarInformacionPeliculas();
 
 	public PanelFuncionEscogida(VentanaPrincipal v) {
@@ -83,9 +52,6 @@ public class PanelFuncionEscogida extends JPanel {
 		lblPeliculaSeleccionada.setBounds(235, 226, 797, 49);
 		add(lblPeliculaSeleccionada);
 
-	
-		peliActual = 0;
-		
 		// LBL REDIRECCIÒN
 		JLabel lblEnUnosSegundos = new JLabel("En unos segundos serás redirigido al inicio...");
 		lblEnUnosSegundos.setForeground(Color.WHITE);

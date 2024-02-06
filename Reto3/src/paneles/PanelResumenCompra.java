@@ -3,34 +3,22 @@ package paneles;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
 import controlador.GestionBD;
-import modelo.Cine;
 import modelo.Pelicula;
 import vista.VentanaPrincipal;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
-import javax.swing.JRadioButton;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JSeparator;
 
 public class PanelResumenCompra extends JPanel {
 
-	private String[] urlPeliculas = {};
-	private int peliActual;
 	private GestionBD gestion = new GestionBD();
-	// private Cine cine = new Cine();
 	ArrayList<Pelicula> peli = gestion.sacarInformacionPeliculas();
 
 	public PanelResumenCompra (VentanaPrincipal v) {
@@ -72,7 +60,6 @@ public class PanelResumenCompra extends JPanel {
 
 		/* --- GRUPO --- 1 */
 		// LABEL TITULO PELICULA
-		peliActual = 0;
 		JLabel lblTituloPelicula1 = new JLabel("<html>Nombre de una película de ciencia ficción</html>");
 		lblTituloPelicula1.setVerticalAlignment(SwingConstants.TOP);
 		lblTituloPelicula1.setHorizontalAlignment(SwingConstants.LEFT);

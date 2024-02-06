@@ -6,7 +6,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
 import controlador.GestionBD;
 import vista.VentanaPrincipal;
 import javax.swing.JPasswordField;

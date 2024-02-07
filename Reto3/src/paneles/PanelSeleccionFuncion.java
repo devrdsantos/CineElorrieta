@@ -93,6 +93,7 @@ public class PanelSeleccionFuncion extends JPanel {
 		/*
 		 * dateChooserDia.setMinSelectableDate(new Date());
 		 */
+		dateChooserDia.setMinSelectableDate(new Date());
 
 		// Para darle un maximo y un minimo de fechas elegibles
 		/*
@@ -164,7 +165,7 @@ public class PanelSeleccionFuncion extends JPanel {
 		lblPrecioBD.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPrecioBD.setForeground(Color.WHITE);
 		lblPrecioBD.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblPrecioBD.setBounds(164, 35, 32, 21);
+		lblPrecioBD.setBounds(164, 35, 42, 21);
 		panel.add(lblPrecioBD);
 
 		// LBL EUROS
@@ -172,7 +173,7 @@ public class PanelSeleccionFuncion extends JPanel {
 		lblEuros.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEuros.setForeground(Color.WHITE);
 		lblEuros.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblEuros.setBounds(197, 35, 12, 21);
+		lblEuros.setBounds(207, 35, 12, 21);
 		panel.add(lblEuros);
 
 		// LBL POR PERSONA
@@ -194,7 +195,7 @@ public class PanelSeleccionFuncion extends JPanel {
 					for (int i = 0; i < funciones.size(); i++) {
 						if (formato.format(dateChooserDia.getDate()).equals(funciones.get(i).getFechafuncion())) {
 							comboBoxFunciones.addItem(
-									funciones.get(i).getHorafuncion() + " - Sala " + funciones.get(i).getIdfuncion());
+									funciones.get(i).getHorafuncion() + " - Sala " + funciones.get(i).getIdsala());
 							lblPrecioBD.setText(funciones.get(i).getPrecio() + "");
 						}
 					}

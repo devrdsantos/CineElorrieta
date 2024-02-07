@@ -7,6 +7,7 @@ import controlador.GestionBD;
 import controlador.GestionDeLaInformacion;
 import paneles.PanelBienvenida;
 import paneles.PanelDePrueba;
+import paneles.PanelFuncionEscogida;
 import paneles.PanelLogin;
 import paneles.PanelRegistro;
 import paneles.PanelResumenCompra;
@@ -65,7 +66,7 @@ public class VentanaPrincipal extends JFrame {
 			break;
 		}
 		case 6: {
-			setContentPane(new PanelResumenCompra(this));
+			setContentPane(new PanelFuncionEscogida(this));
 			break;
 		}
 		case 7: {

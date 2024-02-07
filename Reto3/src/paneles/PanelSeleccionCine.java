@@ -76,7 +76,30 @@ public class PanelSeleccionCine extends JPanel {
 		btnSiguente.setForeground(Color.decode("#FFFFFF"));
 		btnSiguente.setBorderPainted(false);
 		btnSiguente.setBackground(Color.decode("#C67ACE"));
-		btnSiguente.setBounds(490, 489, 150, 39);
+		btnSiguente.setBounds(421, 489, 150, 39);
 		add(btnSiguente);
+		
+		  // BTN SECUNDARIO - FINALIZAR 
+        JButton btnFinalizar = new JButton("Finalizar");
+        btnFinalizar.setOpaque(true);
+        btnFinalizar.setForeground(Color.WHITE);
+        btnFinalizar.setFont(new Font("Verdana", Font.BOLD, 16));
+        btnFinalizar.setContentAreaFilled(true);
+        btnFinalizar.setBorderPainted(false);
+        btnFinalizar.setBackground(new Color(134, 167, 255));
+        btnFinalizar.setBounds(594, 489, 140, 39);
+        
+        // Si selecciona FINALIZAR se cierra el programa
+        btnFinalizar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                
+                System.exit(0);
+
+            }
+        });
+        add(btnFinalizar);
 	}
+	
+	
 }

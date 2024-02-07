@@ -76,7 +76,9 @@ public class VentanaPrincipal extends JFrame {
 
 	public static void main(String[] args) {
 		VentanaPrincipal v = new VentanaPrincipal();
+
 		v.setVisible(true);
+
 		v.cambiarDePanel(3);
 
 	}

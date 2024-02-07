@@ -43,7 +43,9 @@ public class GestionBD {
 
 			Class.forName("com.mysql.jdbc.Driver");
 
+
 			conexion = DriverManager.getConnection("jdbc:mysql://localhost/reto3", "root", "");
+
 
 
 		} catch (ClassNotFoundException e) {

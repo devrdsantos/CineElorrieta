@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import modelo.Cine;
+import modelo.Funcion;
 import modelo.Pelicula;
 import vista.VentanaPrincipal;
 
@@ -38,10 +39,12 @@ public class GestionBD {
 	public void iniciarconexion() {
 		// System.out.println("Conectando...");
 		try {
+
+
 			Class.forName("com.mysql.jdbc.Driver");
 
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost/reto3", "root", "");
 
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto03", "root", "");
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la Libreria.");
@@ -101,7 +104,7 @@ public class GestionBD {
 
 			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
 			String passDesencriptada = sacarPasswordEncriptada(dni);
-			if (resultadoConsulta.next() && dni.equals(resultadoConsulta.getString(1))) {
+			if (resultadoConsulta.next() && dni.equals(resultadoConsulta.getString(1)) && pass.equals(passDesencriptada) ) {
 				JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión");
 				v.cambiarDePanel(3);
 			} else {
@@ -208,7 +211,6 @@ public class GestionBD {
 			consultaPreparada.setString(1, dni);
 			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
 			if (resultadoConsulta.next()) {
-				System.out.println("hola");
 				passDesencriptada = gestionINF.desencriptar(resultadoConsulta.getString(1));
 			}
 //			System.out.println("Cerrando consulta...");
@@ -219,4 +221,27 @@ public class GestionBD {
 		return passDesencriptada;
 	}
 
+		public ArrayList<Funcion> sacarInformacionDeUnaPelicula(int IdPelicula) {
+			ArrayList<Funcion> funciones = new ArrayList<Funcion>();
+			try {
+				// System.out.println("Iniciando consulta..");
+				String query = "SELECT * FROM `funcion` WHERE idpelicula = ?";
+				PreparedStatement consultaPreparada = conexion.prepareStatement(query);
+				consultaPreparada.setInt(1, IdPelicula);
+				ResultSet resultadoConsulta = consultaPreparada.executeQuery();
+	
+				while (resultadoConsulta.next()) {
+					funciones.add(new Funcion(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
+							resultadoConsulta.getString(3), resultadoConsulta.getDouble(4),
+							resultadoConsulta.getInt(5), resultadoConsulta.getInt(6)));
+				}
+				// System.out.println("Cerrando Consulta funcion..");
+				consultaPreparada.close();
+			} catch (SQLException e) {
+				System.out.println("Conexion incorrecta funcion");
+				e.printStackTrace();
+			}
+			return funciones;
+		}
+	
 }

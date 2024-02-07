@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import controlador.GestionBD;
 import controlador.GestionDeLaInformacion;
 import paneles.PanelBienvenida;
-import paneles.PanelDePrueba;
+
 import paneles.PanelFuncionEscogida;
 import paneles.PanelLogin;
 import paneles.PanelRegistro;
@@ -70,10 +70,7 @@ public class VentanaPrincipal extends JFrame {
 			
 			break;
 		}
-		case 7: {
-			setContentPane(new PanelDePrueba(this));
-			break;
-		}
+		
 		}
 	}
 

@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import controlador.GestionBD;
+import controlador.GestionDeLaInformacion;
 import modelo.Pelicula;
 import vista.VentanaPrincipal;
 import javax.swing.JSeparator;
@@ -23,7 +24,7 @@ public class PanelFuncionEscogida extends JPanel {
 	ArrayList<Pelicula> peli = gestion.sacarInformacionPeliculas();
 	
 
-	public PanelFuncionEscogida(VentanaPrincipal v) {
+	public PanelFuncionEscogida(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		addMouseListener(new MouseAdapter() {
 			
             @Override
@@ -64,7 +65,7 @@ public class PanelFuncionEscogida extends JPanel {
 		// (!) LBL PELICULA SELECCIONADA (TRAE DATOS DE BD!!!!)
 		JLabel lblPeliculaSeleccionada = new JLabel();
 		lblPeliculaSeleccionada.setVerticalAlignment(SwingConstants.TOP);
-		lblPeliculaSeleccionada.setText("<html>NOMBRE DE LA PELÍCULA</html>");
+		lblPeliculaSeleccionada.setText(gestionINF.pasarNombrePelicula());
 		// lblCineSeleccionado.setText(cine.getNombreCine());
 		lblPeliculaSeleccionada.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPeliculaSeleccionada.setForeground(new Color(211, 213, 248));
@@ -95,7 +96,7 @@ public class PanelFuncionEscogida extends JPanel {
 		
 		// [!] LBL NOMBRE DEL CINE - TRAE DE BD
 		JLabel lblNombreDelCine = new JLabel();
-		lblNombreDelCine.setText("NOMBRE DEL CINE");
+		lblNombreDelCine.setText(gestionINF.pasarNombreCine());
 		lblNombreDelCine.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNombreDelCine.setForeground(new Color(211, 213, 248));
 		lblNombreDelCine.setFont(new Font("Verdana", Font.BOLD, 16));

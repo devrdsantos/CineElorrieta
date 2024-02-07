@@ -66,7 +66,7 @@ public class VentanaPrincipal extends JFrame {
 			break;
 		}
 		case 6: {
-			setContentPane(new PanelFuncionEscogida(this));
+			setContentPane(new PanelFuncionEscogida(this, this.gestionINF));
 			
 			break;
 		}

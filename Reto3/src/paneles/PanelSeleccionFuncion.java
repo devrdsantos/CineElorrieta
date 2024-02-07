@@ -81,10 +81,10 @@ public class PanelSeleccionFuncion extends JPanel {
 		lblFunciones.setBounds(43, 158, 222, 49);
 		add(lblFunciones);
 
-		// (!) LBL CINE SELECCIONADO (TRAE DATOS DE BD!!!!)
+		// (!) LBL PELICULA SELECCIONADA (TRAE DATOS DE BD!!!!)
 
 		JLabel lblPeliculaSeleccionada = new JLabel();
-		lblPeliculaSeleccionada.setText("<html>NOMBRE DE LA PELÍCULA</html>");
+		lblPeliculaSeleccionada.setText(gestionINF.pasarNombrePelicula());
 		// lblCineSeleccionado.setText(cine.getNombreCine());
 		lblPeliculaSeleccionada.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPeliculaSeleccionada.setForeground(new Color(211, 213, 248));

@@ -23,6 +23,7 @@ public class GestionDeLaInformacion {
 	private GestionBD gestionBD;
 	private ArrayList<String> DatosUsuario;
 	private Cine cine;
+	private Pelicula pelicula;
 	private final String CLAVE_ENCRIPTADA = "clavecompartidanorevelarnuncamas";
 
 	public GestionDeLaInformacion() {
@@ -135,6 +136,17 @@ public class GestionDeLaInformacion {
 	public String pasarNombreCine() {
 		String nombreCine = cine.getNombreCine();
 		return nombreCine;
+	}
+	
+	public void recogerPeliculaSeleccionada(String peliculaSeleccionada) {
+		pelicula = new Pelicula();
+		pelicula.setNombrePelicula(peliculaSeleccionada);
+		pasarNombrePelicula();
+	}
+	
+	public String pasarNombrePelicula() {
+		String nombrePelicula = pelicula.getNombrePelicula();
+		return nombrePelicula;
 	}
 	
 	public ArrayList<Pelicula> almacenarPeliculas() {

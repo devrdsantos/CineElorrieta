@@ -134,6 +134,7 @@ public class PanelSeleccionPelicula extends JPanel {
 
 		btnSeleccionarPelicula.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				gestionINF.recogerPeliculaSeleccionada(peli.get(peliActual).getNombrePelicula());
 				v.cambiarDePanel(5);
 				gestion.sacarInformacionDeUnaPelicula(peli.get(peliActual).getIdPelicula());
 			}

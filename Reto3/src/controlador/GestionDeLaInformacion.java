@@ -142,8 +142,9 @@ public class GestionDeLaInformacion {
 		return peliculas;
 	}
 	
-//	public ArrayList<Funcion> almacenarFunciones() {
-//		ArrayList<Funcion> funciones = gestionBD.sacarInformacionDeUnaPelicula();
-//		return funciones;
-//	}
+	public ArrayList<Funcion> almacenarFunciones(int IdPelicula) {
+		ArrayList<Funcion> funciones = gestionBD.sacarInformacionDeUnaPelicula(IdPelicula);
+		return funciones;
+	}
+	
 }

@@ -3,12 +3,14 @@ package paneles;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
+import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import controlador.GestionBD;
@@ -86,23 +88,20 @@ public class PanelSeleccionFuncion extends JPanel {
 		JDateChooser dateChooserDia = new JDateChooser();
 		dateChooserDia.getCalendarButton().setFont(new Font("Verdana", Font.PLAIN, 14));
 		dateChooserDia.setBounds(280, 301, 142, 28);
-		
-		//Para que coja la fecha actual 
+
+		// Para que coja la fecha actual
 		/*
-		dateChooserDia.setMinSelectableDate(new Date());
-		*/
-		
-		//Para darle un maximo y un minimo de fechas elegibles
+		 * dateChooserDia.setMinSelectableDate(new Date());
+		 */
+
+		// Para darle un maximo y un minimo de fechas elegibles
 		/*
-		try {
-		    String date = "12 Feb 2024";
-		    Date date2 = new SimpleDateFormat("dd MMM yyyy").parse(date);
-		    dateChooserDia.setMinSelectableDate(date2);
-		    dateChooserDia.setMaxSelectableDate(date2);
-		} catch (Exception e) {
-		    System.out.println(e);
-		}
-		*/
+		 * try { String date = "12 Feb 2024"; Date date2 = new
+		 * SimpleDateFormat("dd MMM yyyy").parse(date);
+		 * dateChooserDia.setMinSelectableDate(date2);
+		 * dateChooserDia.setMaxSelectableDate(date2); } catch (Exception e) {
+		 * System.out.println(e); }
+		 */
 		add(dateChooserDia);
 
 		// LBL ELIGE UN DÌA
@@ -144,9 +143,6 @@ public class PanelSeleccionFuncion extends JPanel {
 		JComboBox<String> comboBoxFunciones = new JComboBox<String>();
 		comboBoxFunciones.setBounds(545, 301, 274, 28);
 		add(comboBoxFunciones);
-		for (int i = 0; i < funciones.size(); i++) {
-			comboBoxFunciones.addItem(funciones.get(i).getHorafuncion() + " - Sala " + funciones.get(i).getIdfuncion());
-		}
 
 		// PANEL CONTENEDOR DEL PRECIO DE LA FUNCIÓN
 		JPanel panel = new JPanel();
@@ -163,7 +159,8 @@ public class PanelSeleccionFuncion extends JPanel {
 		panel.add(lblPrecioFuncion);
 
 		// [!] LBL PRECIO TRAÍDO DE BD
-		JLabel lblPrecioBD = new JLabel("20");
+		JLabel lblPrecioBD = new JLabel();
+		lblPrecioBD.setText("0");
 		lblPrecioBD.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPrecioBD.setForeground(Color.WHITE);
 		lblPrecioBD.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -185,6 +182,44 @@ public class PanelSeleccionFuncion extends JPanel {
 		lblPorPersona.setFont(new Font("Verdana", Font.PLAIN, 16));
 		lblPorPersona.setBounds(123, 57, 120, 21);
 		panel.add(lblPorPersona);
+
+		// BTN Seleccionar fecha
+		JButton btnFecha = new JButton("Seleccionar");
+		btnFecha.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+				try {
+					comboBoxFunciones.removeAllItems();
+					for (int i = 0; i < funciones.size(); i++) {
+						if (formato.format(dateChooserDia.getDate()).equals(funciones.get(i).getFechafuncion())) {
+							comboBoxFunciones.addItem(
+									funciones.get(i).getHorafuncion() + " - Sala " + funciones.get(i).getIdfuncion());
+							lblPrecioBD.setText(funciones.get(i).getPrecio() + "");
+						}
+					}
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Seleccione una fecha");
+				}
+				try {
+					String date = "12 Feb 2024";
+					Date date2 = new SimpleDateFormat("dd MMM yyyy").parse(date);
+					dateChooserDia.setMinSelectableDate(date2);
+					dateChooserDia.setMaxSelectableDate(date2);
+				} catch (Exception exx) {
+					System.out.println(e);
+				}
+
+			}
+		});
+		btnFecha.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnFecha.setOpaque(true);
+		btnFecha.setContentAreaFilled(true);
+		btnFecha.setForeground(Color.decode("#FFFFFF"));
+		btnFecha.setBorderPainted(false);
+		btnFecha.setBackground(Color.decode("#C67ACE"));
+		btnFecha.setBounds(280, 341, 142, 28);
+		add(btnFecha);
 
 	}
 }

@@ -6,7 +6,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
 import controlador.GestionBD;
 import vista.VentanaPrincipal;
 import javax.swing.JPasswordField;
@@ -53,25 +52,30 @@ public class PanelLogin extends JPanel {
 		add(textFieldDNI);
 		textFieldDNI.setColumns(10);
 
-		JButton btnPrincipal = new JButton("Iniciar sesión");
-		btnPrincipal.addMouseListener(new MouseAdapter() {
+		JButton btnIniciarSesion = new JButton("Iniciar sesión");
+		btnIniciarSesion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String dni = textFieldDNI.getText();
 
 				String pass = passwordField.getText();
 				
-				gestionBD.verificarLogin(dni, pass, v);
+				try {
+					gestionBD.verificarLogin(dni, pass, v);
+				} catch (Exception e1) {
+					System.out.println("salio mal");
+					e1.printStackTrace();
+				}
 			}
 		});
-		btnPrincipal.setFont(new Font("Verdana", Font.BOLD, 16));
-		btnPrincipal.setOpaque(true);
-		btnPrincipal.setContentAreaFilled(true);
-		btnPrincipal.setForeground(Color.decode("#FFFFFF"));
-		btnPrincipal.setBorderPainted(false);
-		btnPrincipal.setBackground(Color.decode("#C67ACE"));
-		btnPrincipal.setBounds(431, 446, 150, 39);
-		add(btnPrincipal);
+		btnIniciarSesion.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnIniciarSesion.setOpaque(true);
+		btnIniciarSesion.setContentAreaFilled(true);
+		btnIniciarSesion.setForeground(Color.decode("#FFFFFF"));
+		btnIniciarSesion.setBorderPainted(false);
+		btnIniciarSesion.setBackground(Color.decode("#C67ACE"));
+		btnIniciarSesion.setBounds(431, 446, 150, 39);
+		add(btnIniciarSesion);
 
 		JLabel lblSinCuenta = new JLabel("¿Aún no tienes una cuenta?");
 		lblSinCuenta.addMouseListener(new MouseAdapter() {

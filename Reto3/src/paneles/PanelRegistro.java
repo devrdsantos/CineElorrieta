@@ -3,21 +3,15 @@ package paneles;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
 import controlador.GestionDeLaInformacion;
 import vista.VentanaPrincipal;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import javax.swing.JRadioButton;
 
@@ -26,9 +20,8 @@ public class PanelRegistro extends JPanel {
 	private JTextField textFieldDNI;
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
-	private GestionDeLaInformacion gestionINF = new GestionDeLaInformacion();
-
-	public PanelRegistro(VentanaPrincipal v) {
+	
+	public PanelRegistro(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);
@@ -102,11 +95,11 @@ public class PanelRegistro extends JPanel {
 		bg.add(rdbtnSexoHombre);
 		bg.add(rdbtnSexoMujer);    
 		
-		JLabel lblNombre = new JLabel("Ingresa tu nombre:");
-		lblNombre.setForeground(Color.WHITE);
-		lblNombre.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblNombre.setBounds(396, 337, 193, 28);
-		add(lblNombre);
+		JLabel lblIngresaTuNombre = new JLabel("Ingresa tu nombre:");
+		lblIngresaTuNombre.setForeground(Color.WHITE);
+		lblIngresaTuNombre.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblIngresaTuNombre.setBounds(396, 337, 193, 28);
+		add(lblIngresaTuNombre);
 		
 		textFieldNombre = new JTextField();
 		textFieldNombre.setColumns(10);
@@ -124,10 +117,11 @@ public class PanelRegistro extends JPanel {
 		textFieldApellido.setBounds(597, 404, 266, 34);
 		add(textFieldApellido);
 		
-		JButton btnPrincipal = new JButton("Crear cuenta");
-		btnPrincipal.addMouseListener(new MouseAdapter() {
+		JButton btnCrearCuenta = new JButton("Crear cuenta");
+		btnCrearCuenta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+	
 				String dniFormulario = textFieldDNI.getText();
 				String passFormulario =  passwordField.getText();
 				String nombreFormulario = textFieldNombre.getText();
@@ -144,14 +138,14 @@ public class PanelRegistro extends JPanel {
 				
 			}
 		});
-		btnPrincipal.setFont(new Font("Verdana", Font.BOLD, 16));
-		btnPrincipal.setOpaque(true);
-		btnPrincipal.setContentAreaFilled(true);
-		btnPrincipal.setForeground(Color.decode("#FFFFFF"));
-		btnPrincipal.setBorderPainted(false);
-		btnPrincipal.setBackground(Color.decode("#C67ACE"));
-		btnPrincipal.setBounds(462, 551, 150, 39);
-		add(btnPrincipal);
+		btnCrearCuenta.setFont(new Font("Verdana", Font.BOLD, 16));
+		btnCrearCuenta.setOpaque(true);
+		btnCrearCuenta.setContentAreaFilled(true);
+		btnCrearCuenta.setForeground(Color.decode("#FFFFFF"));
+		btnCrearCuenta.setBorderPainted(false);
+		btnCrearCuenta.setBackground(Color.decode("#C67ACE"));
+		btnCrearCuenta.setBounds(462, 551, 150, 39);
+		add(btnCrearCuenta);
 		
 	}
 }

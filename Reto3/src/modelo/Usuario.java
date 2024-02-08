@@ -5,7 +5,7 @@ public class Usuario {
 	
 
 	private String dni, password, nombre, apellido;
-	private enum sexo {Masculino, Femenino}
+	private String sexo;
 	
 	public Usuario() {
 		
@@ -41,10 +41,17 @@ public class Usuario {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+	public String getSexo() {
+		return sexo;
+	}
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+	
 	@Override
 	public String toString() {
-		return "Usuario [dni=" + dni + ", password=" + password + ", nombre=" + nombre + ", apellido=" + apellido + "]";
-	};
-	
+		return "Usuario [dni=" + dni + ", password=" + password + ", nombre=" + nombre + ", apellido=" + apellido
+				+ ", sexo=" + sexo + "]";
+	}
 	
 }

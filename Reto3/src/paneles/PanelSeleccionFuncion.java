@@ -137,26 +137,7 @@ public class PanelSeleccionFuncion extends JPanel {
 		lblEligeUnaFuncin.setBounds(545, 262, 171, 28);
 		add(lblEligeUnaFuncin);
 
-		// BTN Principal
-		JButton btnPrincipal = new JButton("Siguiente");
-		btnPrincipal.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				v.cambiarDePanel(6);
-			}
-		});
-		btnPrincipal.setFont(new Font("Verdana", Font.BOLD, 16));
-		btnPrincipal.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnPrincipal.setOpaque(true);
-		btnPrincipal.setContentAreaFilled(true);
-		btnPrincipal.setForeground(Color.decode("#FFFFFF"));
-		btnPrincipal.setBorderPainted(false);
-		btnPrincipal.setBackground(Color.decode("#C67ACE"));
-		btnPrincipal.setBounds(490, 587, 150, 39);
-		add(btnPrincipal);
+		
 
 		// [!] COMBOBOX - SELECCIÓN FUNCIÓN - TRAE DATOS DE BD --> SALA Y HORA
 		JComboBox<String> comboBoxFunciones = new JComboBox<String>();
@@ -231,6 +212,29 @@ public class PanelSeleccionFuncion extends JPanel {
 		btnFecha.setBackground(Color.decode("#C67ACE"));
 		btnFecha.setBounds(280, 341, 142, 28);
 		add(btnFecha);
-
+		
+		// BTN Principal
+				JButton btnPrincipal = new JButton("Siguiente");
+				btnPrincipal.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						String funcionSeleccionada = (String) comboBoxFunciones.getSelectedItem();
+						System.out.println(funcionSeleccionada);
+						//gestionINF.recogerCineSeleccionado(funcionSeleccionada);
+						v.cambiarDePanel(6);
+					}
+				});
+				btnPrincipal.setFont(new Font("Verdana", Font.BOLD, 16));
+				btnPrincipal.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				btnPrincipal.setOpaque(true);
+				btnPrincipal.setContentAreaFilled(true);
+				btnPrincipal.setForeground(Color.decode("#FFFFFF"));
+				btnPrincipal.setBorderPainted(false);
+				btnPrincipal.setBackground(Color.decode("#C67ACE"));
+				btnPrincipal.setBounds(490, 587, 150, 39);
+				add(btnPrincipal);
 	}
 }

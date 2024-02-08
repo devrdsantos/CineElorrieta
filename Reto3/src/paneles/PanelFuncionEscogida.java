@@ -4,7 +4,11 @@ package paneles;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -17,8 +21,24 @@ public class PanelFuncionEscogida extends JPanel {
 
 	private GestionBD gestion = new GestionBD();
 	ArrayList<Pelicula> peli = gestion.sacarInformacionPeliculas();
+	
 
 	public PanelFuncionEscogida(VentanaPrincipal v) {
+		addMouseListener(new MouseAdapter() {
+			
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            	try {
+					TimeUnit.SECONDS.sleep(6);
+					v.cambiarDePanel(3);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+            	
+            }
+        });
+		
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);
@@ -101,4 +121,5 @@ public class PanelFuncionEscogida extends JPanel {
 
 
 	}
+	
 }

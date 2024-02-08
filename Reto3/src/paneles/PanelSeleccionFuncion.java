@@ -29,7 +29,7 @@ public class PanelSeleccionFuncion extends JPanel {
 
 	private GestionBD gestion = new GestionBD();
 	ArrayList<Funcion> funciones = gestion.sacarInformacionDeUnaPelicula(1);
-
+	
 	public PanelSeleccionFuncion(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);
 		setVisible(true);
@@ -93,6 +93,7 @@ public class PanelSeleccionFuncion extends JPanel {
 		/*
 		 * dateChooserDia.setMinSelectableDate(new Date());
 		 */
+		dateChooserDia.setMinSelectableDate(new Date());
 
 		// Para darle un maximo y un minimo de fechas elegibles
 		/*
@@ -103,6 +104,13 @@ public class PanelSeleccionFuncion extends JPanel {
 		 * System.out.println(e); }
 		 */
 		add(dateChooserDia);
+		try {
+			String date = "27 Feb 2024";
+			Date FechaCine = new SimpleDateFormat("dd MMM yyyy").parse(date);
+			dateChooserDia.setMinSelectableDate(FechaCine);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 
 		// LBL ELIGE UN DÌA
 		JLabel lblEligeDia = new JLabel("Elige un día:");
@@ -201,15 +209,6 @@ public class PanelSeleccionFuncion extends JPanel {
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, "Seleccione una fecha");
 				}
-				try {
-					String date = "12 Feb 2024";
-					Date date2 = new SimpleDateFormat("dd MMM yyyy").parse(date);
-					dateChooserDia.setMinSelectableDate(date2);
-					dateChooserDia.setMaxSelectableDate(date2);
-				} catch (Exception exx) {
-					System.out.println(e);
-				}
-
 			}
 		});
 		btnFecha.setFont(new Font("Verdana", Font.BOLD, 16));

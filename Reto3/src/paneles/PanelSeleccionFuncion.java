@@ -104,7 +104,7 @@ public class PanelSeleccionFuncion extends JPanel {
 		/*
 		 * dateChooserDia.setMinSelectableDate(new Date());
 		 */
-		dateChooserDia.setMinSelectableDate(new Date());
+		//dateChooserDia.setMinSelectableDate(new Date());
 
 		// Para darle un maximo y un minimo de fechas elegibles
 		/*
@@ -208,7 +208,6 @@ public class PanelSeleccionFuncion extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
-				
 				try {
 					comboBoxFunciones.removeAllItems();
 					for (int i = 0; i < funciones.size(); i++) {

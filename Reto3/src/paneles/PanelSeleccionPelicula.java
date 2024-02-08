@@ -97,7 +97,7 @@ public class PanelSeleccionPelicula extends JPanel {
 		// LABEL FOTO PELICULA
 		JLabel lblFotoPortadaPelicula = new JLabel();
 		// lblFoto1.setOpaque(true);
-		ImageIcon icono = new ImageIcon(urlPeliculas[peliActual]);
+		ImageIcon icono = new ImageIcon("multimedia/"+ peli.get(peliActual).getNombrePelicula()+".png");
 		lblFotoPortadaPelicula.setIcon(icono);
 		// lblFoto1.setBackground(Color.decode("#ffffff"));
 		// lblFoto1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -207,7 +207,7 @@ public class PanelSeleccionPelicula extends JPanel {
 					txtSinopsisBD.setText(peli.get(peliActual).getSinopsis());
 //							btnSiguiente.setFocusable(true);
 //							btnSiguiente.setEnabled(true);
-					ImageIcon icono = new ImageIcon(urlPeliculas[peliActual]);
+					ImageIcon icono = new ImageIcon("multimedia/"+ peli.get(peliActual).getNombrePelicula()+".png");
 					lblFotoPortadaPelicula.setIcon(icono);
 				}
 			}

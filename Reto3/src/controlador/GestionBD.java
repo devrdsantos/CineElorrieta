@@ -184,7 +184,7 @@ public class GestionBD {
 		ArrayList<Pelicula> peliculas = new ArrayList<Pelicula>();
 		try {
 			// System.out.println("Iniciando consulta..");
-			String query = "SELECT * FROM `pelicula`";
+			String query = "SELECT * FROM `pelicula` ORDER BY `pelicula`.`idpelicula`";
 			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
 
 			ResultSet resultadoConsulta = consultaPreparada.executeQuery();

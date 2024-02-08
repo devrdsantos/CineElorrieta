@@ -77,13 +77,13 @@ public class PanelFuncionEscogida extends JPanel {
 		JLabel lblEnUnosSegundos = new JLabel("En unos segundos serás redirigido al inicio...");
 		lblEnUnosSegundos.setForeground(Color.WHITE);
 		lblEnUnosSegundos.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblEnUnosSegundos.setBounds(359, 481, 400, 21);
+		lblEnUnosSegundos.setBounds(359, 541, 400, 21);
 		add(lblEnUnosSegundos);
 		
 		// SEPARADOR
 		JSeparator separator = new JSeparator();
 		separator.setBackground(new Color(134, 167, 255));
-		separator.setBounds(167, 450, 800, 8);
+		separator.setBounds(167, 510, 800, 8);
 		add(separator);
 		
 		// LBL CINE
@@ -119,8 +119,24 @@ public class PanelFuncionEscogida extends JPanel {
 		lblSalaYHora.setFont(new Font("Verdana", Font.BOLD, 16));
 		lblSalaYHora.setBounds(235, 363, 797, 49);
 		add(lblSalaYHora);
+		
+		// LBL FECHA
+		JLabel lblFecha = new JLabel("Fecha:");
+		lblFecha.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblFecha.setForeground(new Color(134, 167, 252));
+		lblFecha.setFont(new Font("Verdana", Font.PLAIN, 16));
+		lblFecha.setBounds(156, 436, 72, 49);
+		add(lblFecha);
+		
+		// [!] LBL FECHA - TRAE DE BD
+		JLabel lblFecha_1 = new JLabel();
+		lblFecha_1.setText("FECHA");
+		lblFecha_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblFecha_1.setForeground(new Color(211, 213, 248));
+		lblFecha_1.setFont(new Font("Verdana", Font.BOLD, 16));
+		lblFecha_1.setBounds(235, 437, 797, 49);
+		add(lblFecha_1);
 
 
 	}
-	
 }

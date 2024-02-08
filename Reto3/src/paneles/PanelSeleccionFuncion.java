@@ -22,15 +22,22 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
+
+import javax.swing.JRadioButton;
+import javax.swing.JSeparator;
+
+
 import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
 
 public class PanelSeleccionFuncion extends JPanel {
 
 	private GestionBD gestion = new GestionBD();
-	ArrayList<Funcion> funciones = gestion.sacarInformacionDeUnaPelicula(1);
+	
 	
 	public PanelSeleccionFuncion(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
+		int IdPelicula = gestionINF.pasarIdPeliculaSeleccionada();
+		ArrayList<Funcion> funciones = gestion.sacarInformacionDeUnaPelicula(IdPelicula);
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);
@@ -58,6 +65,7 @@ public class PanelSeleccionFuncion extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+
 		btnSecundario.setOpaque(true);
 		btnSecundario.setContentAreaFilled(true);
 		btnSecundario.setForeground(Color.decode("#C67ACE"));
@@ -65,6 +73,7 @@ public class PanelSeleccionFuncion extends JPanel {
 		btnSecundario.setBackground(Color.decode("#142850"));
 		btnSecundario.setBounds(21, 23, 273, 39);
 		add(btnSecundario);
+
 
 		// LBL FUNCIONES
 		JLabel lblFunciones = new JLabel("Funciones para la película");
@@ -74,9 +83,10 @@ public class PanelSeleccionFuncion extends JPanel {
 		lblFunciones.setBounds(43, 158, 222, 49);
 		add(lblFunciones);
 
-		// (!) LBL CINE SELECCIONADO (TRAE DATOS DE BD!!!!)
+		// (!) LBL PELICULA SELECCIONADA (TRAE DATOS DE BD!!!!)
+
 		JLabel lblPeliculaSeleccionada = new JLabel();
-		lblPeliculaSeleccionada.setText("<html>NOMBRE DE LA PELÍCULA</html>");
+		lblPeliculaSeleccionada.setText(gestionINF.pasarNombrePelicula());
 		// lblCineSeleccionado.setText(cine.getNombreCine());
 		lblPeliculaSeleccionada.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPeliculaSeleccionada.setForeground(new Color(211, 213, 248));
@@ -85,6 +95,7 @@ public class PanelSeleccionFuncion extends JPanel {
 		add(lblPeliculaSeleccionada);
 
 		// CALENDARIO
+
 		JDateChooser dateChooserDia = new JDateChooser();
 		dateChooserDia.getCalendarButton().setFont(new Font("Verdana", Font.PLAIN, 14));
 		dateChooserDia.setBounds(280, 301, 142, 28);
@@ -197,6 +208,7 @@ public class PanelSeleccionFuncion extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+				
 				try {
 					comboBoxFunciones.removeAllItems();
 					for (int i = 0; i < funciones.size(); i++) {

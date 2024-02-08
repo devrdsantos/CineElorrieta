@@ -40,9 +40,7 @@ public class GestionBD {
 		// System.out.println("Conectando...");
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-
 			conexion = DriverManager.getConnection("jdbc:mysql://localhost/reto3", "root", "");
-
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la Libreria.");
 		} catch (SQLException e) {

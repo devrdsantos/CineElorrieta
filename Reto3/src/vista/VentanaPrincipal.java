@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import controlador.GestionBD;
 import controlador.GestionDeLaInformacion;
 import paneles.PanelBienvenida;
-import paneles.PanelDePrueba;
+
 import paneles.PanelFuncionEscogida;
 import paneles.PanelLogin;
 import paneles.PanelRegistro;
@@ -66,20 +66,19 @@ public class VentanaPrincipal extends JFrame {
 			break;
 		}
 		case 6: {
-			setContentPane(new PanelFuncionEscogida(this));
+			setContentPane(new PanelFuncionEscogida(this, this.gestionINF));
 			
 			break;
 		}
-		case 7: {
-			setContentPane(new PanelDePrueba(this));
-			break;
-		}
+		
 		}
 	}
 
 	public static void main(String[] args) {
 		VentanaPrincipal v = new VentanaPrincipal();
+
 		v.setVisible(true);
+
 		v.cambiarDePanel(3);
 
 	}

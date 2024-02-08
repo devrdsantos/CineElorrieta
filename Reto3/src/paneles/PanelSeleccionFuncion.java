@@ -220,7 +220,7 @@ public class PanelSeleccionFuncion extends JPanel {
 					public void mouseClicked(MouseEvent e) {
 						String funcionSeleccionada = (String) comboBoxFunciones.getSelectedItem();
 						System.out.println(funcionSeleccionada);
-						//gestionINF.recogerCineSeleccionado(funcionSeleccionada);
+						gestionINF.recogerFuncionSeleccionada(funcionSeleccionada);
 						v.cambiarDePanel(6);
 					}
 				});

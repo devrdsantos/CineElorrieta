@@ -113,7 +113,7 @@ public class PanelFuncionEscogida extends JPanel {
 		
 		// [!] LBL SALA Y HORA - TRAE DE BD
 		JLabel lblSalaYHora = new JLabel();
-		lblSalaYHora.setText("SALA Y HORA");
+		lblSalaYHora.setText(gestionINF.pasarFuncionSeleccionada());
 		lblSalaYHora.setHorizontalAlignment(SwingConstants.LEFT);
 		lblSalaYHora.setForeground(new Color(211, 213, 248));
 		lblSalaYHora.setFont(new Font("Verdana", Font.BOLD, 16));

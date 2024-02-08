@@ -24,6 +24,7 @@ public class GestionDeLaInformacion {
 	private ArrayList<String> DatosUsuario;
 	private Cine cine;
 	private Pelicula pelicula;
+	private Funcion funcion;
 	private final String CLAVE_ENCRIPTADA = "clavecompartidanorevelarnuncamas";
 
 	public GestionDeLaInformacion() {
@@ -168,5 +169,18 @@ public class GestionDeLaInformacion {
 		ArrayList<Funcion> funciones = gestionBD.sacarInformacionDeUnaPelicula(IdPelicula);
 		return funciones;
 	}
+	
+	// [GET] - - RECOGE SALA Y HORA
+    public void recogerFuncionSeleccionada(String funcionSeleccionada) {
+        funcion = new Funcion();
+        funcion.setFechafuncion(funcionSeleccionada);
+        pasarFuncionSeleccionada();
+    }
+    
+    // [SET] - - PASAR SALA Y HORA
+    public String pasarFuncionSeleccionada() {
+        String funcionSeleccionada = funcion.getFechafuncion();
+        return funcionSeleccionada;
+    }
 	
 }

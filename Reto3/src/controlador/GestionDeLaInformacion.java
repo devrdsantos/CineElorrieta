@@ -149,6 +149,16 @@ public class GestionDeLaInformacion {
 		return nombrePelicula;
 	}
 	
+	public void recogerIdPeliculaSeleccionada(int IdPelicula) {
+		pelicula.setIdPelicula(IdPelicula);
+		pasarIdPeliculaSeleccionada();
+	}
+
+	public int pasarIdPeliculaSeleccionada() {
+		int IdPelicula = pelicula.getIdPelicula();
+		return IdPelicula;
+	}
+	
 	public ArrayList<Pelicula> almacenarPeliculas() {
 		ArrayList<Pelicula> peliculas = gestionBD.sacarInformacionPeliculas();
 		return peliculas;

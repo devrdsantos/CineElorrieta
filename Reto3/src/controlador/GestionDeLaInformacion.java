@@ -165,12 +165,18 @@ public class GestionDeLaInformacion {
 		return funciones;
 	}
 	
-	// [GET] - - RECOGE SALA Y HORA
-    public void recogerFuncionSeleccionada(String funcionSeleccionada) {
+	
+    
+    public void separarFuncionSeleccionada(String funcionSeleccionada) {
+    	 String horaSeleccionada =  funcionSeleccionada.split("-")[0];
+         String sala = funcionSeleccionada.split("a ")[1];
+         int salaSeleccionada = Integer.parseInt(sala);
+         recogerFuncionSeleccionada(horaSeleccionada, salaSeleccionada);
+    }
+    
+ // [GET] - - RECOGE SALA Y HORA
+    public void recogerFuncionSeleccionada(String horaSeleccionada, int salaSeleccionada) {
         funcion = new Funcion();
-        String horaSeleccionada =  funcionSeleccionada.split("-")[0];
-        String sala = funcionSeleccionada.split("a ")[1];
-        int salaSeleccionada = Integer.parseInt(sala);
         funcion.setHorafuncion(horaSeleccionada);
         funcion.setIdsala(salaSeleccionada);
         pasarFuncionSeleccionada();

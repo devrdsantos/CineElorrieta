@@ -219,7 +219,7 @@ public class PanelSeleccionFuncion extends JPanel {
 					public void mouseClicked(MouseEvent e) {
 						String funcionSeleccionada = (String) comboBoxFunciones.getSelectedItem();
 						System.out.println(funcionSeleccionada);
-						gestionINF.recogerFuncionSeleccionada(funcionSeleccionada);
+						gestionINF.separarFuncionSeleccionada(funcionSeleccionada);
 						v.cambiarDePanel(6);
 					}
 				});

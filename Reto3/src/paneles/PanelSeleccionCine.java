@@ -60,18 +60,12 @@ public class PanelSeleccionCine extends JPanel {
 				String cineSeleccionado = (String) comboBoxCines.getSelectedItem();
 				//System.out.println(cineSeleccionado);
 				gestionINF.recogerCineSeleccionado(cineSeleccionado);
+				gestionBD.sacarPeliculasDependiendoDelCineSeleccionado(cineSeleccionado);
 				v.cambiarDePanel(4);
-
-				gestionBD.sacarCines();
 
 			}
 		});
 		btnSiguente.setFont(new Font("Verdana", Font.BOLD, 16));
-		btnSiguente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-
 		btnSiguente.setOpaque(true);
 		btnSiguente.setContentAreaFilled(true);
 		btnSiguente.setForeground(Color.decode("#FFFFFF"));

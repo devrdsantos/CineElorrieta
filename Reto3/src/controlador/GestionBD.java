@@ -49,7 +49,8 @@ public class GestionBD {
 		try {
 			// Librería JDBC
 			Class.forName("com.mysql.jdbc.Driver");
-			// Se inicializa el objeto CONEXION que conecta y hace referencia a dónde está ubicada la BD a través del usuario ROOT
+			// Se inicializa el objeto CONEXION que conecta y hace referencia a dónde está
+			// ubicada la BD a través del usuario ROOT
 			conexion = DriverManager.getConnection("jdbc:mysql://localhost/reto3", "root", "");
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la Libreria.");
@@ -78,13 +79,13 @@ public class GestionBD {
 	}
 
 	/*
-	 * [MÉTODO] verificarLogin() - - - - - - - - - - - - - - 
-	 * Éste método hace una consulta a la BD y recibe tres parámetros:
-	 * - String dni, - String pass - Y el objeto VentanaPrincipal
+	 * [MÉTODO] verificarLogin() - - - - - - - - - - - - - - Éste método hace una
+	 * consulta a la BD y recibe tres parámetros: - String dni, - String pass - Y el
+	 * objeto VentanaPrincipal
 	 * 
-	 * param dni tomará el valor del dni que traiga de la bdd 
-	 * param pass tomará el valor del password que traiga de la bdd 
-	 * param ventanaPrincipal es necesario para poder utilizar el metodo cambiarDePanel 
+	 * param dni tomará el valor del dni que traiga de la bdd param pass tomará el
+	 * valor del password que traiga de la bdd param ventanaPrincipal es necesario
+	 * para poder utilizar el metodo cambiarDePanel
 	 * 
 	 */
 	public void verificarLogin(String dni, String pass, VentanaPrincipal v) throws Exception {
@@ -126,11 +127,11 @@ public class GestionBD {
 	}
 
 	/*
-	 * [MÉTODO] insertUsuario() - - - - - - - - - -  
-	 * Éste método permite ingresar un nuevo usuario a la base de datos.
+	 * [MÉTODO] insertUsuario() - - - - - - - - - - Éste método permite ingresar un
+	 * nuevo usuario a la base de datos.
 	 * 
-	 * param datosUsuario: es un ArrayList de tipo String donde se guardan los
-	 * datos ingresados en el formulario para luego ingresarlos en orden a BD
+	 * param datosUsuario: es un ArrayList de tipo String donde se guardan los datos
+	 * ingresados en el formulario para luego ingresarlos en orden a BD
 	 */
 	public void insertUsuario(ArrayList<String> datosUsuario, VentanaPrincipal v) {
 		gestionINF = new GestionDeLaInformacion();
@@ -138,7 +139,7 @@ public class GestionBD {
 			Statement consulta = conexion.createStatement();
 			// Toma la contraseña y la encripta a través del método
 			String passEncriptada = gestionINF.encriptar(datosUsuario.get(1));
-			
+
 			// QUERY que inserta datos a la tabla
 			// 0 -> DNI
 			// 2 -> Nombre
@@ -161,9 +162,10 @@ public class GestionBD {
 		}
 	}
 
-	// [MÉTODO] sacarCines() trabaja con un ArrayList de objetos de tipo Cine - - - - - - - - - - - - - - - - - 
+	// [MÉTODO] sacarCines() trabaja con un ArrayList de objetos de tipo Cine - - -
+	// - - - - - - - - - - - - - -
 	public ArrayList<Cine> sacarCines() {
-		// Crea el ArrayList 
+		// Crea el ArrayList
 		ArrayList<Cine> cines = new ArrayList<Cine>();
 		try {
 			// System.out.println("Iniciando consulta..");
@@ -206,7 +208,7 @@ public class GestionBD {
 				peliculas.add(new Pelicula(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
 						resultadoConsulta.getString(3), resultadoConsulta.getString(4),
 						resultadoConsulta.getString(5)));
-			} 
+			}
 			// System.out.println("Cerrando Consulta cine..");
 			consultaPreparada.close();
 		} catch (SQLException e) {
@@ -257,5 +259,37 @@ public class GestionBD {
 			e.printStackTrace();
 		}
 		return funciones;
+	}
+
+	/*
+	 * Query:
+	 * 
+	 * SELECT P.idpelicula, P.nombrepelicula, P.duracion, P.genero, P.sinopsis FROM
+	 * `cine` C join sala S on C.idcine = S.idcine join funcion F on S.idsala =
+	 * F.idsala join pelicula P on F.idpelicula = P.idpelicula WHERE C.nombrecine =
+	 * "Cine Zubiarte";
+	 */
+
+	public ArrayList<Pelicula> sacarPeliculasDependiendoDelCineSeleccionado(String cineSeleccionado) {
+		ArrayList<Pelicula> peliculas = new ArrayList<Pelicula>();
+		try {
+			// System.out.println("Iniciando consulta..");
+			String query = "SELECT P.idpelicula, P.nombrepelicula, P.duracion, P.genero, P.sinopsis FROM `cine` C join sala S on C.idcine = S.idcine join funcion F on S.idsala = F.idsala join pelicula P on F.idpelicula = P.idpelicula WHERE C.nombrecine = ?";
+			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
+			consultaPreparada.setString(1, cineSeleccionado);
+			ResultSet resultadoConsulta = consultaPreparada.executeQuery();	
+			while (resultadoConsulta.next()) {
+				peliculas.add(new Pelicula(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
+						resultadoConsulta.getString(3), resultadoConsulta.getString(4),
+						resultadoConsulta.getString(5)));
+			}
+			// System.out.println("Cerrando Consulta cine..");
+			consultaPreparada.close();
+		} catch (SQLException e) {
+			System.out.println("Conexion incorrecta cine");
+			e.printStackTrace();
+		}
+		// System.out.println(peliculas.get(0));
+		return peliculas;
 	}
 }

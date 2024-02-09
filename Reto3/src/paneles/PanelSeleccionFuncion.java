@@ -3,8 +3,6 @@ package paneles;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
-import java.text.Format;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,15 +14,13 @@ import javax.swing.SwingConstants;
 import controlador.GestionBD;
 import controlador.GestionDeLaInformacion;
 import modelo.Funcion;
-import modelo.Pelicula;
+
 import vista.VentanaPrincipal;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 
-import javax.swing.JRadioButton;
-import javax.swing.JSeparator;
 
 
 import javax.swing.JComboBox;
@@ -33,7 +29,6 @@ import com.toedter.calendar.JDateChooser;
 public class PanelSeleccionFuncion extends JPanel {
 
 	private GestionBD gestion = new GestionBD();
-	
 	
 	public PanelSeleccionFuncion(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		int IdPelicula = gestionINF.pasarIdPeliculaSeleccionada();
@@ -218,7 +213,6 @@ public class PanelSeleccionFuncion extends JPanel {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						String funcionSeleccionada = (String) comboBoxFunciones.getSelectedItem();
-						System.out.println(funcionSeleccionada);
 						gestionINF.separarFuncionSeleccionada(funcionSeleccionada);
 						v.cambiarDePanel(6);
 					}

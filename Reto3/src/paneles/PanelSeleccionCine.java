@@ -6,19 +6,13 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import controlador.GestionBD;
 import controlador.GestionDeLaInformacion;
 import vista.VentanaPrincipal;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import javax.swing.JComboBox;
 
 public class PanelSeleccionCine extends JPanel {
-
-//	private GestionDeLaInformacion gestionINF = new GestionDeLaInformacion();
-	private GestionBD gestionBD = new GestionBD();
 
 	public PanelSeleccionCine(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);

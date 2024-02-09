@@ -16,7 +16,7 @@ import vista.VentanaPrincipal;
 public class GestionDeLaInformacion {
 
 	private GestionBD gestionBD;
-	private ArrayList<String> DatosUsuario;
+	private ArrayList<String> datosUsuario;
 	private Cine cine;
 	private Pelicula pelicula;
 	private Funcion funcion;
@@ -24,7 +24,7 @@ public class GestionDeLaInformacion {
 
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
-		DatosUsuario = new ArrayList<String>();
+		datosUsuario = new ArrayList<String>();
 
 	}
 
@@ -55,7 +55,7 @@ public class GestionDeLaInformacion {
 		if (!dni.find()) {
 			JOptionPane.showMessageDialog(null, "DNI no valido");
 		} else {
-			DatosUsuario.add(dni.group());
+			datosUsuario.add(dni.group());
 		}
 
 		String textoPass = passFormulario;
@@ -65,7 +65,7 @@ public class GestionDeLaInformacion {
 		if (!pass.find()) {
 			JOptionPane.showMessageDialog(null, "Contraseña no valida");
 		} else {
-			DatosUsuario.add(pass.group());
+			datosUsuario.add(pass.group());
 		}
 
 		String textoNombre = nombreFormulario;
@@ -75,7 +75,7 @@ public class GestionDeLaInformacion {
 		if (!nombre.find()) {
 			JOptionPane.showMessageDialog(null, "Nombre no valido");
 		} else {
-			DatosUsuario.add(nombre.group());
+			datosUsuario.add(nombre.group());
 		}
 
 		String textoApellido = apellidoFormulario;
@@ -85,12 +85,12 @@ public class GestionDeLaInformacion {
 		if (!apellido.find()) {
 			JOptionPane.showMessageDialog(null, "Apellido no valido");
 		} else {
-			DatosUsuario.add(apellido.group());
+			datosUsuario.add(apellido.group());
 		}
 
-		DatosUsuario.add(sexoFormulario);
+		datosUsuario.add(sexoFormulario);
 
-		gestionBD.insertUsuario(DatosUsuario, v);
+		gestionBD.insertUsuario(datosUsuario, v);
 	}
 
 	public ArrayList<Cine> almacenarCines() {
@@ -145,14 +145,14 @@ public class GestionDeLaInformacion {
 		return nombrePelicula;
 	}
 	
-	public void recogerIdPeliculaSeleccionada(int IdPelicula) {
-		pelicula.setIdPelicula(IdPelicula);
+	public void recogerIdPeliculaSeleccionada(int idPelicula) {
+		pelicula.setIdPelicula(idPelicula);
 		pasarIdPeliculaSeleccionada();
 	}
 
 	public int pasarIdPeliculaSeleccionada() {
-		int IdPelicula = pelicula.getIdPelicula();
-		return IdPelicula;
+		int idPelicula = pelicula.getIdPelicula();
+		return idPelicula;
 	}
 	
 	public ArrayList<Pelicula> almacenarPeliculas() {
@@ -187,8 +187,8 @@ public class GestionDeLaInformacion {
     public String pasarFuncionSeleccionada() {
         String horaSeleccionada = funcion.getHorafuncion();
     	int salaSeleccionada = funcion.getIdsala();
-    	String HoraYFecha =  horaSeleccionada + "- Sala " + salaSeleccionada;
-        return HoraYFecha;
+    	String horaYFecha =  horaSeleccionada + "- Sala " + salaSeleccionada;
+        return horaYFecha;
     }
 	
 }

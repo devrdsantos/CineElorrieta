@@ -3,7 +3,7 @@ package modelo;
 public class Pelicula {
 
 	private int idPelicula;
-	private String NombrePelicula;
+	private String nombrePelicula;
 	private String duracion;
 	private String genero;
 	private String sinopsis;
@@ -14,7 +14,7 @@ public class Pelicula {
 	
 	public Pelicula(int idPelicula, String nombrePelicula, String duracion, String genero, String sinopsis) {
 		this.idPelicula = idPelicula;
-		this.NombrePelicula = nombrePelicula;
+		this.nombrePelicula = nombrePelicula;
 		this.duracion = duracion;
 		this.genero = genero;
 		this.sinopsis = sinopsis;
@@ -31,11 +31,11 @@ public class Pelicula {
 	}
 
 	public String getNombrePelicula() {
-		return NombrePelicula;
+		return nombrePelicula;
 	}
 
 	public void setNombrePelicula(String nombrePelicula) {
-		this.NombrePelicula = nombrePelicula;
+		this.nombrePelicula = nombrePelicula;
 	}
 
 	public String getDuracion() {
@@ -64,7 +64,7 @@ public class Pelicula {
 
 	@Override
 	public String toString() {
-		return "IdPelicula:" + idPelicula + ", NombrePelicula:" + NombrePelicula + ", Duracion:" + duracion
+		return "IdPelicula:" + idPelicula + ", NombrePelicula:" + nombrePelicula + ", Duracion:" + duracion
 				+ ", Genero:" + genero+ ", Sinopsis:" + sinopsis;
 	}
 	

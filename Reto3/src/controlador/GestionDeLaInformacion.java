@@ -157,7 +157,7 @@ public class GestionDeLaInformacion {
 	
 	public ArrayList<Pelicula> almacenarPeliculas() {
 	//	ArrayList<Pelicula> peliculas = gestionBD.sacarInformacionPeliculas();
-		ArrayList<Pelicula> peliculas = gestionBD.sacarPeliculasDependiendoDelCineSeleccionado("Cine Zubiarte");
+		ArrayList<Pelicula> peliculas = gestionBD.sacarPeliculasDependiendoDelCineSeleccionado(pasarNombreCine());
 		return peliculas;
 	}
 	

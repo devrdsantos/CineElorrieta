@@ -60,7 +60,8 @@ public class PanelSeleccionCine extends JPanel {
 				String cineSeleccionado = (String) comboBoxCines.getSelectedItem();
 				//System.out.println(cineSeleccionado);
 				gestionINF.recogerCineSeleccionado(cineSeleccionado);
-				gestionBD.sacarPeliculasDependiendoDelCineSeleccionado(cineSeleccionado);
+//				gestionBD.sacarPeliculasDependiendoDelCineSeleccionado(cineSeleccionado);
+				
 				v.cambiarDePanel(4);
 
 			}

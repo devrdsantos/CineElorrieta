@@ -53,9 +53,9 @@ public class GestionBD {
 			// ubicada la BD a través del usuario ROOT
 			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto3", "root", "");
 		} catch (ClassNotFoundException e) {
-			System.out.println("No se ha encontrado la Libreria.");
+			//System.out.println("No se ha encontrado la Libreria.");
 		} catch (SQLException e) {
-			System.out.println("No se ha encontrado la BD.");
+			//System.out.println("No se ha encontrado la BD.");
 		}
 		// System.out.println("Conexion iniciada");
 	}
@@ -65,7 +65,7 @@ public class GestionBD {
 	 * la conexion con la BD Muestra un mensaje "Conexion cerrada"
 	 */
 	public void cerrarConexion() {
-		System.out.println("Cerrando...");
+		//System.out.println("Cerrando...");
 		try {
 			// Si la conexión NO está cerrada, la cierra.
 			if (!conexion.isClosed()) {
@@ -75,7 +75,7 @@ public class GestionBD {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Conexión cerrada.");
+		//System.out.println("Conexión cerrada.");
 	}
 
 	/*
@@ -92,7 +92,7 @@ public class GestionBD {
 		// Se inicializa el objeto gestionINF
 		gestionINF = new GestionDeLaInformacion();
 		try {
-			System.out.println("Iniciando consulta...");
+			//System.out.println("Iniciando consulta...");
 			// QUERY para verificar el LOGIN, el ? representa el DNI que deberá pasarse por
 			// parámetros
 			String query = "SELECT DNI, password FROM usuario WHERE DNI = ?";
@@ -119,10 +119,10 @@ public class GestionBD {
 				JOptionPane.showMessageDialog(null, "Los valores ingresados no son correctos");
 			}
 			// Una vez que ejecuta la consulta la cierra.
-			System.out.println("Cerrando consulta...");
+			//System.out.println("Cerrando consulta...");
 			consultaPreparada.close();
 		} catch (SQLException e) {
-			System.out.println("Conexion incorrecta con la base de datos");
+			//System.out.println("Conexion incorrecta con la base de datos");
 		}
 	}
 
@@ -188,7 +188,7 @@ public class GestionBD {
 			// System.out.println("Cerrando Consulta cine..");
 			consultaPreparada.close();
 		} catch (SQLException e) {
-			System.out.println("Conexion incorrecta con la tabla Cine");
+			//System.out.println("Conexion incorrecta con la tabla Cine");
 			e.printStackTrace();
 		}
 		// Devuelve los cines
@@ -212,7 +212,7 @@ public class GestionBD {
 			// System.out.println("Cerrando Consulta cine..");
 			consultaPreparada.close();
 		} catch (SQLException e) {
-			System.out.println("Conexion incorrecta cine");
+			//System.out.println("Conexion incorrecta cine");
 			e.printStackTrace();
 		}
 		// System.out.println(peliculas.get(0));
@@ -222,7 +222,7 @@ public class GestionBD {
 	public String sacarPasswordEncriptada(String dni) throws Exception {
 		String passDesencriptada = "";
 		try {
-			System.out.println("Iniciando consulta sacarPasswordEncriptada...");
+			//System.out.println("Iniciando consulta sacarPasswordEncriptada...");
 			String query = "SELECT password FROM usuario WHERE DNI = ?";
 			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
 			consultaPreparada.setString(1, dni);
@@ -233,7 +233,7 @@ public class GestionBD {
 //			System.out.println("Cerrando consulta...");
 			consultaPreparada.close();
 		} catch (SQLException e) {
-			System.out.println("Conexion incorrecta con la Base de Datos");
+			//System.out.println("Conexion incorrecta con la Base de Datos");
 		}
 		return passDesencriptada;
 	}
@@ -255,7 +255,7 @@ public class GestionBD {
 			// System.out.println("Cerrando Consulta funcion..");
 			consultaPreparada.close();
 		} catch (SQLException e) {
-			System.out.println("Conexion incorrecta funcion");
+			//System.out.println("Conexion incorrecta funcion");
 			e.printStackTrace();
 		}
 		return funciones;
@@ -286,7 +286,7 @@ public class GestionBD {
 			// System.out.println("Cerrando Consulta cine..");
 			consultaPreparada.close();
 		} catch (SQLException e) {
-			System.out.println("Conexion incorrecta cine");
+			//System.out.println("Conexion incorrecta cine");
 			e.printStackTrace();
 		}
 		// System.out.println(peliculas.get(0));

@@ -45,7 +45,7 @@ public class GestionDeLaInformacion {
 	 * "Apellido no valido"
 	 */
 
-	public void recogerInformacionFormulario(String dniFormulario, String passFormulario, String nombreFormulario,
+	public void validarInformacionFormulario(String dniFormulario, String passFormulario, String nombreFormulario,
 			String apellidoFormulario, String sexoFormulario, VentanaPrincipal v) {
 
 		String textoDNI = dniFormulario;

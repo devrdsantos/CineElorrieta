@@ -5,10 +5,6 @@ public class Sala {
 	private String nombreSala;
 	private int idCine;
 	
-public Sala() {
-		
-	};
-	
 	public Sala(int idSala, String nombreSala, int idCine) {
 		
 		this.idSala = idSala;

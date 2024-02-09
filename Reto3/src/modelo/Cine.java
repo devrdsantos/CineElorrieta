@@ -3,12 +3,14 @@ package modelo;
 public class Cine {
 
 	private int idCine;
-	private String nombreCine, localidadCine, direccionCine;
+	private String nombreCine;
+	private String localidadCine;
+	private String direccionCine;
 		
 	public Cine() {
 		
 	}
-
+	
 	public Cine(int idCine, String nombreCine, String localidadCine, String direccionCine) {
 		this.idCine = idCine;
 		this.nombreCine = nombreCine;

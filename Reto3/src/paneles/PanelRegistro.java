@@ -134,8 +134,7 @@ public class PanelRegistro extends JPanel {
 					sexoFormulario = rdbtnSexoMujer.getText();
 				}
 				gestionINF.validarInformacionFormulario(dniFormulario, passFormulario, nombreFormulario, apelldioFormulario, sexoFormulario, v);
-				
-				
+					
 			}
 		});
 		btnCrearCuenta.setFont(new Font("Verdana", Font.BOLD, 16));

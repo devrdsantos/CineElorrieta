@@ -4,7 +4,8 @@ public class Entrada {
 
 	private int numeroEntrada;
 	private double descuento;
-	private String fechaCompra, horaCompra;
+	private String fechaCompra;
+	private String horaCompra;
 	private int idfuncion, idcompra;
 	
 	public Entrada(int numeroEntrada, double descuento, String fechaCompra, String horaCompra, int idfuncion,

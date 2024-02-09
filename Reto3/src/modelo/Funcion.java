@@ -6,10 +6,10 @@ public class Funcion {
 	private double precio;
 	private int idsala, idpelicula;
 	
-public Funcion() {
+	public Funcion() {
 		
-	};
-
+	}
+	
 	public Funcion(int idfuncion, String horafuncion, String fechafuncion, double precio, int idsala, int idpelicula) {
 
 		this.idfuncion = idfuncion;

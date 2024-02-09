@@ -2,14 +2,16 @@ package modelo;
 
 public class Usuario {
 	
-	
-
-	private String dni, password, nombre, apellido;
+	private String dni;
+	private String password;
+	private String nombre;
+	private String apellido;
 	private String sexo;
 	
 	public Usuario() {
 		
-	};
+	}
+	
 	public Usuario(String dni, String password, String nombre, String apellido) {
 		
 		this.dni = dni;

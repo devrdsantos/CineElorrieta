@@ -66,7 +66,6 @@ public class PanelFuncionEscogida extends JPanel {
 		JLabel lblPeliculaSeleccionada = new JLabel();
 		lblPeliculaSeleccionada.setVerticalAlignment(SwingConstants.TOP);
 		lblPeliculaSeleccionada.setText(gestionINF.pasarNombrePelicula());
-		// lblCineSeleccionado.setText(cine.getNombreCine());
 		lblPeliculaSeleccionada.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPeliculaSeleccionada.setForeground(new Color(211, 213, 248));
 		lblPeliculaSeleccionada.setFont(new Font("Verdana", Font.BOLD, 16));

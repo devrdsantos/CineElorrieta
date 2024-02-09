@@ -81,7 +81,7 @@ public class PanelSeleccionPelicula extends JPanel {
 		// LABEL TITULO PELICULA
 		peliActual = 0;
 		JLabel lblTituloPelicula = new JLabel();
-	//	lblTituloPelicula.setText(peli.get(peliActual).getNombrePelicula());
+		lblTituloPelicula.setText(peli.get(peliActual).getNombrePelicula());
 		lblTituloPelicula.setVerticalAlignment(SwingConstants.TOP);
 		lblTituloPelicula.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTituloPelicula.setFont(new Font("Verdana", Font.BOLD, 18));
@@ -91,12 +91,8 @@ public class PanelSeleccionPelicula extends JPanel {
 
 		// LABEL FOTO PELICULA
 		JLabel lblFotoPortadaPelicula = new JLabel();
-		// lblFoto1.setOpaque(true);
 		ImageIcon icono = new ImageIcon("multimedia/"+ peli.get(peliActual).getIdPelicula()+".png");
 		lblFotoPortadaPelicula.setIcon(icono);
-		// lblFoto1.setBackground(Color.decode("#ffffff"));
-		// lblFoto1.setHorizontalAlignment(SwingConstants.CENTER);
-		// lblFoto1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblFotoPortadaPelicula.setBounds(381, 151, 323, 450);
 		add(lblFotoPortadaPelicula);
 
@@ -193,16 +189,11 @@ public class PanelSeleccionPelicula extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (peliActual == peli.size() - 1) {
 					JOptionPane.showMessageDialog(null, "No hay más elementos");
-//							btnSiguiente.setFocusable(false);
-//							btnSiguiente.setEnabled(false);
-
 				} else {
 					peliActual = peliActual + 1;
 					lblTituloPelicula.setText(peli.get(peliActual).getNombrePelicula());
 					lblDuracionPeliculaBD.setText(peli.get(peliActual).getDuracion());
 					txtSinopsisBD.setText(peli.get(peliActual).getSinopsis());
-//							btnSiguiente.setFocusable(true);
-//							btnSiguiente.setEnabled(true);
 					ImageIcon icono = new ImageIcon("multimedia/"+ peli.get(peliActual).getIdPelicula()+".png");
 					lblFotoPortadaPelicula.setIcon(icono);
 				}

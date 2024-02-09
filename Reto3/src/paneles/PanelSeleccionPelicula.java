@@ -81,7 +81,7 @@ public class PanelSeleccionPelicula extends JPanel {
 		// LABEL TITULO PELICULA
 		peliActual = 0;
 		JLabel lblTituloPelicula = new JLabel();
-		lblTituloPelicula.setText(peli.get(peliActual).getNombrePelicula());
+	//	lblTituloPelicula.setText(peli.get(peliActual).getNombrePelicula());
 		lblTituloPelicula.setVerticalAlignment(SwingConstants.TOP);
 		lblTituloPelicula.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTituloPelicula.setFont(new Font("Verdana", Font.BOLD, 18));

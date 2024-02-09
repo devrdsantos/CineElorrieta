@@ -1,21 +1,16 @@
 package controlador;
 
 import java.security.Key;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JOptionPane;
-
 import modelo.Cine;
 import modelo.Funcion;
 import modelo.Pelicula;
-import modelo.Usuario;
 import vista.VentanaPrincipal;
 
 public class GestionDeLaInformacion {
@@ -24,6 +19,7 @@ public class GestionDeLaInformacion {
 	private ArrayList<String> DatosUsuario;
 	private Cine cine;
 	private Pelicula pelicula;
+	private Funcion funcion;
 	private final String CLAVE_ENCRIPTADA = "clavecompartidanorevelarnuncamas";
 
 	public GestionDeLaInformacion() {
@@ -168,5 +164,24 @@ public class GestionDeLaInformacion {
 		ArrayList<Funcion> funciones = gestionBD.sacarInformacionDeUnaPelicula(IdPelicula);
 		return funciones;
 	}
+	
+	// [GET] - - RECOGE SALA Y HORA
+    public void recogerFuncionSeleccionada(String funcionSeleccionada) {
+        funcion = new Funcion();
+        String horaSeleccionada =  funcionSeleccionada.split("-")[0];
+        String sala = funcionSeleccionada.split("a ")[1];
+        int salaSeleccionada = Integer.parseInt(sala);
+        funcion.setHorafuncion(horaSeleccionada);
+        funcion.setIdsala(salaSeleccionada);
+        pasarFuncionSeleccionada();
+    }
+    
+    // [SET] - - PASAR SALA Y HORA
+    public String pasarFuncionSeleccionada() {
+        String horaSeleccionada = funcion.getHorafuncion();
+    	int salaSeleccionada = funcion.getIdsala();
+    	String HoraYFecha =  horaSeleccionada + "- Sala " + salaSeleccionada;
+        return HoraYFecha;
+    }
 	
 }

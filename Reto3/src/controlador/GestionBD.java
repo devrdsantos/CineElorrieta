@@ -16,20 +16,28 @@ import modelo.Pelicula;
 import vista.VentanaPrincipal;
 
 public class GestionBD {
+	/**
+	 * Declaración de objetos CONEXION Y GESTIONINF
+	 */
 	private Connection conexion;
-	// private VentanaPrincipal ventana = new VentanaPrincipal();
 	private GestionDeLaInformacion gestionINF;
+	// private VentanaPrincipal ventana = new VentanaPrincipal();
 
+	/**
+	 * Constructor vacío Ejecuta el método iniciarConexion()
+	 */
 	public GestionBD() {
 		iniciarconexion();
 
 	}
 
+	/*********************
+	 ***** Métodos *******
+	 ********************/
 	/*
-	 * [MÉTODO] Iniciar Conexion - - - - - - - - - - - - - -
-	 * 
-	 * Se utiliza para conectarse a la BD Este método se utiliza cada vez que
-	 * cambiamos de panel ya que lo incluimos en el constructor vacio de GestionBD
+	 * [MÉTODO] iniciarConexion() - - - - - - - - - - - - - - Se utiliza para
+	 * conectarse a la BD. Este método se utiliza cada vez que cambiamos de panel ya
+	 * que lo incluimos en el constructor vacío de GestionBD
 	 * 
 	 * Si la conexion es correcta se mostrara en consola "Conexion iniciada" Si es
 	 * incorrecta hay dos opciones: 1. Que no se haya encontrado la libreria o 2.
@@ -39,7 +47,9 @@ public class GestionBD {
 	public void iniciarconexion() {
 		// System.out.println("Conectando...");
 		try {
+			// Librería JDBC
 			Class.forName("com.mysql.jdbc.Driver");
+			// Se inicializa el objeto CONEXION que conecta y hace referencia a dónde está ubicada la BD a través del usuario ROOT
 			conexion = DriverManager.getConnection("jdbc:mysql://localhost/reto3", "root", "");
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la Libreria.");
@@ -50,12 +60,13 @@ public class GestionBD {
 	}
 
 	/*
-	 * [MÉTODO] Cerrar conexión - - - - - - - - - - - - - - Se utiliza para cerrar
+	 * [MÉTODO] cerrarConexion() - - - - - - - - - - - - - - Se utiliza para cerrar
 	 * la conexion con la BD Muestra un mensaje "Conexion cerrada"
 	 */
 	public void cerrarConexion() {
 		System.out.println("Cerrando...");
 		try {
+			// Si la conexión NO está cerrada, la cierra.
 			if (!conexion.isClosed()) {
 				conexion.close();
 			}
@@ -67,38 +78,38 @@ public class GestionBD {
 	}
 
 	/*
-	 * [MÉTODO] Verificar Login - - - - - - - - - - - - - - Recibe tres parámetros:
-	 * String dni, String pass y el objeto VentanaPrincipal
+	 * [MÉTODO] verificarLogin() - - - - - - - - - - - - - - 
+	 * Éste método hace una consulta a la BD y recibe tres parámetros:
+	 * - String dni, - String pass - Y el objeto VentanaPrincipal
 	 * 
-	 * metodo verificarLogin param dni = este parametro tomara el valor del dni que
-	 * traiga de la bdd param pass = este parametro tomara el valor del password que
-	 * traiga de la bdd param ventanaPrincipal = le pasamos como parametro la
-	 * ventanaPrincipal para poder utilizar el metodo cambiarDePanel Este metodo
-	 * hace una consulta a la base de datos
-	 * 
-	 * consulta: SELECT DNI, password FROM usuario WHERE DNI = ? AND password = ?
-	 * 
-	 * donde el primer ? sera el dni que el usuario coloque en el Textbox del login
-	 * y el segundo ? sera la password que el usuario coloque en el Textbox del
-	 * login
-	 * 
-	 * Si el resultado de la consulta es igual a lo que ingreso en el login el
-	 * usuario aparecera un mensaje diciendo "Se ha iniciado sesion" y te cambiara
-	 * al panel de seleccion de cine Si el resultado de la consulta es distinto a lo
-	 * que ingresa el usuario en el login se le mostrara un mensaje
-	 * "Los valores ingresados no son correctos" y se reiniciaran los campos.
+	 * param dni tomará el valor del dni que traiga de la bdd 
+	 * param pass tomará el valor del password que traiga de la bdd 
+	 * param ventanaPrincipal es necesario para poder utilizar el metodo cambiarDePanel 
 	 * 
 	 */
 	public void verificarLogin(String dni, String pass, VentanaPrincipal v) throws Exception {
+		// Se inicializa el objeto gestionINF
 		gestionINF = new GestionDeLaInformacion();
 		try {
 			System.out.println("Iniciando consulta...");
+			// QUERY para verificar el LOGIN, el ? representa el DNI que deberá pasarse por
+			// parámetros
 			String query = "SELECT DNI, password FROM usuario WHERE DNI = ?";
+
+			// Prepara la consulta para mandarla a la BD, en este caso está verificando el
+			// DNI
 			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
 			consultaPreparada.setString(1, dni);
 
+			// Variable que ejecuta la QUERY
 			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
+
+			// Variable que ejecuta sacarPasswordEncriptada pasándole como parámetro el DNI
+			// ingresado
 			String passDesencriptada = sacarPasswordEncriptada(dni);
+
+			// Si el DNI y la contraseña desencriptada se corresponden con los datos de la
+			// BD se iniciará sesión y se cambiará al siguiente panel (PanelSeleccionCine)
 			if (resultadoConsulta.next() && dni.equals(resultadoConsulta.getString(1))
 					&& pass.equals(passDesencriptada)) {
 				JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión");
@@ -106,44 +117,42 @@ public class GestionBD {
 			} else {
 				JOptionPane.showMessageDialog(null, "Los valores ingresados no son correctos");
 			}
-
+			// Una vez que ejecuta la consulta la cierra.
 			System.out.println("Cerrando consulta...");
 			consultaPreparada.close();
 		} catch (SQLException e) {
 			System.out.println("Conexion incorrecta con la base de datos");
-
 		}
 	}
 
 	/*
-	 * metodo insertUsuario este metodo permite ingresar un nuevo usuario a la base
-	 * de datos.
+	 * [MÉTODO] insertUsuario() - - - - - - - - - -  
+	 * Éste método permite ingresar un nuevo usuario a la base de datos.
 	 * 
-	 * param datosUsuario: es un ArrayList de tipo String con el que guardamos los
-	 * datos ingresados en el formulario para luego ingresarlos en orden a la base
-	 * de datos
-	 * 
-	 * hacemos un insert: INSERT INTO usuario VALUES
-	 * ('" + datosUsuario.get(0) + "','" + datosUsuario.get(1) + "','" +
-	 * datosUsuario.get(2) + "','" + datosUsuario.get(3) + "', '" +
-	 * datosUsuario.get(4) + "')
-	 * 
-	 * para ingresar los datos a la base de datos, si todo ha funcionado
-	 * correctamente se nos mostrara un mensaje "Usuario creado correctamente" y nos
-	 * cambiara al panel de login En caso de que algun campo no se haya rellenado
-	 * correctamente nos mostrara un mensaje "Campos Invalidos"
+	 * param datosUsuario: es un ArrayList de tipo String donde se guardan los
+	 * datos ingresados en el formulario para luego ingresarlos en orden a BD
 	 */
 	public void insertUsuario(ArrayList<String> datosUsuario, VentanaPrincipal v) {
 		gestionINF = new GestionDeLaInformacion();
 		try {
 			Statement consulta = conexion.createStatement();
+			// Toma la contraseña y la encripta a través del método
 			String passEncriptada = gestionINF.encriptar(datosUsuario.get(1));
+			
+			// QUERY que inserta datos a la tabla
+			// 0 -> DNI
+			// 2 -> Nombre
+			// 3 -> Apellido
+			// 4 -> Sexo
 			String insert = "INSERT INTO usuario VALUES ('" + datosUsuario.get(0) + "','" + passEncriptada + "','"
 					+ datosUsuario.get(2) + "','" + datosUsuario.get(3) + "', '" + datosUsuario.get(4) + "')";
 
+			// Ejecución del INSERT
 			consulta.executeUpdate(insert);
 			JOptionPane.showMessageDialog(null, "Usuario creado correctamente");
+			// Cambia al Panel para iniciar sesión
 			v.cambiarDePanel(1);
+			// Cierra la consulta
 			consulta.close();
 
 		} catch (Exception e) {
@@ -152,15 +161,24 @@ public class GestionBD {
 		}
 	}
 
+	// [MÉTODO] sacarCines() trabaja con un ArrayList de objetos de tipo Cine - - - - - - - - - - - - - - - - - 
 	public ArrayList<Cine> sacarCines() {
+		// Crea el ArrayList 
 		ArrayList<Cine> cines = new ArrayList<Cine>();
 		try {
 			// System.out.println("Iniciando consulta..");
+			// QUERY que selecciona todo de la tabla CINE
 			String query = "SELECT * FROM cine";
+			// Prepara la consulta para mandarla a la BD
 			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
-
+			// Ejecuta la consulta
 			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
 
+			// Agrega los cines de la BD al ArrayList cines donde
+			// 1 -> IDCine
+			// 2 -> nombreCine
+			// 3 -> Localidad
+			// 4 -> Dirección
 			while (resultadoConsulta.next()) {
 				cines.add(new Cine(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
 						resultadoConsulta.getString(3), resultadoConsulta.getString(4)));
@@ -168,9 +186,10 @@ public class GestionBD {
 			// System.out.println("Cerrando Consulta cine..");
 			consultaPreparada.close();
 		} catch (SQLException e) {
-			System.out.println("Conexion incorrecta cine");
+			System.out.println("Conexion incorrecta con la tabla Cine");
 			e.printStackTrace();
 		}
+		// Devuelve los cines
 		return cines;
 	}
 
@@ -178,7 +197,7 @@ public class GestionBD {
 		ArrayList<Pelicula> peliculas = new ArrayList<Pelicula>();
 		try {
 			// System.out.println("Iniciando consulta..");
-			String query = "SELECT * FROM `pelicula`";
+			String query = "SELECT * FROM `pelicula` ORDER BY `pelicula`.`idpelicula`";
 			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
 
 			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
@@ -187,7 +206,7 @@ public class GestionBD {
 				peliculas.add(new Pelicula(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
 						resultadoConsulta.getString(3), resultadoConsulta.getString(4),
 						resultadoConsulta.getString(5)));
-			}
+			} 
 			// System.out.println("Cerrando Consulta cine..");
 			consultaPreparada.close();
 		} catch (SQLException e) {
@@ -212,7 +231,7 @@ public class GestionBD {
 //			System.out.println("Cerrando consulta...");
 			consultaPreparada.close();
 		} catch (SQLException e) {
-			System.out.println("Conexion incorrecta con la base de datosxxx");
+			System.out.println("Conexion incorrecta con la Base de Datos");
 		}
 		return passDesencriptada;
 	}

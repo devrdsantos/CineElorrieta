@@ -51,7 +51,7 @@ public class GestionBD {
 			Class.forName("com.mysql.jdbc.Driver");
 			// Se inicializa el objeto CONEXION que conecta y hace referencia a dónde está
 			// ubicada la BD a través del usuario ROOT
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost/reto3", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto3", "root", "");
 		} catch (ClassNotFoundException e) {
 			System.out.println("No se ha encontrado la Libreria.");
 		} catch (SQLException e) {
@@ -274,7 +274,7 @@ public class GestionBD {
 		ArrayList<Pelicula> peliculas = new ArrayList<Pelicula>();
 		try {
 			// System.out.println("Iniciando consulta..");
-			String query = "SELECT P.idpelicula, P.nombrepelicula, P.duracion, P.genero, P.sinopsis FROM `cine` C join sala S on C.idcine = S.idcine join funcion F on S.idsala = F.idsala join pelicula P on F.idpelicula = P.idpelicula WHERE C.nombrecine = ?";
+			String query = "SELECT DISTINCT P.idpelicula, P.nombrepelicula, P.duracion, P.genero, P.sinopsis FROM `cine` C join sala S on C.idcine = S.idcine join funcion F on S.idsala = F.idsala join pelicula P on F.idpelicula = P.idpelicula WHERE C.nombrecine = ?";
 			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
 			consultaPreparada.setString(1, cineSeleccionado);
 			ResultSet resultadoConsulta = consultaPreparada.executeQuery();	

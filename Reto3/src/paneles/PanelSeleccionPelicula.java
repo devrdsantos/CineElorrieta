@@ -109,7 +109,8 @@ public class PanelSeleccionPelicula extends JPanel {
 		add(lblDuracionPelicula);
 
 		// LABEL DURACIÓN PELICULA (TRAÍDO DE LA BD)
-		JLabel lblDuracionPeliculaBD = new JLabel(peli.get(peliActual).getDuracion());
+		JLabel lblDuracionPeliculaBD = new JLabel();
+		lblDuracionPeliculaBD.setText(peli.get(peliActual).getDuracion());
 		lblDuracionPeliculaBD.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDuracionPeliculaBD.setForeground(Color.WHITE);
 		lblDuracionPeliculaBD.setFont(new Font("Verdana", Font.PLAIN, 16));

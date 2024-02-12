@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 
 public class PanelLogin extends JPanel {
+	
 	private JPasswordField passwordField;
 	private JTextField textFieldDNI;
 	private GestionBD gestionBD = new GestionBD();

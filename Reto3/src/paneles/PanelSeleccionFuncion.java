@@ -27,12 +27,10 @@ import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
 
 public class PanelSeleccionFuncion extends JPanel {
-
-	private GestionBD gestion = new GestionBD();
 	
 	public PanelSeleccionFuncion(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
-		int IdPelicula = gestionINF.pasarIdPeliculaSeleccionada();
-		ArrayList<Funcion> funciones = gestion.sacarInformacionDeUnaPelicula(IdPelicula);
+		ArrayList<Funcion> funciones = gestionINF.almacenarFunciones(gestionINF.pasarIdPeliculaSeleccionada());
+		
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);
@@ -56,11 +54,6 @@ public class PanelSeleccionFuncion extends JPanel {
 			}
 		});
 		btnSecundario.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnSecundario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-
 		btnSecundario.setOpaque(true);
 		btnSecundario.setContentAreaFilled(true);
 		btnSecundario.setForeground(Color.decode("#C67ACE"));
@@ -132,8 +125,6 @@ public class PanelSeleccionFuncion extends JPanel {
 		lblEligeUnaFuncin.setBounds(545, 262, 171, 28);
 		add(lblEligeUnaFuncin);
 
-		
-
 		// [!] COMBOBOX - SELECCIÓN FUNCIÓN - TRAE DATOS DE BD --> SALA Y HORA
 		JComboBox<String> comboBoxFunciones = new JComboBox<String>();
 		comboBoxFunciones.setBounds(545, 301, 274, 28);
@@ -191,7 +182,11 @@ public class PanelSeleccionFuncion extends JPanel {
 							comboBoxFunciones.addItem(
 									funciones.get(i).getHorafuncion() + " - Sala " + funciones.get(i).getIdsala());
 							lblPrecioBD.setText(funciones.get(i).getPrecio() + "");
-						}
+						} 
+						
+//						if (funciones.get(i).getFechafuncion() == null) {
+//							JOptionPane.showMessageDialog(null, "No hay sesiones este día");
+//						}
 					}
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, "Seleccione una fecha");

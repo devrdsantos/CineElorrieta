@@ -166,8 +166,6 @@ public class GestionDeLaInformacion {
 		return funciones;
 	}
 	
-	
-    
     public void separarFuncionSeleccionada(String funcionSeleccionada) {
     	 String horaSeleccionada =  funcionSeleccionada.split("-")[0];
          String sala = funcionSeleccionada.split("a ")[1];
@@ -175,7 +173,7 @@ public class GestionDeLaInformacion {
          recogerFuncionSeleccionada(horaSeleccionada, salaSeleccionada);
     }
     
- // [GET] - - RECOGE SALA Y HORA
+    // [GET] - - RECOGE SALA Y HORA
     public void recogerFuncionSeleccionada(String horaSeleccionada, int salaSeleccionada) {
         funcion = new Funcion();
         funcion.setHorafuncion(horaSeleccionada);

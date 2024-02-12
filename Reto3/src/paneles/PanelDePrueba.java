@@ -6,22 +6,15 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import controlador.GestionBD;
 import controlador.GestionDeLaInformacion;
-import modelo.Pelicula;
 import vista.VentanaPrincipal;
 import javax.swing.JSeparator;
 
 public class PanelDePrueba extends JPanel {
-
-	private GestionBD gestion = new GestionBD();
-	
-	
 
 	public PanelDePrueba(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		addMouseListener(new MouseAdapter() {

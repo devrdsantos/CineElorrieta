@@ -3,12 +3,9 @@ package paneles;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import controlador.GestionBD;
-import modelo.Pelicula;
 import vista.VentanaPrincipal;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -17,9 +14,6 @@ import java.awt.event.MouseAdapter;
 import javax.swing.JSeparator;
 
 public class PanelResumenCompra extends JPanel {
-
-	private GestionBD gestion = new GestionBD();
-	ArrayList<Pelicula> peli = gestion.sacarInformacionPeliculas();
 
 	public PanelResumenCompra (VentanaPrincipal v) {
 		setSize(1200, 720);

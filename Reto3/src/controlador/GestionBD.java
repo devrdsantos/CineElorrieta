@@ -51,7 +51,7 @@ public class GestionBD {
 			Class.forName("com.mysql.jdbc.Driver");
 			// Se inicializa el objeto CONEXION que conecta y hace referencia a dónde está
 			// ubicada la BD a través del usuario ROOT
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto3", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost/reto3", "root", "");
 		} catch (ClassNotFoundException e) {
 			//System.out.println("No se ha encontrado la Libreria.");
 		} catch (SQLException e) {
@@ -195,29 +195,29 @@ public class GestionBD {
 		return cines;
 	}
 
-	public ArrayList<Pelicula> sacarInformacionPeliculas() {
-		ArrayList<Pelicula> peliculas = new ArrayList<Pelicula>();
-		try {
-			// System.out.println("Iniciando consulta..");
-			String query = "SELECT * FROM `pelicula` ORDER BY `pelicula`.`idpelicula`";
-			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
-
-			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
-
-			while (resultadoConsulta.next()) {
-				peliculas.add(new Pelicula(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
-						resultadoConsulta.getString(3), resultadoConsulta.getString(4),
-						resultadoConsulta.getString(5)));
-			}
-			// System.out.println("Cerrando Consulta cine..");
-			consultaPreparada.close();
-		} catch (SQLException e) {
-			//System.out.println("Conexion incorrecta cine");
-			e.printStackTrace();
-		}
-		// System.out.println(peliculas.get(0));
-		return peliculas;
-	}
+//	public ArrayList<Pelicula> sacarInformacionPeliculas() {
+//		ArrayList<Pelicula> peliculas = new ArrayList<Pelicula>();
+//		try {
+//			// System.out.println("Iniciando consulta..");
+//			String query = "SELECT * FROM `pelicula` ORDER BY `pelicula`.`idpelicula`";
+//			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
+//
+//			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
+//
+//			while (resultadoConsulta.next()) {
+//				peliculas.add(new Pelicula(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
+//						resultadoConsulta.getString(3), resultadoConsulta.getString(4),
+//						resultadoConsulta.getString(5)));
+//			}
+//			// System.out.println("Cerrando Consulta cine..");
+//			consultaPreparada.close();
+//		} catch (SQLException e) {
+//			//System.out.println("Conexion incorrecta cine");
+//			e.printStackTrace();
+//		}
+//		// System.out.println(peliculas.get(0));
+//		return peliculas;
+//	}
 
 	public String sacarPasswordEncriptada(String dni) throws Exception {
 		String passDesencriptada = "";
@@ -261,20 +261,11 @@ public class GestionBD {
 		return funciones;
 	}
 
-	/*
-	 * Query:
-	 * 
-	 * SELECT P.idpelicula, P.nombrepelicula, P.duracion, P.genero, P.sinopsis FROM
-	 * `cine` C join sala S on C.idcine = S.idcine join funcion F on S.idsala =
-	 * F.idsala join pelicula P on F.idpelicula = P.idpelicula WHERE C.nombrecine =
-	 * "Cine Zubiarte";
-	 */
-
 	public ArrayList<Pelicula> sacarPeliculasDependiendoDelCineSeleccionado(String cineSeleccionado) {
 		ArrayList<Pelicula> peliculas = new ArrayList<Pelicula>();
 		try {
 			// System.out.println("Iniciando consulta..");
-			String query = "SELECT DISTINCT P.idpelicula, P.nombrepelicula, P.duracion, P.genero, P.sinopsis FROM `cine` C join sala S on C.idcine = S.idcine join funcion F on S.idsala = F.idsala join pelicula P on F.idpelicula = P.idpelicula WHERE C.nombrecine = ?";
+			String query = "SELECT DISTINCT P.idpelicula, P.nombrepelicula, P.duracion, P.genero, P.sinopsis FROM `cine` C join sala S on C.idcine = S.idcine join funcion F on S.idsala = F.idsala join pelicula P on F.idpelicula = P.idpelicula WHERE C.nombrecine = ? ORDER BY P.idpelicula";
 			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
 			consultaPreparada.setString(1, cineSeleccionado);
 			ResultSet resultadoConsulta = consultaPreparada.executeQuery();	

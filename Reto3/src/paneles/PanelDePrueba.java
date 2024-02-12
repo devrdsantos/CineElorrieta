@@ -20,7 +20,7 @@ import javax.swing.JSeparator;
 public class PanelDePrueba extends JPanel {
 
 	private GestionBD gestion = new GestionBD();
-	ArrayList<Pelicula> peli = gestion.sacarInformacionPeliculas();
+	
 	
 
 	public PanelDePrueba(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {

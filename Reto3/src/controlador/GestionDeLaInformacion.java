@@ -123,6 +123,10 @@ public class GestionDeLaInformacion {
 		return desencriptado;
 	}
 	
+	/*
+	 * DIRIA QUE NO ES NECESARIO PASAR DE UN METODO A OTRO!!
+	 */
+	
 	public void recogerCineSeleccionado(String cineSeleccionado) {
 		cine = new Cine();
 		cine.setNombreCine(cineSeleccionado);

@@ -1,9 +1,9 @@
 package modelo;
 
 public class Sala {
-	private int idSala;
-	private String nombreSala;
-	private int idCine;
+	private int idSala = 0;
+	private String nombreSala = null;
+	private int idCine = 0;
 	
 	public Sala(int idSala, String nombreSala, int idCine) {
 		

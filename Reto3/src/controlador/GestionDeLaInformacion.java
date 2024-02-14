@@ -25,7 +25,6 @@ public class GestionDeLaInformacion {
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
 		datosUsuario = new ArrayList<String>();
-
 	}
 
 	/*
@@ -130,7 +129,6 @@ public class GestionDeLaInformacion {
 	public void recogerCineSeleccionado(String cineSeleccionado) {
 		cine = new Cine();
 		cine.setNombreCine(cineSeleccionado);
-		pasarNombreCine();
 	}
 
 	public String pasarNombreCine() {
@@ -141,7 +139,6 @@ public class GestionDeLaInformacion {
 	public void recogerPeliculaSeleccionada(String peliculaSeleccionada) {
 		pelicula = new Pelicula();
 		pelicula.setNombrePelicula(peliculaSeleccionada);
-		pasarNombrePelicula();
 	}
 	
 	public String pasarNombrePelicula() {
@@ -151,7 +148,6 @@ public class GestionDeLaInformacion {
 	
 	public void recogerIdPeliculaSeleccionada(int idPelicula) {
 		pelicula.setIdPelicula(idPelicula);
-		pasarIdPeliculaSeleccionada();
 	}
 
 	public int pasarIdPeliculaSeleccionada() {
@@ -160,13 +156,12 @@ public class GestionDeLaInformacion {
 	}
 	
 	public ArrayList<Pelicula> almacenarPeliculas() {
-	//	ArrayList<Pelicula> peliculas = gestionBD.sacarInformacionPeliculas();
 		ArrayList<Pelicula> peliculas = gestionBD.sacarPeliculasDependiendoDelCineSeleccionado(pasarNombreCine());
 		return peliculas;
 	}
 	
-	public ArrayList<Funcion> almacenarFunciones(int IdPelicula) {
-		ArrayList<Funcion> funciones = gestionBD.sacarInformacionDeUnaPelicula(IdPelicula);
+	public ArrayList<Funcion> almacenarFunciones(int idPelicula, String nombreCine) {
+		ArrayList<Funcion> funciones = gestionBD.sacarInformacionDeUnaPeliculaDelCineSeleccionado(idPelicula, nombreCine);
 		return funciones;
 	}
 	
@@ -182,7 +177,6 @@ public class GestionDeLaInformacion {
         funcion = new Funcion();
         funcion.setHorafuncion(horaSeleccionada);
         funcion.setIdsala(salaSeleccionada);
-        pasarFuncionSeleccionada();
     }
     
     // [SET] - - PASAR SALA Y HORA

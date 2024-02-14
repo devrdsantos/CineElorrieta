@@ -2,11 +2,11 @@ package modelo;
 
 public class Pelicula {
 
-	private int idPelicula;
-	private String nombrePelicula;
-	private String duracion;
-	private String genero;
-	private String sinopsis;
+	private int idPelicula = 0;
+	private String nombrePelicula = null;
+	private String duracion = null;
+	private String genero = null;
+	private String sinopsis = null;
 	
 	public Pelicula() {
 		

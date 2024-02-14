@@ -29,7 +29,7 @@ import com.toedter.calendar.JDateChooser;
 public class PanelSeleccionFuncion extends JPanel {
 	
 	public PanelSeleccionFuncion(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
-		ArrayList<Funcion> funciones = gestionINF.almacenarFunciones(gestionINF.pasarIdPeliculaSeleccionada());
+		ArrayList<Funcion> funciones = gestionINF.almacenarFunciones(gestionINF.pasarIdPeliculaSeleccionada(), gestionINF.pasarNombreCine());
 		
 		setSize(1200, 720);
 		setVisible(true);
@@ -105,8 +105,8 @@ public class PanelSeleccionFuncion extends JPanel {
 		add(dateChooserDia);
 		try {
 			String date = "27 Feb 2024";
-			Date FechaCine = new SimpleDateFormat("dd MMM yyyy").parse(date);
-			dateChooserDia.setMinSelectableDate(FechaCine);
+			Date fechaCine = new SimpleDateFormat("dd MMM yyyy").parse(date);
+			dateChooserDia.setMinSelectableDate(fechaCine);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -183,10 +183,9 @@ public class PanelSeleccionFuncion extends JPanel {
 									funciones.get(i).getHorafuncion() + " - Sala " + funciones.get(i).getIdsala());
 							lblPrecioBD.setText(funciones.get(i).getPrecio() + "");
 						} 
-						
-//						if (funciones.get(i).getFechafuncion() == null) {
-//							JOptionPane.showMessageDialog(null, "No hay sesiones este día");
-//						}
+					}
+					if (comboBoxFunciones.getItemCount() == 0 ) {
+						JOptionPane.showMessageDialog(null, "No hay sesiones este día");
 					}
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, "Seleccione una fecha");

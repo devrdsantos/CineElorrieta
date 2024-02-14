@@ -29,9 +29,9 @@ public class VentanaPrincipal extends JFrame {
 		/**
 		 * Logo de la ventana
 		 */
-		String rutaLogo = "src\\ventanas\\logoProyecto.png";
-		ImageIcon icono = new ImageIcon(rutaLogo);
-		setIconImage(icono.getImage());
+		//String rutaLogo = "src\\ventanas\\logoProyecto.png";
+		//ImageIcon icono = new ImageIcon(rutaLogo);
+		//setIconImage(icono.getImage());
 	}
 
 	/**

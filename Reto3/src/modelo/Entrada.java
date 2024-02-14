@@ -2,11 +2,11 @@ package modelo;
 
 public class Entrada {
 
-	private int numeroEntrada;
-	private double descuento;
-	private String fechaCompra;
-	private String horaCompra;
-	private int idfuncion, idcompra;
+	private int numeroEntrada = 0;
+	private double descuento = 0;
+	private String fechaCompra = null;
+	private String horaCompra = null;
+	private int idfuncion, idcompra = 0;
 	
 	public Entrada(int numeroEntrada, double descuento, String fechaCompra, String horaCompra, int idfuncion,
 			int idcompra) {

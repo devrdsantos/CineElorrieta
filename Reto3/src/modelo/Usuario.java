@@ -2,11 +2,11 @@ package modelo;
 
 public class Usuario {
 	
-	private String dni;
-	private String password;
-	private String nombre;
-	private String apellido;
-	private String sexo;
+	private String dni = null;
+	private String password = null;
+	private String nombre = null;
+	private String apellido = null;
+	private String sexo = null; 
 	
 	public Usuario() {
 		

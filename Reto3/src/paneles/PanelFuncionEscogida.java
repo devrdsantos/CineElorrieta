@@ -9,27 +9,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import controlador.GestionDeLaInformacion;
+import modelo.Entrada;
 import vista.VentanaPrincipal;
 import javax.swing.JSeparator;
 
 public class PanelFuncionEscogida extends JPanel {
 
+	private Entrada entrada;
+
 	public PanelFuncionEscogida(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
-		
-		addMouseListener(new MouseAdapter() {
-			
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            	try {
-					TimeUnit.SECONDS.sleep(2);
-					v.cambiarDePanel(3);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
-            	
-            }
-        });
-		
+
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);
@@ -69,13 +58,13 @@ public class PanelFuncionEscogida extends JPanel {
 		lblEnUnosSegundos.setFont(new Font("Verdana", Font.PLAIN, 16));
 		lblEnUnosSegundos.setBounds(359, 541, 400, 21);
 		add(lblEnUnosSegundos);
-		
+
 		// SEPARADOR
 		JSeparator separator = new JSeparator();
 		separator.setBackground(new Color(134, 167, 255));
 		separator.setBounds(167, 510, 800, 8);
 		add(separator);
-		
+
 		// LBL CINE
 		JLabel lblCine = new JLabel("Cine:");
 		lblCine.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -83,7 +72,7 @@ public class PanelFuncionEscogida extends JPanel {
 		lblCine.setFont(new Font("Verdana", Font.PLAIN, 16));
 		lblCine.setBounds(171, 288, 56, 49);
 		add(lblCine);
-		
+
 		// [!] LBL NOMBRE DEL CINE - TRAE DE BD
 		JLabel lblNombreDelCine = new JLabel();
 		lblNombreDelCine.setText(gestionINF.pasarNombreCine());
@@ -92,7 +81,7 @@ public class PanelFuncionEscogida extends JPanel {
 		lblNombreDelCine.setFont(new Font("Verdana", Font.BOLD, 16));
 		lblNombreDelCine.setBounds(235, 289, 797, 49);
 		add(lblNombreDelCine);
-		
+
 		// LBL FUNCIÓN
 		JLabel lblFuncin = new JLabel("Función:");
 		lblFuncin.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -100,7 +89,7 @@ public class PanelFuncionEscogida extends JPanel {
 		lblFuncin.setFont(new Font("Verdana", Font.PLAIN, 16));
 		lblFuncin.setBounds(156, 362, 72, 49);
 		add(lblFuncin);
-		
+
 		// [!] LBL SALA Y HORA - TRAE DE BD
 		JLabel lblSalaYHora = new JLabel();
 		lblSalaYHora.setText(gestionINF.pasarFuncionSeleccionada());
@@ -109,6 +98,23 @@ public class PanelFuncionEscogida extends JPanel {
 		lblSalaYHora.setFont(new Font("Verdana", Font.BOLD, 16));
 		lblSalaYHora.setBounds(235, 363, 797, 49);
 		add(lblSalaYHora);
-		
+
+		addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				try {
+					TimeUnit.SECONDS.sleep(2);
+					gestionINF.crearEntrada(ERROR, gestionINF.pasarFechaSeleccionada(),
+							gestionINF.pasarNombrePelicula(), gestionINF.pasarHoraSeleccionada(),
+							gestionINF.pasarIdSalaSeleccionada(), gestionINF.pasarPrecio());
+					v.cambiarDePanel(3);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+
+			}
+		});
+
 	}
 }

@@ -3,25 +3,28 @@ package controlador;
 import java.security.Key;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JOptionPane;
 import modelo.Cine;
+import modelo.Entrada;
 import modelo.Funcion;
 import modelo.Pelicula;
+import modelo.Sala;
 import vista.VentanaPrincipal;
 
 public class GestionDeLaInformacion {
 
 	private GestionBD gestionBD;
 	private ArrayList<String> datosUsuario;
-	ArrayList<Object> peliculasSeleccionada;
 	private Cine cine;
 	private Pelicula pelicula;
+	private Entrada entrada;
 	private Funcion funcion;
+	private Sala sala;
+	private ArrayList<Entrada> entradas;
 	private final String CLAVE_ENCRIPTADA = "clavecompartidanorevelarnuncamas";
 
 	public GestionDeLaInformacion() {
@@ -30,7 +33,9 @@ public class GestionDeLaInformacion {
 		pelicula = new Pelicula();
 		cine = new Cine();
 		funcion = new Funcion();
-		peliculasSeleccionada = new ArrayList<Object>();
+		entrada = new Entrada();
+		sala = new Sala();
+		entradas = new ArrayList<Entrada>();
 	}
 
 	/*
@@ -133,7 +138,7 @@ public class GestionDeLaInformacion {
 	 */
 
 	public void recogerCineSeleccionado(String cineSeleccionado) {
-		
+
 		cine.setNombreCine(cineSeleccionado);
 	}
 
@@ -143,7 +148,7 @@ public class GestionDeLaInformacion {
 	}
 
 	public void recogerPeliculaSeleccionada(String peliculaSeleccionada) {
-		
+
 		pelicula.setNombrePelicula(peliculaSeleccionada);
 	}
 
@@ -172,39 +177,96 @@ public class GestionDeLaInformacion {
 		return funciones;
 	}
 
-	public void separarFuncionSeleccionada(String funcionSeleccionada) {
-		String horaSeleccionada = funcionSeleccionada.split("-")[0];
-		String sala = funcionSeleccionada.split("a ")[1];
-		int salaSeleccionada = Integer.parseInt(sala);
-		recogerFuncionSeleccionada(horaSeleccionada, salaSeleccionada);
+	// Metodo para crear el idEntrada
+	
+	
+	
+	public void recogerFechaSeleccionada(String fecha) {
+		funcion.setFechafuncion(fecha);
 	}
 
-	// [GET] - - RECOGE SALA Y HORA
-	public void recogerFuncionSeleccionada(String horaSeleccionada, int salaSeleccionada) {		
-		funcion.setHorafuncion(horaSeleccionada);
-		funcion.setIdsala(salaSeleccionada);
+	public String pasarFechaSeleccionada() {
+		String fecha = funcion.getFechafuncion();
+		return fecha;
+	}
+	
+	public void recogerHoraSeleccionada(String hora) {
+		funcion.setHorafuncion(hora);
+	}
+	
+	public String pasarHoraSeleccionada() {
+		String hora = funcion.getHorafuncion();
+		return hora;
+	}
+	
+	public void recogerIdSalaSeleccionada(int idSala) {
+		sala.setIdSala(idSala);
+	}
+	
+	public int pasarIdSalaSeleccionada() {
+		int idSala = sala.getIdSala();
+		return idSala;
+	}
+	
+	public void recogerPrecio(double precio) {
+		funcion.setPrecio(precio);
 	}
 
-	// [SET] - - PASAR SALA Y HORA
+	public double pasarPrecio() {
+		double precio = funcion.getPrecio();
+		return precio;
+	}
+	
+	public void crearEntrada(int idEntrada, String fecha, String nombrePelicula, String horario, int sala,
+			double precio) {
+//		idEntrada = entrada.idEntrada();
+//		
+//		entrada = new Entrada(idEntrada, fecha, nombrePelicula, horario, sala, precio);
+//		añadirEntradas(entrada);
+	}
+
+	public ArrayList<Entrada> añadirEntradas(Entrada entrada) {
+		entradas.add(entrada);
+		System.out.println(entrada);
+		return entradas;
+	}
+	
 	public String pasarFuncionSeleccionada() {
-		String horaSeleccionada = funcion.getHorafuncion();
-		int salaSeleccionada = funcion.getIdsala();
+		String horaSeleccionada = pasarHoraSeleccionada();
+		int salaSeleccionada = pasarIdSalaSeleccionada();;
 		String horaYFecha = horaSeleccionada + "- Sala " + salaSeleccionada;
 		return horaYFecha;
 	}
-
-	public ArrayList<Object> guardarInformacionPeliculaSeleccionada(String hola, String adios, String puede) {
-		
-//			peliculasSeleccionada.add(pasarNombrePelicula());
-//			peliculasSeleccionada.add(pasarNombreCine());
-//			peliculasSeleccionada.add(pasarFuncionSeleccionada());
-			
-				peliculasSeleccionada.add(hola);
-				peliculasSeleccionada.add(adios);
-				peliculasSeleccionada.add(puede);
-			
-		
-		return peliculasSeleccionada;
+	
+	public void convertirADouble(String convertir) {
+		double precio = Double.parseDouble(convertir);
+		recogerPrecio(precio);
 	}
+
+	public void convertirAInt(String convertir) {
+		int salaSeleccionada = Integer.parseInt(convertir);
+		recogerIdSalaSeleccionada(salaSeleccionada);
+	}
+	
+	public void separarFuncionSeleccionada(String funcionSeleccionada) {
+		String horaSeleccionada = funcionSeleccionada.split("-")[0];
+		String sala = funcionSeleccionada.split("a ")[1];
+		convertirAInt(sala);
+//		recogerFuncionSeleccionada(horaSeleccionada, salaSeleccionada);
+		recogerHoraSeleccionada(horaSeleccionada);
+		System.out.println(horaSeleccionada);
+		
+	}
+	
+	//---------------------------------------------------------------------------
+	
+	
+//	// [GET] - - RECOGE SALA Y HORA
+//		public void recogerFuncionSeleccionada(String horaSeleccionada, int salaSeleccionada) {
+//			funcion.setHorafuncion(horaSeleccionada);
+//			funcion.setIdsala(salaSeleccionada);
+//		}
+	
+	
 
 }

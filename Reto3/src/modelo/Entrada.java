@@ -3,42 +3,74 @@ package modelo;
 public class Entrada {
 
 	private int idEntrada = 0;
-	private int idfuncion = 0;
-	private int idcompra = 0;
+	private String fecha = null;
+	private String nombrePelicula = null;
+	private String horario = null;
+	private int idsala = 0;
+	private double precio = 0;
 	
-	public Entrada(int idEntrada, int idfuncion, int idcompra) {
-		this.idEntrada = idEntrada;
-		this.idfuncion = idfuncion;
-		this.idcompra = idcompra;
+	public Entrada() {
 	}
 
-	public int getIdEntrada() {
-		return idEntrada;
+	public Entrada(String fecha, String nombrePelicula, String horario, int idsala, double precio) {
+		this.fecha = fecha;
+		this.nombrePelicula = nombrePelicula;
+		this.horario = horario;
+		this.idsala = idsala;
+		this.precio = precio;
+		//this.idEntrada;
 	}
 
-	public void setIdEntrada(int idEntrada) {
-		this.idEntrada = idEntrada;
+
+	public String getFecha() {
+		return fecha;
 	}
 
-	public int getIdfuncion() {
-		return idfuncion;
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
 	}
 
-	public void setIdfuncion(int idfuncion) {
-		this.idfuncion = idfuncion;
+	public String getNombrePelicula() {
+		return nombrePelicula;
 	}
 
-	public int getIdcompra() {
-		return idcompra;
+	public void setNombrePelicula(String nombrePelicula) {
+		this.nombrePelicula = nombrePelicula;
 	}
 
-	public void setIdcompra(int idcompra) {
-		this.idcompra = idcompra;
+	public String getHorario() {
+		return horario;
+	}
+
+	public void setHorario(String horario) {
+		this.horario = horario;
+	}
+
+	public int getIdsala() {
+		return idsala;
+	}
+
+	public void setIdsala(int idsala) {
+		this.idsala = idsala;
+	}
+
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+	
+	//Genera un numero autoincrementado
+	public void idEntrada() {
+		this.idEntrada++;
 	}
 
 	@Override
 	public String toString() {
-		return "Entrada [idEntrada=" + idEntrada + ", idfuncion=" + idfuncion + ", idcompra=" + idcompra + "]";
+		return "Entrada [idEntrada=" + idEntrada + ", fecha=" + fecha + ", nombrePelicula=" + nombrePelicula
+				+ ", horario=" + horario + ", idsala=" + idsala + ", precio=" + precio + "]";
 	}
 	
 }

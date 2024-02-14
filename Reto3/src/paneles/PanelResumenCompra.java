@@ -21,11 +21,6 @@ public class PanelResumenCompra extends JPanel {
 
 	public PanelResumenCompra (VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		
-		ArrayList<Object> prueba = gestionINF.guardarInformacionPeliculaSeleccionada(gestionINF.pasarNombrePelicula(),gestionINF.pasarNombreCine(), gestionINF.pasarFuncionSeleccionada());
-		System.out.println(prueba);
-		System.out.println("-------");
-		System.out.println(prueba.get(0));
-		
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);

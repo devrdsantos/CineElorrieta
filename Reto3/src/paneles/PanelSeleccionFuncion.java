@@ -25,6 +25,7 @@ public class PanelSeleccionFuncion extends JPanel {
 	
 	public PanelSeleccionFuncion(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		ArrayList<Funcion> funciones = gestionINF.almacenarFunciones(gestionINF.pasarIdPeliculaSeleccionada(), gestionINF.pasarNombreCine());
+		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
 		
 		setSize(1200, 720);
 		setVisible(true);
@@ -169,7 +170,6 @@ public class PanelSeleccionFuncion extends JPanel {
 		btnFecha.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
 				try {
 					comboBoxFunciones.removeAllItems();
 					for (int i = 0; i < funciones.size(); i++) {
@@ -203,6 +203,8 @@ public class PanelSeleccionFuncion extends JPanel {
 					public void mouseClicked(MouseEvent e) {
 						String funcionSeleccionada = (String) comboBoxFunciones.getSelectedItem();
 						gestionINF.separarFuncionSeleccionada(funcionSeleccionada);
+						gestionINF.convertirADouble(lblPrecioBD.getText());
+						gestionINF.recogerFechaSeleccionada(formato.format(dateChooserDia.getDate()));
 						v.cambiarDePanel(6);
 					}
 				});

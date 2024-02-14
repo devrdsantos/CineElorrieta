@@ -21,7 +21,7 @@ public class PanelFuncionEscogida extends JPanel {
             @Override
             public void mouseEntered(MouseEvent e) {
             	try {
-					TimeUnit.SECONDS.sleep(6);
+					TimeUnit.SECONDS.sleep(2);
 					v.cambiarDePanel(3);
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();

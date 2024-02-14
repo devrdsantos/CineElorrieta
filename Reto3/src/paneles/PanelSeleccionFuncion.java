@@ -6,19 +6,14 @@ import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import controlador.GestionBD;
 import controlador.GestionDeLaInformacion;
 import modelo.Funcion;
-
 import vista.VentanaPrincipal;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 
 
@@ -212,10 +207,6 @@ public class PanelSeleccionFuncion extends JPanel {
 					}
 				});
 				btnPrincipal.setFont(new Font("Verdana", Font.BOLD, 16));
-				btnPrincipal.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
 				btnPrincipal.setOpaque(true);
 				btnPrincipal.setContentAreaFilled(true);
 				btnPrincipal.setForeground(Color.decode("#FFFFFF"));

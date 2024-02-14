@@ -3,6 +3,7 @@ package controlador;
 import java.security.Key;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.crypto.Cipher;
@@ -17,6 +18,7 @@ public class GestionDeLaInformacion {
 
 	private GestionBD gestionBD;
 	private ArrayList<String> datosUsuario;
+	ArrayList<Object> peliculasSeleccionada;
 	private Cine cine;
 	private Pelicula pelicula;
 	private Funcion funcion;
@@ -25,6 +27,10 @@ public class GestionDeLaInformacion {
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
 		datosUsuario = new ArrayList<String>();
+		pelicula = new Pelicula();
+		cine = new Cine();
+		funcion = new Funcion();
+		peliculasSeleccionada = new ArrayList<Object>();
 	}
 
 	/*
@@ -121,13 +127,13 @@ public class GestionDeLaInformacion {
 
 		return desencriptado;
 	}
-	
+
 	/*
 	 * DIRIA QUE NO ES NECESARIO PASAR DE UN METODO A OTRO!!
 	 */
-	
+
 	public void recogerCineSeleccionado(String cineSeleccionado) {
-		cine = new Cine();
+		
 		cine.setNombreCine(cineSeleccionado);
 	}
 
@@ -135,17 +141,17 @@ public class GestionDeLaInformacion {
 		String nombreCine = cine.getNombreCine();
 		return nombreCine;
 	}
-	
+
 	public void recogerPeliculaSeleccionada(String peliculaSeleccionada) {
-		pelicula = new Pelicula();
+		
 		pelicula.setNombrePelicula(peliculaSeleccionada);
 	}
-	
+
 	public String pasarNombrePelicula() {
 		String nombrePelicula = pelicula.getNombrePelicula();
 		return nombrePelicula;
 	}
-	
+
 	public void recogerIdPeliculaSeleccionada(int idPelicula) {
 		pelicula.setIdPelicula(idPelicula);
 	}
@@ -154,37 +160,51 @@ public class GestionDeLaInformacion {
 		int idPelicula = pelicula.getIdPelicula();
 		return idPelicula;
 	}
-	
+
 	public ArrayList<Pelicula> almacenarPeliculas() {
 		ArrayList<Pelicula> peliculas = gestionBD.sacarPeliculasDependiendoDelCineSeleccionado(pasarNombreCine());
 		return peliculas;
 	}
-	
+
 	public ArrayList<Funcion> almacenarFunciones(int idPelicula, String nombreCine) {
-		ArrayList<Funcion> funciones = gestionBD.sacarInformacionDeUnaPeliculaDelCineSeleccionado(idPelicula, nombreCine);
+		ArrayList<Funcion> funciones = gestionBD.sacarInformacionDeUnaPeliculaDelCineSeleccionado(idPelicula,
+				nombreCine);
 		return funciones;
 	}
-	
-    public void separarFuncionSeleccionada(String funcionSeleccionada) {
-    	 String horaSeleccionada =  funcionSeleccionada.split("-")[0];
-         String sala = funcionSeleccionada.split("a ")[1];
-         int salaSeleccionada = Integer.parseInt(sala);
-         recogerFuncionSeleccionada(horaSeleccionada, salaSeleccionada);
-    }
-    
-    // [GET] - - RECOGE SALA Y HORA
-    public void recogerFuncionSeleccionada(String horaSeleccionada, int salaSeleccionada) {
-        funcion = new Funcion();
-        funcion.setHorafuncion(horaSeleccionada);
-        funcion.setIdsala(salaSeleccionada);
-    }
-    
-    // [SET] - - PASAR SALA Y HORA
-    public String pasarFuncionSeleccionada() {
-        String horaSeleccionada = funcion.getHorafuncion();
-    	int salaSeleccionada = funcion.getIdsala();
-    	String horaYFecha =  horaSeleccionada + "- Sala " + salaSeleccionada;
-        return horaYFecha;
-    }
-	
+
+	public void separarFuncionSeleccionada(String funcionSeleccionada) {
+		String horaSeleccionada = funcionSeleccionada.split("-")[0];
+		String sala = funcionSeleccionada.split("a ")[1];
+		int salaSeleccionada = Integer.parseInt(sala);
+		recogerFuncionSeleccionada(horaSeleccionada, salaSeleccionada);
+	}
+
+	// [GET] - - RECOGE SALA Y HORA
+	public void recogerFuncionSeleccionada(String horaSeleccionada, int salaSeleccionada) {		
+		funcion.setHorafuncion(horaSeleccionada);
+		funcion.setIdsala(salaSeleccionada);
+	}
+
+	// [SET] - - PASAR SALA Y HORA
+	public String pasarFuncionSeleccionada() {
+		String horaSeleccionada = funcion.getHorafuncion();
+		int salaSeleccionada = funcion.getIdsala();
+		String horaYFecha = horaSeleccionada + "- Sala " + salaSeleccionada;
+		return horaYFecha;
+	}
+
+	public ArrayList<Object> guardarInformacionPeliculaSeleccionada(String hola, String adios, String puede) {
+		
+//			peliculasSeleccionada.add(pasarNombrePelicula());
+//			peliculasSeleccionada.add(pasarNombreCine());
+//			peliculasSeleccionada.add(pasarFuncionSeleccionada());
+			
+				peliculasSeleccionada.add(hola);
+				peliculasSeleccionada.add(adios);
+				peliculasSeleccionada.add(puede);
+			
+		
+		return peliculasSeleccionada;
+	}
+
 }

@@ -3,9 +3,13 @@ package paneles;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import controlador.GestionDeLaInformacion;
 import vista.VentanaPrincipal;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -15,7 +19,12 @@ import javax.swing.JSeparator;
 
 public class PanelResumenCompra extends JPanel {
 
-	public PanelResumenCompra (VentanaPrincipal v) {
+	public PanelResumenCompra (VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
+		
+		ArrayList<Object> prueba = gestionINF.guardarInformacionPeliculaSeleccionada(gestionINF.pasarNombrePelicula(),gestionINF.pasarNombreCine(), gestionINF.pasarFuncionSeleccionada());
+		System.out.println(prueba);
+		System.out.println("-------");
+		System.out.println(prueba.get(0));
 		
 		setSize(1200, 720);
 		setVisible(true);
@@ -60,6 +69,7 @@ public class PanelResumenCompra extends JPanel {
 		JButton btnMas1 = new JButton("+");
 		btnMas1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+		
 			}
 		});
 		btnMas1.setOpaque(true);

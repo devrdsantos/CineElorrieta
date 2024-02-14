@@ -70,7 +70,7 @@ public class VentanaPrincipal extends JFrame {
 			
 			break;
 		}case 7: {
-			setContentPane(new PanelResumenCompra(this));
+			setContentPane(new PanelResumenCompra(this, this.gestionINF));
 			
 			break;
 		

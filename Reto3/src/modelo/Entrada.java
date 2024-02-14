@@ -2,53 +2,22 @@ package modelo;
 
 public class Entrada {
 
-	private int numeroEntrada = 0;
-	private double descuento = 0;
-	private String fechaCompra = null;
-	private String horaCompra = null;
-	private int idfuncion, idcompra = 0;
+	private int idEntrada = 0;
+	private int idfuncion = 0;
+	private int idcompra = 0;
 	
-	public Entrada(int numeroEntrada, double descuento, String fechaCompra, String horaCompra, int idfuncion,
-			int idcompra) {
-		
-		this.numeroEntrada = numeroEntrada;
-		this.descuento = descuento;
-		this.fechaCompra = fechaCompra;
-		this.horaCompra = horaCompra;
+	public Entrada(int idEntrada, int idfuncion, int idcompra) {
+		this.idEntrada = idEntrada;
 		this.idfuncion = idfuncion;
 		this.idcompra = idcompra;
 	}
 
-	public int getNumeroEntrada() {
-		return numeroEntrada;
+	public int getIdEntrada() {
+		return idEntrada;
 	}
 
-	public void setNumeroEntrada(int numeroEntrada) {
-		this.numeroEntrada = numeroEntrada;
-	}
-
-	public double getDescuento() {
-		return descuento;
-	}
-
-	public void setDescuento(double descuento) {
-		this.descuento = descuento;
-	}
-
-	public String getFechaCompra() {
-		return fechaCompra;
-	}
-
-	public void setFechaCompra(String fechaCompra) {
-		this.fechaCompra = fechaCompra;
-	}
-
-	public String getHoraCompra() {
-		return horaCompra;
-	}
-
-	public void setHoraCompra(String horaCompra) {
-		this.horaCompra = horaCompra;
+	public void setIdEntrada(int idEntrada) {
+		this.idEntrada = idEntrada;
 	}
 
 	public int getIdfuncion() {
@@ -69,9 +38,7 @@ public class Entrada {
 
 	@Override
 	public String toString() {
-		return "Entrada [numeroEntrada=" + numeroEntrada + ", descuento=" + descuento + ", fechaCompra=" + fechaCompra
-				+ ", horaCompra=" + horaCompra + ", idfuncion=" + idfuncion + ", idcompra=" + idcompra + "]";
+		return "Entrada [idEntrada=" + idEntrada + ", idfuncion=" + idfuncion + ", idcompra=" + idcompra + "]";
 	}
-	
 	
 }

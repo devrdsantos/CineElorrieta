@@ -85,8 +85,8 @@ public class PanelSeleccionCine extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 
-                System.exit(0);
-
+                //System.exit(0);
+            	v.cambiarDePanel(7);
             }
         });
         add(btnFinalizar);

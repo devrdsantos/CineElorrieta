@@ -33,8 +33,8 @@ public class GestionDeLaInformacion {
 		pelicula = new Pelicula();
 		cine = new Cine();
 		funcion = new Funcion();
-		entrada = new Entrada();
 		sala = new Sala();
+		entrada = new Entrada();
 		entradas = new ArrayList<Entrada>();
 	}
 
@@ -217,19 +217,24 @@ public class GestionDeLaInformacion {
 		return precio;
 	}
 	
-	public void crearEntrada(int idEntrada, String fecha, String nombrePelicula, String horario, int sala,
+	public void crearEntrada(String fecha, String nombrePelicula, String horario, int sala,
 			double precio) {
-//		idEntrada = entrada.idEntrada();
-//		
-//		entrada = new Entrada(idEntrada, fecha, nombrePelicula, horario, sala, precio);
-//		añadirEntradas(entrada);
+		
+		entrada = new Entrada(fecha, nombrePelicula, horario, sala, precio);
+		System.out.println(entrada);
+		añadirEntradas(entrada);
 	}
 
 	public ArrayList<Entrada> añadirEntradas(Entrada entrada) {
 		entradas.add(entrada);
-		System.out.println(entrada);
 		return entradas;
 	}
+	
+//	public ArrayList<Entrada> almacenarEntradas() {
+//		ArrayList<Entrada> entradas = añadirEntradas(entrada);
+//		System.out.println(entradas);
+//		return entradas;
+//	}
 	
 	public String pasarFuncionSeleccionada() {
 		String horaSeleccionada = pasarHoraSeleccionada();
@@ -254,7 +259,6 @@ public class GestionDeLaInformacion {
 		convertirAInt(sala);
 //		recogerFuncionSeleccionada(horaSeleccionada, salaSeleccionada);
 		recogerHoraSeleccionada(horaSeleccionada);
-		System.out.println(horaSeleccionada);
 		
 	}
 	

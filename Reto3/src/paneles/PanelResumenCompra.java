@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import controlador.GestionDeLaInformacion;
+import modelo.Entrada;
 import vista.VentanaPrincipal;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -20,6 +21,9 @@ import javax.swing.JSeparator;
 public class PanelResumenCompra extends JPanel {
 
 	public PanelResumenCompra (VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
+//		System.out.println("------");
+//		ArrayList<Entrada> entrada = gestionINF.almacenarEntradas();
+//		System.out.println(entrada);
 		
 		setSize(1200, 720);
 		setVisible(true);

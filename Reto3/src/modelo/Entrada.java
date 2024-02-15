@@ -8,19 +8,22 @@ public class Entrada {
 	private String horario = null;
 	private int idsala = 0;
 	private double precio = 0;
+	private static int generadorIdEntrada = 0;
 	
 	public Entrada() {
+		idEntrada = generadorIdEntrada;
+		generadorIdEntrada++;
 	}
 
 	public Entrada(String fecha, String nombrePelicula, String horario, int idsala, double precio) {
+		idEntrada = generadorIdEntrada;
+		generadorIdEntrada++;
 		this.fecha = fecha;
 		this.nombrePelicula = nombrePelicula;
 		this.horario = horario;
 		this.idsala = idsala;
 		this.precio = precio;
-		//this.idEntrada;
 	}
-
 
 	public String getFecha() {
 		return fecha;
@@ -60,11 +63,6 @@ public class Entrada {
 
 	public void setPrecio(double precio) {
 		this.precio = precio;
-	}
-	
-	//Genera un numero autoincrementado
-	public void idEntrada() {
-		this.idEntrada++;
 	}
 
 	@Override

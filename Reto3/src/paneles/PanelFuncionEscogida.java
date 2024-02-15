@@ -105,7 +105,7 @@ public class PanelFuncionEscogida extends JPanel {
 			public void mouseEntered(MouseEvent e) {
 				try {
 					TimeUnit.SECONDS.sleep(2);
-					gestionINF.crearEntrada(ERROR, gestionINF.pasarFechaSeleccionada(),
+					gestionINF.crearEntrada(gestionINF.pasarFechaSeleccionada(),
 							gestionINF.pasarNombrePelicula(), gestionINF.pasarHoraSeleccionada(),
 							gestionINF.pasarIdSalaSeleccionada(), gestionINF.pasarPrecio());
 					v.cambiarDePanel(3);

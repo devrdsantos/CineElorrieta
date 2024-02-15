@@ -105,9 +105,9 @@ public class PanelFuncionEscogida extends JPanel {
 			public void mouseEntered(MouseEvent e) {
 				try {
 					TimeUnit.SECONDS.sleep(2);
-					gestionINF.crearEntrada(gestionINF.pasarFechaSeleccionada(),
-							gestionINF.pasarNombrePelicula(), gestionINF.pasarHoraSeleccionada(),
-							gestionINF.pasarIdSalaSeleccionada(), gestionINF.pasarPrecio());
+					gestionINF.crearEntrada(gestionINF.pasarFechaSeleccionada(), gestionINF.pasarNombrePelicula(),
+							gestionINF.pasarHoraSeleccionada(), gestionINF.pasarIdSalaSeleccionada(),
+							gestionINF.pasarPrecio(), gestionINF.pasarNombreCine());
 					v.cambiarDePanel(3);
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();

@@ -84,9 +84,13 @@ public class PanelSeleccionCine extends JPanel {
         btnFinalizar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                
-                //System.exit(0);
-            	v.cambiarDePanel(7);
+//                boolean xd = gestionINF.nose();
+//            	if (xd == true) {
+//            		v.cambiarDePanel(7);
+//            	} else {
+//            		System.exit(0);
+//            	}
+            	
             }
         });
         add(btnFinalizar);

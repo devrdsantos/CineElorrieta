@@ -218,19 +218,18 @@ public class GestionDeLaInformacion {
 	}
 	
 	public void crearEntrada(String fecha, String nombrePelicula, String horario, int sala,
-			double precio) {
+			double precio, String cine) {
 		
-		entrada = new Entrada(fecha, nombrePelicula, horario, sala, precio);
-		System.out.println(entrada);
+		entrada = new Entrada(fecha, nombrePelicula, horario, sala, precio, cine);
 		añadirEntradas(entrada);
 	}
 
-	public ArrayList<Entrada> añadirEntradas(Entrada entrada) {
+	public void añadirEntradas(Entrada entrada) {
 		entradas.add(entrada);
-		return entradas;
 	}
 	
 	public ArrayList<Entrada> enseñarEntradas() {
+		System.out.println(entradas);
 		return entradas;
 	}
 	
@@ -259,6 +258,20 @@ public class GestionDeLaInformacion {
 		recogerHoraSeleccionada(horaSeleccionada);
 		
 	}
+	
+//	public boolean nose() {
+//		boolean prueba = false;
+//		if(entradas.contains("Entrada ")) {
+//			prueba = true;
+//			System.out.println(prueba);
+//			return prueba;
+//		} else {
+//			System.out.println(prueba);
+//			return prueba;
+//		}
+//		
+//		
+//	}
 	
 	//---------------------------------------------------------------------------
 	

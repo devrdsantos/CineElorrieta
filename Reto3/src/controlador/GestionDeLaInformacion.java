@@ -230,11 +230,9 @@ public class GestionDeLaInformacion {
 		return entradas;
 	}
 	
-//	public ArrayList<Entrada> almacenarEntradas() {
-//		ArrayList<Entrada> entradas = añadirEntradas(entrada);
-//		System.out.println(entradas);
-//		return entradas;
-//	}
+	public ArrayList<Entrada> enseñarEntradas() {
+		return entradas;
+	}
 	
 	public String pasarFuncionSeleccionada() {
 		String horaSeleccionada = pasarHoraSeleccionada();

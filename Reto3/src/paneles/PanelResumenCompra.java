@@ -21,9 +21,9 @@ import javax.swing.JSeparator;
 public class PanelResumenCompra extends JPanel {
 
 	public PanelResumenCompra (VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
-//		System.out.println("------");
-//		ArrayList<Entrada> entrada = gestionINF.almacenarEntradas();
-//		System.out.println(entrada);
+		System.out.println("------");
+		ArrayList<Entrada> entrada = gestionINF.enseñarEntradas();
+		System.out.println(entrada);
 		
 		setSize(1200, 720);
 		setVisible(true);

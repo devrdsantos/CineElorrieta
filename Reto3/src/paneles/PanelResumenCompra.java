@@ -218,7 +218,14 @@ public class PanelResumenCompra extends JPanel {
 		lblPrecioReal.setBounds(254, 539, 80, 20);
 		add(lblPrecioReal);
 		// [¡BD!] LBL VALOR REAL
-		JLabel lblValorReal = new JLabel("XXX");
+		
+		double precioReal = 0;
+		for (int i = 0; i < entradas.size(); i++) {
+			precioReal = precioReal + entradas.get(i).getPrecio();
+		}
+		
+		JLabel lblValorReal = new JLabel();
+		lblValorReal.setText(precioReal + "");
 		lblValorReal.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblValorReal.setForeground(new Color(255, 255, 255));
 		lblValorReal.setFont(new Font("Verdana", Font.PLAIN, 14));

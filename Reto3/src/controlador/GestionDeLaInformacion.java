@@ -259,19 +259,32 @@ public class GestionDeLaInformacion {
 		
 	}
 	
-//	public boolean nose() {
-//		boolean prueba = false;
-//		if(entradas.contains("Entrada ")) {
-//			prueba = true;
-//			System.out.println(prueba);
-//			return prueba;
-//		} else {
-//			System.out.println(prueba);
-//			return prueba;
-//		}
-//		
-//		
-//	}
+	public int descuento(int precio) {
+		int precioConDescuento = 0;
+		int numero = entradas.size();
+		if(numero == 2) {
+			precioConDescuento = (precio * 80)/100;
+			return precioConDescuento;
+		} else if (numero >= 3) {
+			precioConDescuento = (precio * 70)/100;
+			return precioConDescuento;
+		}
+		return precioConDescuento;
+	}		
+	
+	public boolean nose() {
+		boolean prueba = false;
+		if(entradas.get(0).getCine().isBlank()) {
+			prueba = true;
+			System.out.println(prueba);
+			return prueba;
+		} else {
+			System.out.println(prueba);
+			return prueba;
+		}
+		
+		
+	}
 	
 	//---------------------------------------------------------------------------
 	

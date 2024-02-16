@@ -1,32 +1,41 @@
 package controlador;
 
 import java.security.Key;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JOptionPane;
-
 import modelo.Cine;
-import modelo.Usuario;
+import modelo.Entrada;
+import modelo.Funcion;
+import modelo.Pelicula;
+import modelo.Sala;
 import vista.VentanaPrincipal;
 
 public class GestionDeLaInformacion {
 
 	private GestionBD gestionBD;
-	private ArrayList<String> DatosUsuario;
+	private ArrayList<String> datosUsuario;
 	private Cine cine;
+	private Pelicula pelicula;
+	private Entrada entrada;
+	private Funcion funcion;
+	private Sala sala;
+	private ArrayList<Entrada> entradas;
 	private final String CLAVE_ENCRIPTADA = "clavecompartidanorevelarnuncamas";
 
 	public GestionDeLaInformacion() {
 		gestionBD = new GestionBD();
-		DatosUsuario = new ArrayList<String>();
-
+		datosUsuario = new ArrayList<String>();
+		pelicula = new Pelicula();
+		cine = new Cine();
+		funcion = new Funcion();
+		sala = new Sala();
+		entrada = new Entrada();
+		entradas = new ArrayList<Entrada>();
 	}
 
 	/*
@@ -46,7 +55,7 @@ public class GestionDeLaInformacion {
 	 * "Apellido no valido"
 	 */
 
-	public void recogerInformacionFormulario(String dniFormulario, String passFormulario, String nombreFormulario,
+	public void validarInformacionFormulario(String dniFormulario, String passFormulario, String nombreFormulario,
 			String apellidoFormulario, String sexoFormulario, VentanaPrincipal v) {
 
 		String textoDNI = dniFormulario;
@@ -56,7 +65,7 @@ public class GestionDeLaInformacion {
 		if (!dni.find()) {
 			JOptionPane.showMessageDialog(null, "DNI no valido");
 		} else {
-			DatosUsuario.add(dni.group());
+			datosUsuario.add(dni.group());
 		}
 
 		String textoPass = passFormulario;
@@ -66,7 +75,7 @@ public class GestionDeLaInformacion {
 		if (!pass.find()) {
 			JOptionPane.showMessageDialog(null, "Contraseña no valida");
 		} else {
-			DatosUsuario.add(pass.group());
+			datosUsuario.add(pass.group());
 		}
 
 		String textoNombre = nombreFormulario;
@@ -76,7 +85,7 @@ public class GestionDeLaInformacion {
 		if (!nombre.find()) {
 			JOptionPane.showMessageDialog(null, "Nombre no valido");
 		} else {
-			DatosUsuario.add(nombre.group());
+			datosUsuario.add(nombre.group());
 		}
 
 		String textoApellido = apellidoFormulario;
@@ -86,23 +95,17 @@ public class GestionDeLaInformacion {
 		if (!apellido.find()) {
 			JOptionPane.showMessageDialog(null, "Apellido no valido");
 		} else {
-			DatosUsuario.add(apellido.group());
+			datosUsuario.add(apellido.group());
 		}
 
-		DatosUsuario.add(sexoFormulario);
+		datosUsuario.add(sexoFormulario);
 
-		gestionBD.insertUsuario(DatosUsuario, v);
+		gestionBD.insertUsuario(datosUsuario, v);
 	}
 
 	public ArrayList<Cine> almacenarCines() {
 		ArrayList<Cine> cines = gestionBD.sacarCines();
 		return cines;
-	}
-
-	public void recogerCineSeleccionado(String cineSeleccionado) {
-		cine = new Cine();
-		cine.setNombreCine(cineSeleccionado);
-		pasarNombreCine();
 	}
 
 	public String encriptar(String mensaje) throws Exception {
@@ -130,8 +133,187 @@ public class GestionDeLaInformacion {
 		return desencriptado;
 	}
 
+	/*
+	 * DIRIA QUE NO ES NECESARIO PASAR DE UN METODO A OTRO!!
+	 */
+
+	public void recogerCineSeleccionado(String cineSeleccionado) {
+
+		cine.setNombreCine(cineSeleccionado);
+	}
+
 	public String pasarNombreCine() {
 		String nombreCine = cine.getNombreCine();
 		return nombreCine;
 	}
+
+	public void recogerPeliculaSeleccionada(String peliculaSeleccionada) {
+
+		pelicula.setNombrePelicula(peliculaSeleccionada);
+	}
+
+	public String pasarNombrePelicula() {
+		String nombrePelicula = pelicula.getNombrePelicula();
+		return nombrePelicula;
+	}
+
+	public void recogerIdPeliculaSeleccionada(int idPelicula) {
+		pelicula.setIdPelicula(idPelicula);
+	}
+
+	public int pasarIdPeliculaSeleccionada() {
+		int idPelicula = pelicula.getIdPelicula();
+		return idPelicula;
+	}
+
+	public ArrayList<Pelicula> almacenarPeliculas() {
+		ArrayList<Pelicula> peliculas = gestionBD.sacarPeliculasDependiendoDelCineSeleccionado(pasarNombreCine());
+		return peliculas;
+	}
+
+	public ArrayList<Funcion> almacenarFunciones(int idPelicula, String nombreCine) {
+		ArrayList<Funcion> funciones = gestionBD.sacarInformacionDeUnaPeliculaDelCineSeleccionado(idPelicula,
+				nombreCine);
+		return funciones;
+	}
+
+	// Metodo para crear el idEntrada
+	
+	
+	
+	public void recogerFechaSeleccionada(String fecha) {
+		funcion.setFechafuncion(fecha);
+	}
+
+	public String pasarFechaSeleccionada() {
+		String fecha = funcion.getFechafuncion();
+		return fecha;
+	}
+	
+	public void recogerHoraSeleccionada(String hora) {
+		funcion.setHorafuncion(hora);
+	}
+	
+	public String pasarHoraSeleccionada() {
+		String hora = funcion.getHorafuncion();
+		return hora;
+	}
+	
+	public void recogerIdSalaSeleccionada(int idSala) {
+		sala.setIdSala(idSala);
+	}
+	
+	public int pasarIdSalaSeleccionada() {
+		int idSala = sala.getIdSala();
+		return idSala;
+	}
+	
+	public void recogerPrecio(double precio) {
+		funcion.setPrecio(precio);
+	}
+
+	public double pasarPrecio() {
+		double precio = funcion.getPrecio();
+		return precio;
+	}
+	
+	public void crearEntrada(String fecha, String nombrePelicula, String horario, int sala,
+			double precio, String cine, int cantidad) {
+		
+		entrada = new Entrada(fecha, nombrePelicula, horario, sala, precio, cine, cantidad);
+		System.out.println(entrada);
+		añadirEntradas(entrada);
+	}
+
+	public void añadirEntradas(Entrada entrada) {
+		entradas.add(entrada);
+	}
+	
+	public ArrayList<Entrada> enseñarEntradas() {
+		return entradas;
+	}
+	
+	public void convertirAIntCantidad(String cantidadSeleccionada) {
+		int cantidad = Integer.parseInt(cantidadSeleccionada);
+		recogerCantidadSeleccionada(cantidad);
+	}
+
+	public void recogerCantidadSeleccionada(int cantidad) {
+		entrada.setCantidad(cantidad);
+	}
+	
+	public int pasarCantidadSeleccionada() {
+		int cantidad = entrada.getCantidad();
+		return cantidad;
+	}
+	
+	public String pasarFuncionSeleccionada() {
+		String horaSeleccionada = pasarHoraSeleccionada();
+		int salaSeleccionada = pasarIdSalaSeleccionada();;
+		String horaYFecha = horaSeleccionada + "- Sala " + salaSeleccionada;
+		return horaYFecha;
+	}
+	
+	public void convertirADouble(String convertir) {
+		double precio = Double.parseDouble(convertir);
+		recogerPrecio(precio);
+	}
+
+	public void convertirAIntSala(String sala) {
+		int idSala = Integer.parseInt(sala);
+		recogerIdSalaSeleccionada(idSala);
+		
+	}
+	
+	public void separarFuncionSeleccionada(String funcionSeleccionada) {
+		String horaSeleccionada = funcionSeleccionada.split("-")[0];
+		String sala = funcionSeleccionada.split("a ")[1];
+		convertirAIntSala(sala);
+//		recogerFuncionSeleccionada(horaSeleccionada, salaSeleccionada);
+		recogerHoraSeleccionada(horaSeleccionada);
+		
+	}
+	
+	public double descuento(double precioReal, int cantidad) {
+		double precioConDescuento = 0;
+		int numero = entradas.size();
+		if(numero == 2) {
+			precioConDescuento = ((precioReal * cantidad)* 20)/100;
+			return precioConDescuento;
+		} else if (numero >= 3) {
+			precioConDescuento = ((precioReal * cantidad)* 30)/100;
+			return precioConDescuento;
+		}
+		return precioConDescuento;
+	}		
+	
+	public boolean verificarPasoDePanel() {
+		boolean verificar = false;
+		if(entradas.isEmpty()) {
+			verificar = true;
+			return verificar;
+		} else {
+			return verificar;
+		}
+	}
+	
+	public int cantidadTotalDeEntradas() {
+		int cantidadTotal = 0;
+		for (int i = 0; i < entradas.size(); i++) {
+			cantidadTotal = cantidadTotal + pasarCantidadSeleccionada();
+		}
+		return cantidadTotal;
+	}
+	
+	//---------------------------------------------------------------------------
+	
+	
+//	// [GET] - - RECOGE SALA Y HORA
+//		public void recogerFuncionSeleccionada(String horaSeleccionada, int salaSeleccionada) {
+//			funcion.setHorafuncion(horaSeleccionada);
+//			funcion.setIdsala(salaSeleccionada);
+//		}
+	
+	
+
 }

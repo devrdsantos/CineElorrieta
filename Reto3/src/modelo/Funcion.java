@@ -1,15 +1,17 @@
 package modelo;
 
 public class Funcion {
-	private int idfuncion;
-	private String horafuncion, fechafuncion;
-	private double precio;
-	private int idsala, idpelicula;
+	private int idfuncion = 0;
+	private String horafuncion = null;
+	private String fechafuncion = null;
+	private double precio = 0;
+	private int idsala = 0;
+	private int idpelicula = 0;
 	
-public Funcion() {
+	public Funcion() {
 		
-	};
-
+	}
+	
 	public Funcion(int idfuncion, String horafuncion, String fechafuncion, double precio, int idsala, int idpelicula) {
 
 		this.idfuncion = idfuncion;

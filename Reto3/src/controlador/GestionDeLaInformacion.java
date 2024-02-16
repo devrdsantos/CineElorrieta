@@ -263,10 +263,10 @@ public class GestionDeLaInformacion {
 		int precioConDescuento = 0;
 		int numero = entradas.size();
 		if(numero == 2) {
-			precioConDescuento = (precio * 80)/100;
+			precioConDescuento = (precio * 20)/100;
 			return precioConDescuento;
 		} else if (numero >= 3) {
-			precioConDescuento = (precio * 70)/100;
+			precioConDescuento = (precio * 30)/100;
 			return precioConDescuento;
 		}
 		return precioConDescuento;

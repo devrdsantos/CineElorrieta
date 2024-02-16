@@ -88,7 +88,7 @@ public class PanelSeleccionCine extends JPanel {
             	if (verificar == true) {
             		System.exit(0);
             	} else {
-            		v.cambiarDePanel(8);
+            		v.cambiarDePanel(7);
             	}
             }
         });

@@ -230,7 +230,6 @@ public class GestionDeLaInformacion {
 	}
 	
 	public ArrayList<Entrada> enseñarEntradas() {
-		System.out.println(entradas);
 		return entradas;
 	}
 	

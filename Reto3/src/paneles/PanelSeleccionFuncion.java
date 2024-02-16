@@ -247,12 +247,17 @@ public class PanelSeleccionFuncion extends JPanel {
 				btnPrincipal.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						String funcionSeleccionada = (String) comboBoxFunciones.getSelectedItem();
-						gestionINF.separarFuncionSeleccionada(funcionSeleccionada);
-						gestionINF.convertirADouble(lblPrecioBD.getText());
-						gestionINF.recogerFechaSeleccionada(formato.format(dateChooserDia.getDate()));
-						gestionINF.convertirAIntCantidad(lblCantidad.getText());
-						v.cambiarDePanel(6);
+						try {
+							String funcionSeleccionada = (String) comboBoxFunciones.getSelectedItem();
+							gestionINF.separarFuncionSeleccionada(funcionSeleccionada);
+							gestionINF.convertirADouble(lblPrecioBD.getText());
+							gestionINF.recogerFechaSeleccionada(formato.format(dateChooserDia.getDate()));
+							gestionINF.convertirAIntCantidad(lblCantidad.getText());
+							v.cambiarDePanel(6);
+						} catch (Exception ex) {
+							JOptionPane.showMessageDialog(null, "No has seleccionado nada");
+						}
+						
 					}
 				});
 				btnPrincipal.setFont(new Font("Verdana", Font.BOLD, 16));

@@ -3,41 +3,35 @@ package paneles;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
-import java.text.Format;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import controlador.GestionBD;
 import controlador.GestionDeLaInformacion;
 import modelo.Funcion;
-import modelo.Pelicula;
 import vista.VentanaPrincipal;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
+
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 
-import javax.swing.JRadioButton;
-import javax.swing.JSeparator;
 
 
 import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
 
 public class PanelSeleccionFuncion extends JPanel {
-
-	private GestionBD gestion = new GestionBD();
 	
+	private int cantidad = 0;
 	
 	public PanelSeleccionFuncion(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
-		int IdPelicula = gestionINF.pasarIdPeliculaSeleccionada();
-		ArrayList<Funcion> funciones = gestion.sacarInformacionDeUnaPelicula(IdPelicula);
+		ArrayList<Funcion> funciones = gestionINF.almacenarFunciones(gestionINF.pasarIdPeliculaSeleccionada(), gestionINF.pasarNombreCine());
+		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+		
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);
@@ -61,11 +55,6 @@ public class PanelSeleccionFuncion extends JPanel {
 			}
 		});
 		btnSecundario.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnSecundario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-
 		btnSecundario.setOpaque(true);
 		btnSecundario.setContentAreaFilled(true);
 		btnSecundario.setForeground(Color.decode("#C67ACE"));
@@ -104,7 +93,7 @@ public class PanelSeleccionFuncion extends JPanel {
 		/*
 		 * dateChooserDia.setMinSelectableDate(new Date());
 		 */
-		dateChooserDia.setMinSelectableDate(new Date());
+		//dateChooserDia.setMinSelectableDate(new Date());
 
 		// Para darle un maximo y un minimo de fechas elegibles
 		/*
@@ -117,8 +106,8 @@ public class PanelSeleccionFuncion extends JPanel {
 		add(dateChooserDia);
 		try {
 			String date = "27 Feb 2024";
-			Date FechaCine = new SimpleDateFormat("dd MMM yyyy").parse(date);
-			dateChooserDia.setMinSelectableDate(FechaCine);
+			Date fechaCine = new SimpleDateFormat("dd MMM yyyy").parse(date);
+			dateChooserDia.setMinSelectableDate(fechaCine);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -137,8 +126,6 @@ public class PanelSeleccionFuncion extends JPanel {
 		lblEligeUnaFuncin.setBounds(545, 262, 171, 28);
 		add(lblEligeUnaFuncin);
 
-		
-
 		// [!] COMBOBOX - SELECCIÓN FUNCIÓN - TRAE DATOS DE BD --> SALA Y HORA
 		JComboBox<String> comboBoxFunciones = new JComboBox<String>();
 		comboBoxFunciones.setBounds(545, 301, 274, 28);
@@ -147,7 +134,7 @@ public class PanelSeleccionFuncion extends JPanel {
 		// PANEL CONTENEDOR DEL PRECIO DE LA FUNCIÓN
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(30, 61, 125));
-		panel.setBounds(359, 425, 400, 92);
+		panel.setBounds(419, 423, 400, 92);
 		add(panel);
 		panel.setLayout(null);
 
@@ -188,8 +175,6 @@ public class PanelSeleccionFuncion extends JPanel {
 		btnFecha.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
-				
 				try {
 					comboBoxFunciones.removeAllItems();
 					for (int i = 0; i < funciones.size(); i++) {
@@ -197,7 +182,10 @@ public class PanelSeleccionFuncion extends JPanel {
 							comboBoxFunciones.addItem(
 									funciones.get(i).getHorafuncion() + " - Sala " + funciones.get(i).getIdsala());
 							lblPrecioBD.setText(funciones.get(i).getPrecio() + "");
-						}
+						} 
+					}
+					if (comboBoxFunciones.getItemCount() == 0 ) {
+						JOptionPane.showMessageDialog(null, "No hay sesiones este día");
 					}
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, "Seleccione una fecha");
@@ -213,22 +201,66 @@ public class PanelSeleccionFuncion extends JPanel {
 		btnFecha.setBounds(280, 341, 142, 28);
 		add(btnFecha);
 		
+		JLabel lblEligeUnaCantidad = new JLabel("Elige una cantidad:");
+		lblEligeUnaCantidad.setForeground(Color.WHITE);
+		lblEligeUnaCantidad.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblEligeUnaCantidad.setBounds(870, 262, 186, 28);
+		add(lblEligeUnaCantidad);
+		
+		JLabel lblCantidad = new JLabel("1");
+		lblCantidad.setForeground(Color.WHITE);
+		lblCantidad.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblCantidad.setBounds(1050, 262, 27, 28);
+		add(lblCantidad);
+		
+		cantidad = 1;
+		JButton btnMenos = new JButton("-");
+		btnMenos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (cantidad > 1) {
+					cantidad--;
+					lblCantidad.setText(cantidad + "");
+				} else {
+					JOptionPane.showMessageDialog(null, "Cantidad minima 1");
+				}
+			}
+		});
+		btnMenos.setBounds(914, 306, 41, 23);
+		add(btnMenos);
+		
+		JButton btnMas = new JButton("+");
+		btnMas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (cantidad < 8) {
+					cantidad++;
+					lblCantidad.setText(cantidad + "");
+				} else {
+					JOptionPane.showMessageDialog(null, "Cantidad maxima");
+				}
+			}
+		});
+		btnMas.setBounds(975, 306, 41, 23);
+		add(btnMas);
+		
 		// BTN Principal
 				JButton btnPrincipal = new JButton("Siguiente");
 				btnPrincipal.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						String funcionSeleccionada = (String) comboBoxFunciones.getSelectedItem();
-						System.out.println(funcionSeleccionada);
-						gestionINF.recogerFuncionSeleccionada(funcionSeleccionada);
-						v.cambiarDePanel(6);
+						try {
+							String funcionSeleccionada = (String) comboBoxFunciones.getSelectedItem();
+							gestionINF.separarFuncionSeleccionada(funcionSeleccionada);
+							gestionINF.convertirADouble(lblPrecioBD.getText());
+							gestionINF.recogerFechaSeleccionada(formato.format(dateChooserDia.getDate()));
+							gestionINF.convertirAIntCantidad(lblCantidad.getText());
+							v.cambiarDePanel(6);
+						} catch (Exception ex) {
+							JOptionPane.showMessageDialog(null, "No has seleccionado nada");
+						}
+						
 					}
 				});
 				btnPrincipal.setFont(new Font("Verdana", Font.BOLD, 16));
-				btnPrincipal.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
 				btnPrincipal.setOpaque(true);
 				btnPrincipal.setContentAreaFilled(true);
 				btnPrincipal.setForeground(Color.decode("#FFFFFF"));
@@ -236,5 +268,7 @@ public class PanelSeleccionFuncion extends JPanel {
 				btnPrincipal.setBackground(Color.decode("#C67ACE"));
 				btnPrincipal.setBounds(490, 587, 150, 39);
 				add(btnPrincipal);
+				
+				
 	}
 }

@@ -2,75 +2,95 @@ package modelo;
 
 public class Entrada {
 
-	private int numeroEntrada;
-	private double descuento;
-	private String fechaCompra, horaCompra;
-	private int idfuncion, idcompra;
+	private int idEntrada = 0;
+	private String fecha = null;
+	private String nombrePelicula = null;
+	private String horario = null;
+	private int idsala = 0;
+	private double precio = 0;
+	private String cine = null;
+	private int cantidad = 0;
+	private static int generadorIdEntrada = 0;
 	
-	public Entrada(int numeroEntrada, double descuento, String fechaCompra, String horaCompra, int idfuncion,
-			int idcompra) {
-		
-		this.numeroEntrada = numeroEntrada;
-		this.descuento = descuento;
-		this.fechaCompra = fechaCompra;
-		this.horaCompra = horaCompra;
-		this.idfuncion = idfuncion;
-		this.idcompra = idcompra;
+	public Entrada() {
+		idEntrada = generadorIdEntrada;
+		generadorIdEntrada++;
 	}
 
-	public int getNumeroEntrada() {
-		return numeroEntrada;
+	public Entrada(String fecha, String nombrePelicula, String horario, int idsala, double precio, String cine, int cantidad) {
+		idEntrada = generadorIdEntrada;
+		generadorIdEntrada++;
+		this.fecha = fecha;
+		this.nombrePelicula = nombrePelicula;
+		this.horario = horario;
+		this.idsala = idsala;
+		this.precio = precio;
+		this.cine = cine;
+		this.cantidad = cantidad;
 	}
 
-	public void setNumeroEntrada(int numeroEntrada) {
-		this.numeroEntrada = numeroEntrada;
+	public String getFecha() {
+		return fecha;
 	}
 
-	public double getDescuento() {
-		return descuento;
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
 	}
 
-	public void setDescuento(double descuento) {
-		this.descuento = descuento;
+	public String getNombrePelicula() {
+		return nombrePelicula;
 	}
 
-	public String getFechaCompra() {
-		return fechaCompra;
+	public void setNombrePelicula(String nombrePelicula) {
+		this.nombrePelicula = nombrePelicula;
 	}
 
-	public void setFechaCompra(String fechaCompra) {
-		this.fechaCompra = fechaCompra;
+	public String getHorario() {
+		return horario;
 	}
 
-	public String getHoraCompra() {
-		return horaCompra;
+	public void setHorario(String horario) {
+		this.horario = horario;
 	}
 
-	public void setHoraCompra(String horaCompra) {
-		this.horaCompra = horaCompra;
+	public int getIdsala() {
+		return idsala;
 	}
 
-	public int getIdfuncion() {
-		return idfuncion;
+	public void setIdsala(int idsala) {
+		this.idsala = idsala;
 	}
 
-	public void setIdfuncion(int idfuncion) {
-		this.idfuncion = idfuncion;
+	public double getPrecio() {
+		return precio;
 	}
 
-	public int getIdcompra() {
-		return idcompra;
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+	
+	public String getCine() {
+		return cine;
+	}
+	
+	public void setCine(String cine) {
+		this.cine = cine;
 	}
 
-	public void setIdcompra(int idcompra) {
-		this.idcompra = idcompra;
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
 
 	@Override
 	public String toString() {
-		return "Entrada [numeroEntrada=" + numeroEntrada + ", descuento=" + descuento + ", fechaCompra=" + fechaCompra
-				+ ", horaCompra=" + horaCompra + ", idfuncion=" + idfuncion + ", idcompra=" + idcompra + "]";
+		return "Entrada [idEntrada=" + idEntrada + ", fecha=" + fecha + ", nombrePelicula=" + nombrePelicula
+				+ ", horario=" + horario + ", idsala=" + idsala + ", precio=" + precio + ", cine=" + cine
+				+ ", cantidad=" + cantidad + "]";
 	}
-	
+
 	
 }

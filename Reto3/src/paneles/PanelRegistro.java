@@ -16,6 +16,7 @@ import java.awt.event.MouseAdapter;
 import javax.swing.JRadioButton;
 
 public class PanelRegistro extends JPanel {
+	
 	private JPasswordField passwordField;
 	private JTextField textFieldDNI;
 	private JTextField textFieldNombre;
@@ -54,8 +55,6 @@ public class PanelRegistro extends JPanel {
 		textFieldDNI.setBounds(597, 210, 266, 34);
 		add(textFieldDNI);
 		textFieldDNI.setColumns(10);
-		
-		
 		
 		JLabel lblTienesCuenta = new JLabel("¿Ya tienes una cuenta?");
 		lblTienesCuenta.addMouseListener(new MouseAdapter() {
@@ -133,9 +132,8 @@ public class PanelRegistro extends JPanel {
 				if(rdbtnSexoMujer.isSelected()) {
 					sexoFormulario = rdbtnSexoMujer.getText();
 				}
-				gestionINF.recogerInformacionFormulario(dniFormulario, passFormulario, nombreFormulario, apelldioFormulario, sexoFormulario, v);
-				
-				
+				gestionINF.validarInformacionFormulario(dniFormulario, passFormulario, nombreFormulario, apelldioFormulario, sexoFormulario, v);
+					
 			}
 		});
 		btnCrearCuenta.setFont(new Font("Verdana", Font.BOLD, 16));

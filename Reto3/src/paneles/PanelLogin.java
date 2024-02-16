@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import controlador.GestionBD;
-import controlador.GestionDeLaInformacion;
 import vista.VentanaPrincipal;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -15,6 +14,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 
 public class PanelLogin extends JPanel {
+	
 	private JPasswordField passwordField;
 	private JTextField textFieldDNI;
 	private GestionBD gestionBD = new GestionBD();

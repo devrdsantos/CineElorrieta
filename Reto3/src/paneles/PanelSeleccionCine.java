@@ -6,19 +6,13 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import controlador.GestionBD;
 import controlador.GestionDeLaInformacion;
 import vista.VentanaPrincipal;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import javax.swing.JComboBox;
 
 public class PanelSeleccionCine extends JPanel {
-
-//	private GestionDeLaInformacion gestionINF = new GestionDeLaInformacion();
-	private GestionBD gestionBD = new GestionBD();
 
 	public PanelSeleccionCine(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);
@@ -60,18 +54,13 @@ public class PanelSeleccionCine extends JPanel {
 				String cineSeleccionado = (String) comboBoxCines.getSelectedItem();
 				//System.out.println(cineSeleccionado);
 				gestionINF.recogerCineSeleccionado(cineSeleccionado);
+				//gestionBD.sacarPeliculasDependiendoDelCineSeleccionado(cineSeleccionado);
+				
 				v.cambiarDePanel(4);
-
-				gestionBD.sacarCines();
 
 			}
 		});
 		btnSiguente.setFont(new Font("Verdana", Font.BOLD, 16));
-		btnSiguente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-
 		btnSiguente.setOpaque(true);
 		btnSiguente.setContentAreaFilled(true);
 		btnSiguente.setForeground(Color.decode("#FFFFFF"));
@@ -95,9 +84,12 @@ public class PanelSeleccionCine extends JPanel {
         btnFinalizar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                
-                System.exit(0);
-
+                boolean verificar = gestionINF.verificarPasoDePanel();
+            	if (verificar == true) {
+            		System.exit(0);
+            	} else {
+            		v.cambiarDePanel(7);
+            	}
             }
         });
         add(btnFinalizar);

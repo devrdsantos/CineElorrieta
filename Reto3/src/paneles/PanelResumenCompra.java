@@ -3,12 +3,16 @@ package paneles;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import controlador.GestionBD;
-import modelo.Pelicula;
+
+import controlador.GestionDeLaInformacion;
+import modelo.Entrada;
 import vista.VentanaPrincipal;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -18,10 +22,13 @@ import javax.swing.JSeparator;
 
 public class PanelResumenCompra extends JPanel {
 
-	private GestionBD gestion = new GestionBD();
-	ArrayList<Pelicula> peli = gestion.sacarInformacionPeliculas();
+	private double precioReal;
+	
+	public PanelResumenCompra (VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
+		System.out.println("------");
+		ArrayList<Entrada> entradas = gestionINF.enseñarEntradas();
+		System.out.println(entradas);
 
-	public PanelResumenCompra(VentanaPrincipal v) {
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);
@@ -58,23 +65,8 @@ public class PanelResumenCompra extends JPanel {
 		btnFinalizarCompra.setContentAreaFilled(true);
 		btnFinalizarCompra.setBorderPainted(false);
 		btnFinalizarCompra.setBackground(new Color(198, 122, 206));
-		btnFinalizarCompra.setBounds(627, 631, 195, 34);
+		btnFinalizarCompra.setBounds(732, 631, 195, 34);
 		add(btnFinalizarCompra);
-
-		// BTN + 1
-		JButton btnMas1 = new JButton("+");
-		btnMas1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnMas1.setOpaque(true);
-		btnMas1.setForeground(Color.WHITE);
-		btnMas1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnMas1.setContentAreaFilled(true);
-		btnMas1.setBorderPainted(false);
-		btnMas1.setBackground(new Color(134, 167, 252));
-		btnMas1.setBounds(896, 114, 50, 40);
-		add(btnMas1);
 
 		// BTN CANCELAR
 		JButton btnCancelar = new JButton("Cancelar");
@@ -89,7 +81,7 @@ public class PanelResumenCompra extends JPanel {
 		btnCancelar.setContentAreaFilled(true);
 		btnCancelar.setBorderPainted(false);
 		btnCancelar.setBackground(new Color(255, 255, 255));
-		btnCancelar.setBounds(492, 631, 125, 34);
+		btnCancelar.setBounds(584, 631, 125, 34);
 		add(btnCancelar);
 
 		// SEPARADOS
@@ -100,36 +92,24 @@ public class PanelResumenCompra extends JPanel {
 		/*************************************
 		 ******* ELEMENTOS DEL PANEL 1 *******
 		 ************************************/
-		// LBL CANTIDAD 1
-		JLabel lblCantidad1 = new JLabel("1");
-		lblCantidad1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCantidad1.setForeground(Color.WHITE);
-		lblCantidad1.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblCantidad1.setBounds(954, 116, 16, 34);
-		add(lblCantidad1);
-
-		// BTN - 1
-		JButton btnMenos1 = new JButton("-");
-		btnMenos1.setOpaque(true);
-		btnMenos1.setForeground(Color.WHITE);
-		btnMenos1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnMenos1.setContentAreaFilled(true);
-		btnMenos1.setBorderPainted(false);
-		btnMenos1.setBackground(new Color(134, 167, 252));
-		btnMenos1.setBounds(837, 114, 50, 40);
-		add(btnMenos1);
 
 		// PANEL 1
+
+		int y = 101;
+		for (int i = 0; i < entradas.size(); i++) {
+		
 		JPanel panel1 = new JPanel();
 		panel1.setForeground(new Color(30, 61, 125));
 		panel1.setBackground(new Color(30, 61, 125));
-		panel1.setBounds(251, 101, 560, 84);
+		panel1.setBounds(251, y, 724, 84);
 		add(panel1);
 		panel1.setLayout(null);
 
+			y = y + 80;
+
 		// LBL NOMBRE PELICULA 1
-		JLabel lblPeliculaSeleccionada = new JLabel(
-				"<html>Nombre película Nombre película Nombre película Nombre película Nombre película Nombre película </html>");
+		JLabel lblPeliculaSeleccionada = new JLabel("xxxxxxxx");
+		lblPeliculaSeleccionada.setText(entradas.get(i).getNombrePelicula());
 		lblPeliculaSeleccionada.setBounds(12, 9, 540, 40);
 		lblPeliculaSeleccionada.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPeliculaSeleccionada.setForeground(new Color(134, 167, 252));
@@ -137,7 +117,8 @@ public class PanelResumenCompra extends JPanel {
 		panel1.add(lblPeliculaSeleccionada);
 
 		// LBL CINE SELECCIONADO 1
-		JLabel lblCineSeleccionado = new JLabel("Cine seleccionado");
+		JLabel lblCineSeleccionado = new JLabel("xxxxxxxxxxxxx");
+		lblCineSeleccionado.setText(entradas.get(i).getCine());
 		lblCineSeleccionado.setBounds(12, 52, 156, 18);
 		lblCineSeleccionado.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCineSeleccionado.setForeground(Color.WHITE);
@@ -145,7 +126,8 @@ public class PanelResumenCompra extends JPanel {
 		panel1.add(lblCineSeleccionado);
 
 		// LBL FUNCION SELECCIONADA 1
-		JLabel lblFuncinSeleccionada = new JLabel("Función seleccionada");
+		JLabel lblFuncinSeleccionada = new JLabel("xxxxxxxxxxxx");
+		lblFuncinSeleccionada.setText(entradas.get(i).getFecha());
 		lblFuncinSeleccionada.setBounds(345, 52, 200, 18);
 		lblFuncinSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFuncinSeleccionada.setForeground(Color.WHITE);
@@ -153,13 +135,23 @@ public class PanelResumenCompra extends JPanel {
 		panel1.add(lblFuncinSeleccionada);
 
 		// LBL SALA SELECCIONADA 1
-		JLabel lblSalaSeleccionada = new JLabel("Sala seleccionada");
+		JLabel lblSalaSeleccionada = new JLabel("xxxxxxxxxx");
+		lblSalaSeleccionada.setText("Sala " + entradas.get(i).getIdsala());
 		lblSalaSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSalaSeleccionada.setForeground(Color.WHITE);
 		lblSalaSeleccionada.setFont(new Font("Verdana", Font.PLAIN, 14));
 		lblSalaSeleccionada.setBounds(175, 52, 146, 18);
 		panel1.add(lblSalaSeleccionada);
 
+		// LBL CANTIDAD SELECCIONADA 1
+		JLabel lblCantidadSeleccionada = new JLabel("xxxxxxxxxx");
+		lblCantidadSeleccionada.setText(entradas.get(i).getCantidad()+ "");
+		lblCantidadSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCantidadSeleccionada.setForeground(Color.WHITE);
+		lblCantidadSeleccionada.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblCantidadSeleccionada.setBounds(648, 52, 34, 18);
+		panel1.add(lblCantidadSeleccionada);
+		
 		// SEPARADOR 1
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(169, 60, 8, 10);
@@ -168,18 +160,27 @@ public class PanelResumenCompra extends JPanel {
 		JSeparator separator_1_1 = new JSeparator();
 		separator_1_1.setBounds(332, 60, 8, 10);
 		panel1.add(separator_1_1);
+		
+		JSeparator separator_1_1_1 = new JSeparator();
+		separator_1_1_1.setBounds(526, 60, 8, 10);
+		panel1.add(separator_1_1_1);
+		
+		JLabel lblCantidad = new JLabel("Entradas: ");
+		lblCantidad.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCantidad.setForeground(Color.WHITE);
+		lblCantidad.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblCantidad.setBounds(558, 52, 99, 18);
+		panel1.add(lblCantidad);
+		
+		}
+
+
+		
+
 		// SEPARADOR 1.3
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setBounds(254, 619, 724, 22);
 		add(separator_2);
-
-		// LBL CANTIDAD 1
-		JLabel lblCantidad = new JLabel("Cantidad");
-		lblCantidad.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCantidad.setForeground(Color.WHITE);
-		lblCantidad.setFont(new Font("Verdana", Font.PLAIN, 12));
-		lblCantidad.setBounds(847, 162, 80, 18);
-		add(lblCantidad);
 
 		// LBL PRECIO REAL
 		JLabel lblPrecioReal = new JLabel("Precio real");
@@ -189,11 +190,18 @@ public class PanelResumenCompra extends JPanel {
 		lblPrecioReal.setBounds(254, 539, 80, 20);
 		add(lblPrecioReal);
 		// [¡BD!] LBL VALOR REAL
-		JLabel lblValorReal = new JLabel("XXX");
+
+		precioReal = 0;
+		for (int j = 0; j < entradas.size(); j++) {
+			precioReal = precioReal + (entradas.get(j).getPrecio() * gestionINF.cantidadTotalDeEntradas());
+		}
+
+		JLabel lblValorReal = new JLabel();
+		lblValorReal.setText(precioReal + "");
 		lblValorReal.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblValorReal.setForeground(new Color(255, 255, 255));
 		lblValorReal.setFont(new Font("Verdana", Font.PLAIN, 14));
-		lblValorReal.setBounds(919, 539, 40, 20);
+		lblValorReal.setBounds(907, 539, 52, 20);
 		add(lblValorReal);
 		// LBL EURO VALOR REAL
 		JLabel lblEuroValorReal = new JLabel("€");
@@ -215,14 +223,18 @@ public class PanelResumenCompra extends JPanel {
 		lblMenos.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblMenos.setForeground(Color.WHITE);
 		lblMenos.setFont(new Font("Verdana", Font.BOLD, 14));
-		lblMenos.setBounds(895, 564, 32, 20);
+		lblMenos.setBounds(881, 563, 32, 20);
 		add(lblMenos);
+		
+		double descuento = gestionINF.descuento(precioReal, gestionINF.cantidadTotalDeEntradas());
+		
 		// [¡BD!] LBL DESCUENTO TOTAL
-		JLabel lblDescuentoTotal = new JLabel("XXX");
+		JLabel lblDescuentoTotal = new JLabel();
+		lblDescuentoTotal.setText(descuento + "");
 		lblDescuentoTotal.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDescuentoTotal.setForeground(Color.WHITE);
 		lblDescuentoTotal.setFont(new Font("Verdana", Font.PLAIN, 14));
-		lblDescuentoTotal.setBounds(927, 563, 32, 20);
+		lblDescuentoTotal.setBounds(907, 563, 52, 20);
 		add(lblDescuentoTotal);
 		// LBL EURO DESCUENTO
 		JLabel lblDescuentoTotalEuro = new JLabel("€");
@@ -239,12 +251,18 @@ public class PanelResumenCompra extends JPanel {
 		lblTotal.setFont(new Font("Verdana", Font.BOLD, 14));
 		lblTotal.setBounds(254, 588, 80, 20);
 		add(lblTotal);
+		
 		// [¡BD!] LBL PRECIO TOTAL
-		JLabel lblTotalValor = new JLabel("XXX");
+		double precioTotal = precioReal - descuento;
+		DecimalFormat df = new DecimalFormat("#.00");
+		
+		
+		JLabel lblTotalValor = new JLabel();
+		lblTotalValor.setText(df.format(precioTotal) + "");
 		lblTotalValor.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTotalValor.setForeground(new Color(198, 122, 206));
 		lblTotalValor.setFont(new Font("Verdana", Font.PLAIN, 14));
-		lblTotalValor.setBounds(919, 588, 40, 20);
+		lblTotalValor.setBounds(907, 588, 52, 20);
 		add(lblTotalValor);
 		// LBL EURO TOTAL
 		JLabel lblTotalEuro = new JLabel("€");

@@ -6,15 +6,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import com.toedter.calendar.JDateChooser;
 import controlador.GestionDeLaInformacion;
+import modelo.Entrada;
 import modelo.Funcion;
 import vista.VentanaPrincipal;
 import javax.swing.JButton;
@@ -22,10 +25,13 @@ import javax.swing.JComboBox;
 
 public class PanelDePrueba extends JPanel {
 
+	private double precioReal;
+	
 	public PanelDePrueba(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
-		ArrayList<Funcion> funciones = gestionINF.almacenarFunciones(gestionINF.pasarIdPeliculaSeleccionada(),
-				gestionINF.pasarNombreCine());
-		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+
+		System.out.println("------");
+		ArrayList<Entrada> entradas = gestionINF.enseñarEntradas();
+		System.out.println(entradas);
 
 		setSize(1200, 720);
 		setVisible(true);
@@ -34,220 +40,241 @@ public class PanelDePrueba extends JPanel {
 		setBackground(Color.decode("#142850"));
 
 		// MSJ BIENVENIDA
-		JLabel seleccionaFuncion = new JLabel("Selecciona una función");
-		seleccionaFuncion.setHorizontalAlignment(SwingConstants.CENTER);
-		seleccionaFuncion.setForeground(Color.decode("#ffffff"));
-		seleccionaFuncion.setFont(new Font("Verdana", Font.BOLD, 32));
-		seleccionaFuncion.setBounds(285, 71, 584, 59);
-		add(seleccionaFuncion);
+		JLabel seleccionaPelicula = new JLabel("Finaliza tu compra");
+		seleccionaPelicula.setHorizontalAlignment(SwingConstants.CENTER);
+		seleccionaPelicula.setForeground(Color.decode("#ffffff"));
+		seleccionaPelicula.setFont(new Font("Verdana", Font.BOLD, 24));
+		seleccionaPelicula.setBounds(285, 18, 584, 40);
+		add(seleccionaPelicula);
 
-		// BOTÓN SECUNDARIO - - VOLVER ATRÁS
-		JButton btnSecundario = new JButton("<html><u>Volver a Seleccionar Película<u><html>");
-		btnSecundario.addMouseListener(new MouseAdapter() {
+		// LBL ENTRADAS
+		JLabel lblEntradas = new JLabel("ENTRADAS:");
+		lblEntradas.setHorizontalAlignment(SwingConstants.LEFT);
+		lblEntradas.setForeground(Color.WHITE);
+		lblEntradas.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblEntradas.setBounds(254, 54, 102, 34);
+		add(lblEntradas);
+
+		// BTN PRINCIPAL -- FINALIZAR COMPRA
+		JButton btnFinalizarCompra = new JButton("Finalizar compra");
+		btnFinalizarCompra.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				v.cambiarDePanel(4);
+				v.cambiarDePanel(5);
 			}
 		});
-		btnSecundario.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnSecundario.setOpaque(true);
-		btnSecundario.setContentAreaFilled(true);
-		btnSecundario.setForeground(Color.decode("#C67ACE"));
-		btnSecundario.setBorderPainted(false);
-		btnSecundario.setBackground(Color.decode("#142850"));
-		btnSecundario.setBounds(21, 23, 273, 39);
-		add(btnSecundario);
+		btnFinalizarCompra.setOpaque(true);
+		btnFinalizarCompra.setForeground(Color.WHITE);
+		btnFinalizarCompra.setFont(new Font("Verdana", Font.BOLD, 14));
+		btnFinalizarCompra.setContentAreaFilled(true);
+		btnFinalizarCompra.setBorderPainted(false);
+		btnFinalizarCompra.setBackground(new Color(198, 122, 206));
+		btnFinalizarCompra.setBounds(732, 631, 195, 34);
+		add(btnFinalizarCompra);
 
-		// LBL FUNCIONES
-		JLabel lblFunciones = new JLabel("Funciones para la película");
-		lblFunciones.setHorizontalAlignment(SwingConstants.LEFT);
-		lblFunciones.setForeground(new Color(134, 167, 252));
-		lblFunciones.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblFunciones.setBounds(43, 158, 222, 49);
-		add(lblFunciones);
-
-		// CALENDARIO
-
-		JDateChooser dateChooserDia = new JDateChooser();
-		dateChooserDia.getCalendarButton().setFont(new Font("Verdana", Font.PLAIN, 14));
-		dateChooserDia.setBounds(227, 301, 142, 28);
-
-		// Para que coja la fecha actual
-		/*
-		 * dateChooserDia.setMinSelectableDate(new Date());
-		 */
-		// dateChooserDia.setMinSelectableDate(new Date());
-
-		// Para darle un maximo y un minimo de fechas elegibles
-		/*
-		 * try { String date = "12 Feb 2024"; Date date2 = new
-		 * SimpleDateFormat("dd MMM yyyy").parse(date);
-		 * dateChooserDia.setMinSelectableDate(date2);
-		 * dateChooserDia.setMaxSelectableDate(date2); } catch (Exception e) {
-		 * System.out.println(e); }
-		 */
-		add(dateChooserDia);
-		try {
-			String date = "27 Feb 2024";
-			Date fechaCine = new SimpleDateFormat("dd MMM yyyy").parse(date);
-			dateChooserDia.setMinSelectableDate(fechaCine);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-
-		// LBL ELIGE UN DÌA
-		JLabel lblEligeDia = new JLabel("Elige un día:");
-		lblEligeDia.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblEligeDia.setBounds(227, 262, 115, 28);
-		lblEligeDia.setForeground(Color.decode("#FFFFFF"));
-		add(lblEligeDia);
-
-		// LBL ELIGE UNA FUNCIÓN
-		JLabel lblEligeUnaFuncin = new JLabel("Elige una función:");
-		lblEligeUnaFuncin.setForeground(Color.WHITE);
-		lblEligeUnaFuncin.setFont(new Font("Verdana", Font.PLAIN, 18));
-		lblEligeUnaFuncin.setBounds(449, 262, 171, 28);
-		add(lblEligeUnaFuncin);
-
-		// [!] COMBOBOX - SELECCIÓN FUNCIÓN - TRAE DATOS DE BD --> SALA Y HORA
-		JComboBox<String> comboBoxFunciones = new JComboBox<String>();
-		comboBoxFunciones.setBounds(449, 301, 274, 28);
-		add(comboBoxFunciones);
-
-		// PANEL CONTENEDOR DEL PRECIO DE LA FUNCIÓN
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(30, 61, 125));
-		panel.setBounds(359, 425, 400, 92);
-		add(panel);
-		panel.setLayout(null);
-
-		// LBL PRECIO DE FUNCIÒN ELEGIDA
-		JLabel lblPrecioFuncion = new JLabel("La función elegida tiene un precio de");
-		lblPrecioFuncion.setBounds(45, 11, 305, 21);
-		lblPrecioFuncion.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblPrecioFuncion.setForeground(new Color(255, 255, 255));
-		panel.add(lblPrecioFuncion);
-
-		// [!] LBL PRECIO TRAÍDO DE BD
-		JLabel lblPrecioBD = new JLabel();
-		lblPrecioBD.setText("0");
-		lblPrecioBD.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPrecioBD.setForeground(Color.WHITE);
-		lblPrecioBD.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblPrecioBD.setBounds(164, 35, 42, 21);
-		panel.add(lblPrecioBD);
-
-		// LBL EUROS
-		JLabel lblEuros = new JLabel("€");
-		lblEuros.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEuros.setForeground(Color.WHITE);
-		lblEuros.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblEuros.setBounds(207, 35, 12, 21);
-		panel.add(lblEuros);
-
-		// LBL POR PERSONA
-		JLabel lblPorPersona = new JLabel("Por persona");
-		lblPorPersona.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPorPersona.setForeground(Color.WHITE);
-		lblPorPersona.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblPorPersona.setBounds(123, 57, 120, 21);
-		panel.add(lblPorPersona);
-
-		// BTN Seleccionar fecha
-		JButton btnFecha = new JButton("Seleccionar");
-		btnFecha.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				try {
-					comboBoxFunciones.removeAllItems();
-					for (int i = 0; i < funciones.size(); i++) {
-						if (formato.format(dateChooserDia.getDate()).equals(funciones.get(i).getFechafuncion())) {
-							comboBoxFunciones.addItem(
-									funciones.get(i).getHorafuncion() + " - Sala " + funciones.get(i).getIdsala());
-							lblPrecioBD.setText(funciones.get(i).getPrecio() + "");
-						}
-					}
-					if (comboBoxFunciones.getItemCount() == 0) {
-						JOptionPane.showMessageDialog(null, "No hay sesiones este día");
-					}
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null, "Seleccione una fecha");
-				}
-			}
-		});
-		btnFecha.setFont(new Font("Verdana", Font.BOLD, 16));
-		btnFecha.setOpaque(true);
-		btnFecha.setContentAreaFilled(true);
-		btnFecha.setForeground(Color.decode("#FFFFFF"));
-		btnFecha.setBorderPainted(false);
-		btnFecha.setBackground(Color.decode("#C67ACE"));
-		btnFecha.setBounds(227, 340, 142, 28);
-		add(btnFecha);
-
-		// BTN + 1
-		JButton btnMas1 = new JButton("+");
-		btnMas1.addActionListener(new ActionListener() {
+		// BTN CANCELAR
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				v.cambiarDePanel(3);
 			}
 		});
-		btnMas1.setOpaque(true);
-		btnMas1.setForeground(Color.WHITE);
-		btnMas1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnMas1.setContentAreaFilled(true);
-		btnMas1.setBorderPainted(false);
-		btnMas1.setBackground(new Color(134, 167, 252));
-		btnMas1.setBounds(858, 292, 50, 40);
-		add(btnMas1);
+		btnCancelar.setOpaque(true);
+		btnCancelar.setForeground(new Color(20, 40, 80));
+		btnCancelar.setFont(new Font("Verdana", Font.BOLD, 14));
+		btnCancelar.setContentAreaFilled(true);
+		btnCancelar.setBorderPainted(false);
+		btnCancelar.setBackground(new Color(255, 255, 255));
+		btnCancelar.setBounds(584, 631, 125, 34);
+		add(btnCancelar);
 
-		JButton btnMenos1 = new JButton("-");
-		btnMenos1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnMenos1.setOpaque(true);
-		btnMenos1.setForeground(Color.WHITE);
-		btnMenos1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnMenos1.setContentAreaFilled(true);
-		btnMenos1.setBorderPainted(false);
-		btnMenos1.setBackground(new Color(134, 167, 252));
-		btnMenos1.setBounds(794, 292, 50, 40);
-		add(btnMenos1);
+		// SEPARADOS
+		JSeparator separator = new JSeparator();
+		separator.setBounds(251, 91, 724, 22);
+		add(separator);
 
-		JLabel lblCantidad1 = new JLabel("1");
-		lblCantidad1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCantidad1.setForeground(Color.WHITE);
-		lblCantidad1.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblCantidad1.setBounds(918, 295, 16, 34);
-		add(lblCantidad1);
+		/*************************************
+		 ******* ELEMENTOS DEL PANEL 1 *******
+		 ************************************/
 
-		// LBL CANTIDAD 1
-		JLabel lblCantidad = new JLabel("Cantidad");
+		// PANEL 1
+
+		int y = 101;
+		for (int i = 0; i < entradas.size(); i++) {
+		
+		JPanel panel1 = new JPanel();
+		panel1.setForeground(new Color(30, 61, 125));
+		panel1.setBackground(new Color(30, 61, 125));
+		panel1.setBounds(251, y, 724, 84);
+		add(panel1);
+		panel1.setLayout(null);
+
+			y = y + 80;
+
+		// LBL NOMBRE PELICULA 1
+		JLabel lblPeliculaSeleccionada = new JLabel("xxxxxxxx");
+		lblPeliculaSeleccionada.setText(entradas.get(i).getNombrePelicula());
+		lblPeliculaSeleccionada.setBounds(12, 9, 540, 40);
+		lblPeliculaSeleccionada.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPeliculaSeleccionada.setForeground(new Color(134, 167, 252));
+		lblPeliculaSeleccionada.setFont(new Font("Verdana", Font.PLAIN, 14));
+		panel1.add(lblPeliculaSeleccionada);
+
+		// LBL CINE SELECCIONADO 1
+		JLabel lblCineSeleccionado = new JLabel("xxxxxxxxxxxxx");
+		lblCineSeleccionado.setText(entradas.get(i).getCine());
+		lblCineSeleccionado.setBounds(12, 52, 156, 18);
+		lblCineSeleccionado.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCineSeleccionado.setForeground(Color.WHITE);
+		lblCineSeleccionado.setFont(new Font("Verdana", Font.PLAIN, 14));
+		panel1.add(lblCineSeleccionado);
+
+		// LBL FUNCION SELECCIONADA 1
+		JLabel lblFuncinSeleccionada = new JLabel("xxxxxxxxxxxx");
+		lblFuncinSeleccionada.setText(entradas.get(i).getFecha());
+		lblFuncinSeleccionada.setBounds(345, 52, 200, 18);
+		lblFuncinSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFuncinSeleccionada.setForeground(Color.WHITE);
+		lblFuncinSeleccionada.setFont(new Font("Verdana", Font.PLAIN, 14));
+		panel1.add(lblFuncinSeleccionada);
+
+		// LBL SALA SELECCIONADA 1
+		JLabel lblSalaSeleccionada = new JLabel("xxxxxxxxxx");
+		lblSalaSeleccionada.setText("Sala " + entradas.get(i).getIdsala());
+		lblSalaSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSalaSeleccionada.setForeground(Color.WHITE);
+		lblSalaSeleccionada.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblSalaSeleccionada.setBounds(175, 52, 146, 18);
+		panel1.add(lblSalaSeleccionada);
+
+		// LBL CANTIDAD SELECCIONADA 1
+		JLabel lblCantidadSeleccionada = new JLabel("xxxxxxxxxx");
+		lblCantidadSeleccionada.setText(entradas.get(i).getCantidad()+ "");
+		lblCantidadSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCantidadSeleccionada.setForeground(Color.WHITE);
+		lblCantidadSeleccionada.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblCantidadSeleccionada.setBounds(648, 52, 34, 18);
+		panel1.add(lblCantidadSeleccionada);
+		
+		// SEPARADOR 1
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(169, 60, 8, 10);
+		panel1.add(separator_1);
+		// SEPARADOR 1.2
+		JSeparator separator_1_1 = new JSeparator();
+		separator_1_1.setBounds(332, 60, 8, 10);
+		panel1.add(separator_1_1);
+		
+		JSeparator separator_1_1_1 = new JSeparator();
+		separator_1_1_1.setBounds(526, 60, 8, 10);
+		panel1.add(separator_1_1_1);
+		
+		JLabel lblCantidad = new JLabel("Entradas: ");
 		lblCantidad.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCantidad.setForeground(Color.WHITE);
-		lblCantidad.setFont(new Font("Verdana", Font.PLAIN, 12));
-		lblCantidad.setBounds(815, 347, 80, 18);
-		add(lblCantidad);
+		lblCantidad.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblCantidad.setBounds(558, 52, 99, 18);
+		panel1.add(lblCantidad);
+		
+		}
 
-		// BTN Principal
-		JButton btnPrincipal = new JButton("Siguiente");
-		btnPrincipal.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String funcionSeleccionada = (String) comboBoxFunciones.getSelectedItem();
-				gestionINF.separarFuncionSeleccionada(funcionSeleccionada);
-				gestionINF.convertirADouble(lblPrecioBD.getText());
-				gestionINF.recogerFechaSeleccionada(formato.format(dateChooserDia.getDate()));
-				v.cambiarDePanel(6);
-			}
-		});
-		btnPrincipal.setFont(new Font("Verdana", Font.BOLD, 16));
-		btnPrincipal.setOpaque(true);
-		btnPrincipal.setContentAreaFilled(true);
-		btnPrincipal.setForeground(Color.decode("#FFFFFF"));
-		btnPrincipal.setBorderPainted(false);
-		btnPrincipal.setBackground(Color.decode("#C67ACE"));
-		btnPrincipal.setBounds(489, 602, 150, 39);
-		add(btnPrincipal);
+
+		
+
+		// SEPARADOR 1.3
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setBounds(254, 619, 724, 22);
+		add(separator_2);
+
+		// LBL PRECIO REAL
+		JLabel lblPrecioReal = new JLabel("Precio real");
+		lblPrecioReal.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPrecioReal.setForeground(new Color(255, 255, 255));
+		lblPrecioReal.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblPrecioReal.setBounds(254, 539, 80, 20);
+		add(lblPrecioReal);
+		// [¡BD!] LBL VALOR REAL
+
+		precioReal = 0;
+		for (int j = 0; j < entradas.size(); j++) {
+			precioReal = precioReal + (entradas.get(j).getPrecio() * gestionINF.cantidadTotalDeEntradas());
+		}
+
+		JLabel lblValorReal = new JLabel();
+		lblValorReal.setText(precioReal + "");
+		lblValorReal.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblValorReal.setForeground(new Color(255, 255, 255));
+		lblValorReal.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblValorReal.setBounds(907, 539, 52, 20);
+		add(lblValorReal);
+		// LBL EURO VALOR REAL
+		JLabel lblEuroValorReal = new JLabel("€");
+		lblEuroValorReal.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblEuroValorReal.setForeground(new Color(255, 255, 255));
+		lblEuroValorReal.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblEuroValorReal.setBounds(930, 539, 40, 20);
+		add(lblEuroValorReal);
+
+		// LBL DESCUENTO
+		JLabel lblDescuento = new JLabel("Descuento");
+		lblDescuento.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDescuento.setForeground(new Color(255, 255, 255));
+		lblDescuento.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblDescuento.setBounds(254, 563, 80, 20);
+		add(lblDescuento);
+		// LBL [-] DESCUENTO
+		JLabel lblMenos = new JLabel("-");
+		lblMenos.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblMenos.setForeground(Color.WHITE);
+		lblMenos.setFont(new Font("Verdana", Font.BOLD, 14));
+		lblMenos.setBounds(881, 563, 32, 20);
+		add(lblMenos);
+		
+		double descuento = gestionINF.descuento(precioReal, gestionINF.cantidadTotalDeEntradas());
+		
+		// [¡BD!] LBL DESCUENTO TOTAL
+		JLabel lblDescuentoTotal = new JLabel();
+		lblDescuentoTotal.setText(descuento + "");
+		lblDescuentoTotal.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDescuentoTotal.setForeground(Color.WHITE);
+		lblDescuentoTotal.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblDescuentoTotal.setBounds(907, 563, 52, 20);
+		add(lblDescuentoTotal);
+		// LBL EURO DESCUENTO
+		JLabel lblDescuentoTotalEuro = new JLabel("€");
+		lblDescuentoTotalEuro.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDescuentoTotalEuro.setForeground(Color.WHITE);
+		lblDescuentoTotalEuro.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblDescuentoTotalEuro.setBounds(930, 563, 40, 20);
+		add(lblDescuentoTotalEuro);
+
+		// LBL TOTAL
+		JLabel lblTotal = new JLabel("Total");
+		lblTotal.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTotal.setForeground(new Color(198, 122, 206));
+		lblTotal.setFont(new Font("Verdana", Font.BOLD, 14));
+		lblTotal.setBounds(254, 588, 80, 20);
+		add(lblTotal);
+		
+		// [¡BD!] LBL PRECIO TOTAL
+		double precioTotal = precioReal - descuento;
+		DecimalFormat df = new DecimalFormat("#.00");
+		
+		
+		JLabel lblTotalValor = new JLabel();
+		lblTotalValor.setText(df.format(precioTotal) + "");
+		lblTotalValor.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblTotalValor.setForeground(new Color(198, 122, 206));
+		lblTotalValor.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblTotalValor.setBounds(907, 588, 52, 20);
+		add(lblTotalValor);
+		// LBL EURO TOTAL
+		JLabel lblTotalEuro = new JLabel("€");
+		lblTotalEuro.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblTotalEuro.setForeground(new Color(198, 122, 206));
+		lblTotalEuro.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblTotalEuro.setBounds(930, 588, 40, 20);
+		add(lblTotalEuro);
+
 	}
 }

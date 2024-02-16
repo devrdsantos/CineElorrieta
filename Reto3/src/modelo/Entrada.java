@@ -9,6 +9,7 @@ public class Entrada {
 	private int idsala = 0;
 	private double precio = 0;
 	private String cine = null;
+	private int cantidad = 0;
 	private static int generadorIdEntrada = 0;
 	
 	public Entrada() {
@@ -16,7 +17,7 @@ public class Entrada {
 		generadorIdEntrada++;
 	}
 
-	public Entrada(String fecha, String nombrePelicula, String horario, int idsala, double precio, String cine) {
+	public Entrada(String fecha, String nombrePelicula, String horario, int idsala, double precio, String cine, int cantidad) {
 		idEntrada = generadorIdEntrada;
 		generadorIdEntrada++;
 		this.fecha = fecha;
@@ -25,6 +26,7 @@ public class Entrada {
 		this.idsala = idsala;
 		this.precio = precio;
 		this.cine = cine;
+		this.cantidad = cantidad;
 	}
 
 	public String getFecha() {
@@ -75,9 +77,20 @@ public class Entrada {
 		this.cine = cine;
 	}
 
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+
 	@Override
 	public String toString() {
 		return "Entrada [idEntrada=" + idEntrada + ", fecha=" + fecha + ", nombrePelicula=" + nombrePelicula
-				+ ", horario=" + horario + ", idsala=" + idsala + ", precio=" + precio + ", cine=" + cine + "]";
+				+ ", horario=" + horario + ", idsala=" + idsala + ", precio=" + precio + ", cine=" + cine
+				+ ", cantidad=" + cantidad + "]";
 	}
+
+	
 }

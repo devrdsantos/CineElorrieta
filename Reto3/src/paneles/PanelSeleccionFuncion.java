@@ -14,6 +14,9 @@ import controlador.GestionDeLaInformacion;
 import modelo.Funcion;
 import vista.VentanaPrincipal;
 import javax.swing.JButton;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 
 
@@ -22,6 +25,8 @@ import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
 
 public class PanelSeleccionFuncion extends JPanel {
+	
+	private int cantidad = 0;
 	
 	public PanelSeleccionFuncion(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		ArrayList<Funcion> funciones = gestionINF.almacenarFunciones(gestionINF.pasarIdPeliculaSeleccionada(), gestionINF.pasarNombreCine());
@@ -129,7 +134,7 @@ public class PanelSeleccionFuncion extends JPanel {
 		// PANEL CONTENEDOR DEL PRECIO DE LA FUNCIÓN
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(30, 61, 125));
-		panel.setBounds(359, 425, 400, 92);
+		panel.setBounds(419, 423, 400, 92);
 		add(panel);
 		panel.setLayout(null);
 
@@ -196,6 +201,47 @@ public class PanelSeleccionFuncion extends JPanel {
 		btnFecha.setBounds(280, 341, 142, 28);
 		add(btnFecha);
 		
+		JLabel lblEligeUnaCantidad = new JLabel("Elige una cantidad:");
+		lblEligeUnaCantidad.setForeground(Color.WHITE);
+		lblEligeUnaCantidad.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblEligeUnaCantidad.setBounds(870, 262, 186, 28);
+		add(lblEligeUnaCantidad);
+		
+		JLabel lblCantidad = new JLabel("1");
+		lblCantidad.setForeground(Color.WHITE);
+		lblCantidad.setFont(new Font("Verdana", Font.PLAIN, 18));
+		lblCantidad.setBounds(1050, 262, 27, 28);
+		add(lblCantidad);
+		
+		cantidad = 1;
+		JButton btnMenos = new JButton("-");
+		btnMenos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (cantidad > 1) {
+					cantidad--;
+					lblCantidad.setText(cantidad + "");
+				} else {
+					JOptionPane.showMessageDialog(null, "Cantidad minima 1");
+				}
+			}
+		});
+		btnMenos.setBounds(914, 306, 41, 23);
+		add(btnMenos);
+		
+		JButton btnMas = new JButton("+");
+		btnMas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (cantidad < 8) {
+					cantidad++;
+					lblCantidad.setText(cantidad + "");
+				} else {
+					JOptionPane.showMessageDialog(null, "Cantidad maxima");
+				}
+			}
+		});
+		btnMas.setBounds(975, 306, 41, 23);
+		add(btnMas);
+		
 		// BTN Principal
 				JButton btnPrincipal = new JButton("Siguiente");
 				btnPrincipal.addMouseListener(new MouseAdapter() {
@@ -205,6 +251,7 @@ public class PanelSeleccionFuncion extends JPanel {
 						gestionINF.separarFuncionSeleccionada(funcionSeleccionada);
 						gestionINF.convertirADouble(lblPrecioBD.getText());
 						gestionINF.recogerFechaSeleccionada(formato.format(dateChooserDia.getDate()));
+						gestionINF.convertirAIntCantidad(lblCantidad.getText());
 						v.cambiarDePanel(6);
 					}
 				});
@@ -216,5 +263,7 @@ public class PanelSeleccionFuncion extends JPanel {
 				btnPrincipal.setBackground(Color.decode("#C67ACE"));
 				btnPrincipal.setBounds(490, 587, 150, 39);
 				add(btnPrincipal);
+				
+				
 	}
 }

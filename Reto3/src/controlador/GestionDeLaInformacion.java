@@ -218,9 +218,10 @@ public class GestionDeLaInformacion {
 	}
 	
 	public void crearEntrada(String fecha, String nombrePelicula, String horario, int sala,
-			double precio, String cine) {
+			double precio, String cine, int cantidad) {
 		
-		entrada = new Entrada(fecha, nombrePelicula, horario, sala, precio, cine);
+		entrada = new Entrada(fecha, nombrePelicula, horario, sala, precio, cine, cantidad);
+		System.out.println(entrada);
 		añadirEntradas(entrada);
 	}
 
@@ -231,6 +232,20 @@ public class GestionDeLaInformacion {
 	public ArrayList<Entrada> enseñarEntradas() {
 		System.out.println(entradas);
 		return entradas;
+	}
+	
+	public void convertirAIntCantidad(String cantidadSeleccionada) {
+		int cantidad = Integer.parseInt(cantidadSeleccionada);
+		recogerCantidadSeleccionada(cantidad);
+	}
+
+	public void recogerCantidadSeleccionada(int cantidad) {
+		entrada.setCantidad(cantidad);
+	}
+	
+	public int pasarCantidadSeleccionada() {
+		int cantidad = entrada.getCantidad();
+		return cantidad;
 	}
 	
 	public String pasarFuncionSeleccionada() {
@@ -245,45 +260,50 @@ public class GestionDeLaInformacion {
 		recogerPrecio(precio);
 	}
 
-	public void convertirAInt(String convertir) {
-		int salaSeleccionada = Integer.parseInt(convertir);
-		recogerIdSalaSeleccionada(salaSeleccionada);
+	public void convertirAIntSala(String sala) {
+		int idSala = Integer.parseInt(sala);
+		recogerIdSalaSeleccionada(idSala);
+		
 	}
 	
 	public void separarFuncionSeleccionada(String funcionSeleccionada) {
 		String horaSeleccionada = funcionSeleccionada.split("-")[0];
 		String sala = funcionSeleccionada.split("a ")[1];
-		convertirAInt(sala);
+		convertirAIntSala(sala);
 //		recogerFuncionSeleccionada(horaSeleccionada, salaSeleccionada);
 		recogerHoraSeleccionada(horaSeleccionada);
 		
 	}
 	
-	public int descuento(int precio) {
-		int precioConDescuento = 0;
+	public double descuento(double precioReal, int cantidad) {
+		double precioConDescuento = 0;
 		int numero = entradas.size();
 		if(numero == 2) {
-			precioConDescuento = (precio * 20)/100;
+			precioConDescuento = ((precioReal * cantidad)* 20)/100;
 			return precioConDescuento;
 		} else if (numero >= 3) {
-			precioConDescuento = (precio * 30)/100;
+			precioConDescuento = ((precioReal * cantidad)* 30)/100;
 			return precioConDescuento;
 		}
 		return precioConDescuento;
 	}		
 	
-	public boolean nose() {
-		boolean prueba = false;
-		if(entradas.get(0).getCine().isBlank()) {
-			prueba = true;
-			System.out.println(prueba);
-			return prueba;
+	public boolean verificarPasoDePanel() {
+		boolean verificar = false;
+		if(entradas.isEmpty()) {
+			verificar = true;
+			return verificar;
 		} else {
-			System.out.println(prueba);
-			return prueba;
+			return verificar;
 		}
-		
-		
+	}
+	
+	public int cantidadTotalDeEntradas() {
+		int cantidadTotal = 0;
+		for (int i = 0; i < entradas.size(); i++) {
+			cantidadTotal = cantidadTotal + pasarCantidadSeleccionada();
+		}
+		return cantidadTotal;
 	}
 	
 	//---------------------------------------------------------------------------

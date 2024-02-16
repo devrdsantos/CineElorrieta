@@ -107,7 +107,7 @@ public class PanelFuncionEscogida extends JPanel {
 					TimeUnit.SECONDS.sleep(2);
 					gestionINF.crearEntrada(gestionINF.pasarFechaSeleccionada(), gestionINF.pasarNombrePelicula(),
 							gestionINF.pasarHoraSeleccionada(), gestionINF.pasarIdSalaSeleccionada(),
-							gestionINF.pasarPrecio(), gestionINF.pasarNombreCine());
+							gestionINF.pasarPrecio(), gestionINF.pasarNombreCine(), gestionINF.pasarCantidadSeleccionada());
 					v.cambiarDePanel(3);
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();

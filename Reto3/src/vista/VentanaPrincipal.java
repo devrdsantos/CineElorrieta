@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import controlador.GestionBD;
 import controlador.GestionDeLaInformacion;
 import paneles.PanelBienvenida;
-
+import paneles.PanelDePrueba;
 import paneles.PanelFuncionEscogida;
 import paneles.PanelLogin;
 import paneles.PanelRegistro;
@@ -18,7 +18,7 @@ import paneles.PanelSeleccionPelicula;
 public class VentanaPrincipal extends JFrame {
 
 	private GestionDeLaInformacion gestionINF = new GestionDeLaInformacion();
-	
+
 	public VentanaPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1200, 720);
@@ -29,9 +29,9 @@ public class VentanaPrincipal extends JFrame {
 		/**
 		 * Logo de la ventana
 		 */
-		//String rutaLogo = "src\\ventanas\\logoProyecto.png";
-		//ImageIcon icono = new ImageIcon(rutaLogo);
-		//setIconImage(icono.getImage());
+		String rutaLogo = "src\\ventanas\\logoProyecto.png";
+		ImageIcon icono = new ImageIcon(rutaLogo);
+		setIconImage(icono.getImage());
 	}
 
 	/**
@@ -67,14 +67,19 @@ public class VentanaPrincipal extends JFrame {
 		}
 		case 6: {
 			setContentPane(new PanelFuncionEscogida(this, this.gestionINF));
-			
+
 			break;
-		}case 7: {
+		}
+		case 7: {
 			setContentPane(new PanelResumenCompra(this, this.gestionINF));
-			
 			break;
-		
-		}}
+
+		}
+		case 8: {
+			setContentPane(new PanelDePrueba(this, this.gestionINF));
+			break;
+		}
+		}
 	}
 
 	public static void main(String[] args) {

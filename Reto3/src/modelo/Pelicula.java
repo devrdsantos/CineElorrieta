@@ -1,6 +1,27 @@
 package modelo;
 
+import java.util.Objects;
+
 public class Pelicula {
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(duracion, genero, idPelicula, nombrePelicula, sinopsis);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pelicula other = (Pelicula) obj;
+		return Objects.equals(duracion, other.duracion) && Objects.equals(genero, other.genero)
+				&& idPelicula == other.idPelicula && Objects.equals(nombrePelicula, other.nombrePelicula)
+				&& Objects.equals(sinopsis, other.sinopsis);
+	}
 
 	private int idPelicula = 0;
 	private String nombrePelicula = null;

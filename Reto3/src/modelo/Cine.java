@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.Objects;
+
 public class Cine {
 
 	private int idCine = 0;
@@ -16,6 +18,24 @@ public class Cine {
 		this.nombreCine = nombreCine;
 		this.localidadCine = localidadCine;
 		this.direccionCine = direccionCine;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(direccionCine, idCine, localidadCine, nombreCine);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cine other = (Cine) obj;
+		return Objects.equals(direccionCine, other.direccionCine) && idCine == other.idCine
+				&& Objects.equals(localidadCine, other.localidadCine) && Objects.equals(nombreCine, other.nombreCine);
 	}
 
 	public int getIdCine() {

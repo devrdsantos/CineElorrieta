@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import modelo.Cine;
+import modelo.Entrada;
 import modelo.Funcion;
 import modelo.Pelicula;
 import vista.VentanaPrincipal;
@@ -28,6 +29,7 @@ public class GestionBD {
 	 */
 	public GestionBD() {
 		iniciarconexion();
+
 	}
 
 	/*********************
@@ -89,7 +91,7 @@ public class GestionBD {
 	 */
 	public void verificarLogin(String dni, String pass, VentanaPrincipal v) throws Exception {
 		// Se inicializa el objeto gestionINF
-		gestionINF = new GestionDeLaInformacion();
+
 		try {
 			// System.out.println("Iniciando consulta...");
 			// QUERY para verificar el LOGIN, el ? representa el DNI que deberá pasarse por
@@ -259,4 +261,27 @@ public class GestionBD {
 		// System.out.println(peliculas.get(0));
 		return peliculas;
 	}
+
+	public void insertarEntrada(ArrayList<Entrada> entradas) {
+		System.out.println(entradas.get(0).getIdEntrada());
+		try {
+			Statement consulta = conexion.createStatement();
+
+			String insert = "INSERT INTO entrada VALUES ('" + entradas.get(0).getIdEntrada() + "','"
+					+ entradas.get(0).getFecha() + "','" + entradas.get(0).getNombrePelicula() + "','"
+					+ entradas.get(0).getHorario() + "', '" + entradas.get(0).getIdsala() + "','"
+					+ entradas.get(0).getPrecio() + "','" + entradas.get(0).getCine() + "','"
+					+ entradas.get(0).getCantidad() + "')";
+
+			consulta.executeUpdate(insert);
+			JOptionPane.showMessageDialog(null, "Entrada hecha");
+
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+	}
+
 }

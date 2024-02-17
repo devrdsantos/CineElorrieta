@@ -25,6 +25,14 @@ public class Entrada {
 		this.cine = cine;
 		this.cantidad = cantidad;
 	}
+	
+	public String getIdEntrada() {
+		return idEntrada;
+	}
+
+	public void setIdEntrada(String idEntrada) {
+		this.idEntrada = idEntrada;
+	}
 
 	public String getFecha() {
 		return fecha;

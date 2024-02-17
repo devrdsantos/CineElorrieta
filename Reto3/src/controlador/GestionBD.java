@@ -271,7 +271,7 @@ public class GestionBD {
 					+ entradas.get(0).getFecha() + "','" + entradas.get(0).getNombrePelicula() + "','"
 					+ entradas.get(0).getHorario() + "', '" + entradas.get(0).getIdsala() + "','"
 					+ entradas.get(0).getPrecio() + "','" + entradas.get(0).getCine() + "','"
-					+ entradas.get(0).getCantidad() + "')";
+					+ entradas.get(0).getCantidad() + "','1')";
 
 			consulta.executeUpdate(insert);
 			JOptionPane.showMessageDialog(null, "Entrada hecha");

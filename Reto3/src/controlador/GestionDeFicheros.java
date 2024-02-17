@@ -18,7 +18,7 @@ public class GestionDeFicheros {
 		
 	}
 	
-	public void escribirFichero(ArrayList<Entrada> entradas, ArrayList<Cine> cines) {
+	public void escribirFichero(ArrayList<Entrada> entradas) {
 		try {
 			BufferedWriter escribirFichero = new BufferedWriter(new FileWriter("ficheros/Recibo.txt"));
 			for (int i = 0; i < entradas.size(); i++) {
@@ -30,7 +30,7 @@ public class GestionDeFicheros {
 				escribirFichero.write("\nHora de la compra: " + LocalTime.now());
 				escribirFichero.write("\n----------------------------------------");
 				escribirFichero.newLine();
-				escribirFichero.write("*******************************************************");
+				escribirFichero.write("\n*******************************************************\n");
 				escribirFichero.newLine();
 			}
 			escribirFichero.close();

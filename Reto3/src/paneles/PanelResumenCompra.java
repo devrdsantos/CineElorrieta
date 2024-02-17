@@ -27,10 +27,9 @@ public class PanelResumenCompra extends JPanel {
 	private GestionBD gestionBD = new GestionBD();
 	
 	public PanelResumenCompra (VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
-		System.out.println("------");
 		ArrayList<Entrada> entradas = gestionINF.enseñarEntradas();
 		System.out.println(entradas);
-		gestionBD.insertarEntrada(entradas);
+		
 
 		setSize(1200, 720);
 		setVisible(true);
@@ -60,6 +59,7 @@ public class PanelResumenCompra extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				gestionINF.mensajeDeRecibo(v);
+				
 			}
 		});
 		btnFinalizarCompra.setOpaque(true);

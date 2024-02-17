@@ -314,8 +314,8 @@ public class GestionDeLaInformacion {
 		switch (resp) {
 		
 		case 0: 
-			ArrayList<Cine> cines = almacenarCines();
-			ficheros.escribirFichero(entradas, cines);
+			ficheros.escribirFichero(entradas);
+			gestionBD.insertarEntrada(entradas);
 			mensajeVolverAlInicio(v);
 			break;
 		case 1:	

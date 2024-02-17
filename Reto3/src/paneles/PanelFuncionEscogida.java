@@ -98,20 +98,19 @@ public class PanelFuncionEscogida extends JPanel {
 		lblSalaYHora.setBounds(235, 363, 797, 49);
 		add(lblSalaYHora);
 		
-		JLabel lblCantidad = new JLabel("Función:");
+		JLabel lblCantidad = new JLabel("Cantidad:");
 		lblCantidad.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCantidad.setForeground(new Color(134, 167, 252));
 		lblCantidad.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblCantidad.setBounds(156, 427, 72, 49);
+		lblCantidad.setBounds(156, 427, 86, 49);
 		add(lblCantidad);
 		
 		JLabel lblCantidadSeleccionada = new JLabel();
 		lblCantidadSeleccionada.setText(gestionINF.pasarCantidadSeleccionada() + "");
-		lblCantidadSeleccionada.setText((String) null);
 		lblCantidadSeleccionada.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCantidadSeleccionada.setForeground(new Color(211, 213, 248));
 		lblCantidadSeleccionada.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblCantidadSeleccionada.setBounds(235, 427, 797, 49);
+		lblCantidadSeleccionada.setBounds(245, 427, 797, 49);
 		add(lblCantidadSeleccionada);
 
 		addMouseListener(new MouseAdapter() {

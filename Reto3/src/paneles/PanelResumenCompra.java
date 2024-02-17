@@ -56,7 +56,7 @@ public class PanelResumenCompra extends JPanel {
 		btnFinalizarCompra.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				v.cambiarDePanel(5);
+				gestionINF.mensajeDeRecibo(v);
 			}
 		});
 		btnFinalizarCompra.setOpaque(true);

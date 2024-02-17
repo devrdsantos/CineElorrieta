@@ -1,6 +1,7 @@
 package controlador;
 
 import java.security.Key;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.regex.Matcher;
@@ -25,6 +26,7 @@ public class GestionDeLaInformacion {
 	private Funcion funcion;
 	private Sala sala;
 	private ArrayList<Entrada> entradas;
+	private GestionDeFicheros ficheros;
 	private final String CLAVE_ENCRIPTADA = "clavecompartidanorevelarnuncamas";
 
 	public GestionDeLaInformacion() {
@@ -36,6 +38,7 @@ public class GestionDeLaInformacion {
 		sala = new Sala();
 		entrada = new Entrada();
 		entradas = new ArrayList<Entrada>();
+		ficheros = new GestionDeFicheros();
 	}
 
 	/*
@@ -303,6 +306,37 @@ public class GestionDeLaInformacion {
 			cantidadTotal = cantidadTotal + pasarCantidadSeleccionada();
 		}
 		return cantidadTotal;
+	}
+	
+	public void mensajeDeRecibo(VentanaPrincipal v) {
+		int resp = JOptionPane.showConfirmDialog(null, "Quiere una copia del recibo? ", "Recibo",
+				JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+		switch (resp) {
+		
+		case 0: 
+			ArrayList<Cine> cines = almacenarCines();
+			ficheros.escribirFichero(entradas, cines);
+			mensajeVolverAlInicio(v);
+			break;
+		case 1:	
+			mensajeVolverAlInicio(v);
+			break;
+		}
+	}
+	
+	//Inecesario este metodo si pones un boton de salir de la aplicacion en el panelLogin
+	public void mensajeVolverAlInicio(VentanaPrincipal v) {
+		int resp = JOptionPane.showConfirmDialog(null, "Quiere volver a la pantalla de inicio? ", "Pantalla de inicio",
+				JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+		switch (resp) {
+		
+		case 0: 
+			v.cambiarDePanel(1);
+			break;
+		case 1:	
+			System.exit(0);
+			break;
+		}
 	}
 	
 	//---------------------------------------------------------------------------

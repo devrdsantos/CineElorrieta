@@ -1,7 +1,6 @@
 package controlador;
 
 import java.security.Key;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.regex.Matcher;
@@ -10,6 +9,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JOptionPane;
 import modelo.Cine;
+import modelo.Compra;
 import modelo.Entrada;
 import modelo.Funcion;
 import modelo.Pelicula;
@@ -27,6 +27,7 @@ public class GestionDeLaInformacion {
 	private Sala sala;
 	private ArrayList<Entrada> entradas;
 	private GestionDeFicheros ficheros;
+	private Compra compra;
 	private final String CLAVE_ENCRIPTADA = "clavecompartidanorevelarnuncamas";
 
 	public GestionDeLaInformacion() {
@@ -39,6 +40,7 @@ public class GestionDeLaInformacion {
 		entrada = new Entrada();
 		entradas = new ArrayList<Entrada>();
 		ficheros = new GestionDeFicheros();
+		compra = new Compra();
 	}
 
 	/*
@@ -181,9 +183,7 @@ public class GestionDeLaInformacion {
 	}
 
 	// Metodo para crear el idEntrada
-	
-	
-	
+
 	public void recogerFechaSeleccionada(String fecha) {
 		funcion.setFechafuncion(fecha);
 	}
@@ -192,25 +192,25 @@ public class GestionDeLaInformacion {
 		String fecha = funcion.getFechafuncion();
 		return fecha;
 	}
-	
+
 	public void recogerHoraSeleccionada(String hora) {
 		funcion.setHorafuncion(hora);
 	}
-	
+
 	public String pasarHoraSeleccionada() {
 		String hora = funcion.getHorafuncion();
 		return hora;
 	}
-	
+
 	public void recogerIdSalaSeleccionada(int idSala) {
 		sala.setIdSala(idSala);
 	}
-	
+
 	public int pasarIdSalaSeleccionada() {
 		int idSala = sala.getIdSala();
 		return idSala;
 	}
-	
+
 	public void recogerPrecio(double precio) {
 		funcion.setPrecio(precio);
 	}
@@ -219,11 +219,11 @@ public class GestionDeLaInformacion {
 		double precio = funcion.getPrecio();
 		return precio;
 	}
-	
-	public void crearEntrada(String fecha, String nombrePelicula, String horario, int sala,
-			double precio, String cine, int cantidad) {
-		
-		entrada = new Entrada(fecha, nombrePelicula, horario, sala, precio, cine, cantidad);
+
+	public void crearEntrada(int idEntrada, String fecha, String nombrePelicula, String horario, int sala,
+			double precio, String cine, int cantidad, int idCompra) {
+
+		entrada = new Entrada(idEntrada, fecha, nombrePelicula, horario, sala, precio, cine, cantidad, idCompra);
 		System.out.println(entrada);
 		añadirEntradas(entrada);
 	}
@@ -231,11 +231,11 @@ public class GestionDeLaInformacion {
 	public void añadirEntradas(Entrada entrada) {
 		entradas.add(entrada);
 	}
-	
+
 	public ArrayList<Entrada> enseñarEntradas() {
 		return entradas;
 	}
-	
+
 	public void convertirAIntCantidad(String cantidadSeleccionada) {
 		int cantidad = Integer.parseInt(cantidadSeleccionada);
 		recogerCantidadSeleccionada(cantidad);
@@ -244,19 +244,20 @@ public class GestionDeLaInformacion {
 	public void recogerCantidadSeleccionada(int cantidad) {
 		entrada.setCantidad(cantidad);
 	}
-	
+
 	public int pasarCantidadSeleccionada() {
 		int cantidad = entrada.getCantidad();
 		return cantidad;
 	}
-	
+
 	public String pasarFuncionSeleccionada() {
 		String horaSeleccionada = pasarHoraSeleccionada();
-		int salaSeleccionada = pasarIdSalaSeleccionada();;
+		int salaSeleccionada = pasarIdSalaSeleccionada();
+		;
 		String horaYFecha = horaSeleccionada + "- Sala " + salaSeleccionada;
 		return horaYFecha;
 	}
-	
+
 	public void convertirADouble(String convertir) {
 		double precio = Double.parseDouble(convertir);
 		recogerPrecio(precio);
@@ -265,41 +266,41 @@ public class GestionDeLaInformacion {
 	public void convertirAIntSala(String sala) {
 		int idSala = Integer.parseInt(sala);
 		recogerIdSalaSeleccionada(idSala);
-		
+
 	}
-	
+
 	public void separarFuncionSeleccionada(String funcionSeleccionada) {
 		String horaSeleccionada = funcionSeleccionada.split("-")[0];
 		String sala = funcionSeleccionada.split("a ")[1];
 		convertirAIntSala(sala);
 //		recogerFuncionSeleccionada(horaSeleccionada, salaSeleccionada);
 		recogerHoraSeleccionada(horaSeleccionada);
-		
+
 	}
-	
+
 	public double descuento(double precioReal, int cantidad) {
 		double precioConDescuento = 0;
 		int numero = entradas.size();
-		if(numero == 2) {
-			precioConDescuento = ((precioReal * cantidad)* 20)/100;
+		if (numero == 2) {
+			precioConDescuento = ((precioReal * cantidad) * 20) / 100;
 			return precioConDescuento;
 		} else if (numero >= 3) {
-			precioConDescuento = ((precioReal * cantidad)* 30)/100;
+			precioConDescuento = ((precioReal * cantidad) * 30) / 100;
 			return precioConDescuento;
 		}
 		return precioConDescuento;
-	}		
-	
+	}
+
 	public boolean verificarPasoDePanel() {
 		boolean verificar = false;
-		if(entradas.isEmpty()) {
+		if (entradas.isEmpty()) {
 			verificar = true;
 			return verificar;
 		} else {
 			return verificar;
 		}
 	}
-	
+
 	public int cantidadTotalDeEntradas() {
 		int cantidadTotal = 0;
 		for (int i = 0; i < entradas.size(); i++) {
@@ -307,47 +308,64 @@ public class GestionDeLaInformacion {
 		}
 		return cantidadTotal;
 	}
-	
+
 	public void mensajeDeRecibo(VentanaPrincipal v) {
 		int resp = JOptionPane.showConfirmDialog(null, "Quiere una copia del recibo? ", "Recibo",
 				JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 		switch (resp) {
-		
-		case 0: 
+
+		case 0:
 			ficheros.escribirFichero(entradas);
 			gestionBD.insertarEntrada(entradas);
 			mensajeVolverAlInicio(v);
 			break;
-		case 1:	
+		case 1:
 			mensajeVolverAlInicio(v);
 			break;
 		}
 	}
-	
-	//Inecesario este metodo si pones un boton de salir de la aplicacion en el panelLogin
+
+	// Inecesario este metodo si pones un boton de salir de la aplicacion en el
+	// panelLogin
 	public void mensajeVolverAlInicio(VentanaPrincipal v) {
 		int resp = JOptionPane.showConfirmDialog(null, "Quiere volver a la pantalla de inicio? ", "Pantalla de inicio",
 				JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 		switch (resp) {
-		
-		case 0: 
+
+		case 0:
 			v.cambiarDePanel(1);
 			break;
-		case 1:	
+		case 1:
 			System.exit(0);
 			break;
 		}
 	}
+
+	public void generarIdCompra() {
+		ArrayList<Compra> compras = gestionBD.sacarIdCompra();
+		int idCompra = 1;
+		if (compras.isEmpty()) {
+			compra.setIdCompra(idCompra);
+			System.out.println(idCompra);
+		} else {
+			idCompra = compras.get(0).getIdCompra();
+			idCompra++;
+			compra.setIdCompra(idCompra);
+			System.out.println(idCompra);
+		}	
+	}
 	
-	//---------------------------------------------------------------------------
-	
-	
+	public int pasarIdCompra() {
+		int idCompra = compra.getIdCompra();
+		return idCompra;
+	}
+
+	// ---------------------------------------------------------------------------
+
 //	// [GET] - - RECOGE SALA Y HORA
 //		public void recogerFuncionSeleccionada(String horaSeleccionada, int salaSeleccionada) {
 //			funcion.setHorafuncion(horaSeleccionada);
 //			funcion.setIdsala(salaSeleccionada);
 //		}
-	
-	
 
 }

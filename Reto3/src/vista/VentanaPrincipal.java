@@ -41,44 +41,42 @@ public class VentanaPrincipal extends JFrame {
 	public void cambiarDePanel(int i) {
 
 		switch (i) {
-		case 0: {
+		case 0: 
 			setContentPane(new PanelBienvenida(this)); // PanelBienvenida
 			break;
-		}
-		case 1: {
+		
+		case 1: 
 			setContentPane(new PanelLogin(this));
 			break;
-		}
-		case 2: {
+		
+		case 2: 
 			setContentPane(new PanelRegistro(this, this.gestionINF));
 			break;
-		}
-		case 3: {
+		
+		case 3: 
 			setContentPane(new PanelSeleccionCine(this, this.gestionINF));
 			break;
-		}
-		case 4: {
+		
+		case 4: 
 			setContentPane(new PanelSeleccionPelicula(this, this.gestionINF));
 			break;
-		}
-		case 5: {
+		
+		case 5: 
 			setContentPane(new PanelSeleccionFuncion(this, this.gestionINF));
 			break;
-		}
-		case 6: {
+		
+		case 6:
 			setContentPane(new PanelFuncionEscogida(this, this.gestionINF));
 
 			break;
-		}
-		case 7: {
+		case 7: 
 			setContentPane(new PanelResumenCompra(this, this.gestionINF));
 			break;
 
-		}
-		case 8: {
+		case 8: 
 			setContentPane(new PanelDePrueba(this, this.gestionINF));
 			break;
-		}
+		
 		}
 	}
 

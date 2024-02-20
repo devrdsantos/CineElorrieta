@@ -2,7 +2,7 @@ package modelo;
 
 public class Entrada {
 
-	private int idEntrada = 0;
+	private String idEntrada = null;
 	private String fecha = null;
 	private String nombrePelicula = null;
 	private String horario = null;
@@ -10,16 +10,13 @@ public class Entrada {
 	private double precio = 0;
 	private String cine = null;
 	private int cantidad = 0;
-	private static int generadorIdEntrada = 0;
-	
+
 	public Entrada() {
-		idEntrada = generadorIdEntrada;
-		generadorIdEntrada++;
+		this.idEntrada = null;
 	}
 
-	public Entrada(String fecha, String nombrePelicula, String horario, int idsala, double precio, String cine, int cantidad) {
-		idEntrada = generadorIdEntrada;
-		generadorIdEntrada++;
+	public Entrada(String fecha, String nombrePelicula, String horario, int idsala, double precio, String cine,
+			int cantidad) {
 		this.fecha = fecha;
 		this.nombrePelicula = nombrePelicula;
 		this.horario = horario;
@@ -27,6 +24,14 @@ public class Entrada {
 		this.precio = precio;
 		this.cine = cine;
 		this.cantidad = cantidad;
+	}
+	
+	public String getIdEntrada() {
+		return idEntrada;
+	}
+
+	public void setIdEntrada(String idEntrada) {
+		this.idEntrada = idEntrada;
 	}
 
 	public String getFecha() {
@@ -68,11 +73,11 @@ public class Entrada {
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
-	
+
 	public String getCine() {
 		return cine;
 	}
-	
+
 	public void setCine(String cine) {
 		this.cine = cine;
 	}
@@ -87,10 +92,13 @@ public class Entrada {
 
 	@Override
 	public String toString() {
-		return "Entrada [idEntrada=" + idEntrada + ", fecha=" + fecha + ", nombrePelicula=" + nombrePelicula
-				+ ", horario=" + horario + ", idsala=" + idsala + ", precio=" + precio + ", cine=" + cine
-				+ ", cantidad=" + cantidad + "]";
+		return "----------------------------------------\nCine: " + cine
+				+ "\n----------------------------------------\nPelicula: " + nombrePelicula
+				+ "\n----------------------------------------\nSala: " + idsala
+				+ "\n----------------------------------------\nHora: " + horario
+				+ "\n----------------------------------------\nFecha: " + fecha
+				+ "\n----------------------------------------\nPrecio: " + precio
+				+ "\n----------------------------------------\nCantidad: " + cantidad;
 	}
 
-	
 }

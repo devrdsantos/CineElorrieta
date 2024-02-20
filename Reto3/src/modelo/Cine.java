@@ -72,8 +72,8 @@ public class Cine {
 
 	@Override
 	public String toString() {
-		return "IdCine:" + idCine + ", \nNombreCine:" + nombreCine + ", \nLocalidadCine:" + localidadCine
-				+ ", \nDireccionCine:" + direccionCine;
+		return "NombreCine:" + nombreCine + " \nLocalidadCine:" + localidadCine
+				+ " \nDireccionCine:" + direccionCine;
 	}
 	
 	

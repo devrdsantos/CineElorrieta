@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import controlador.GestionBD;
 import controlador.GestionDeLaInformacion;
 import modelo.Entrada;
 import vista.VentanaPrincipal;
@@ -23,11 +24,12 @@ import javax.swing.JSeparator;
 public class PanelResumenCompra extends JPanel {
 
 	private double precioReal;
+	private GestionBD gestionBD = new GestionBD();
 	
 	public PanelResumenCompra (VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
-		System.out.println("------");
 		ArrayList<Entrada> entradas = gestionINF.enseñarEntradas();
 		System.out.println(entradas);
+		
 
 		setSize(1200, 720);
 		setVisible(true);
@@ -56,7 +58,8 @@ public class PanelResumenCompra extends JPanel {
 		btnFinalizarCompra.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				v.cambiarDePanel(5);
+				gestionINF.mensajeDeRecibo(v);
+				
 			}
 		});
 		btnFinalizarCompra.setOpaque(true);

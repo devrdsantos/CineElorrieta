@@ -45,11 +45,10 @@ public class PanelFuncionEscogida extends JPanel {
 		JLabel lblPeliculaSeleccionada = new JLabel();
 		lblPeliculaSeleccionada.setVerticalAlignment(SwingConstants.TOP);
 		lblPeliculaSeleccionada.setText(gestionINF.pasarNombrePelicula());
-		// lblCineSeleccionado.setText(cine.getNombreCine());
 		lblPeliculaSeleccionada.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPeliculaSeleccionada.setForeground(new Color(211, 213, 248));
 		lblPeliculaSeleccionada.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblPeliculaSeleccionada.setBounds(235, 226, 797, 49);
+		lblPeliculaSeleccionada.setBounds(252, 226, 797, 49);
 		add(lblPeliculaSeleccionada);
 
 		// LBL REDIRECCIÒN
@@ -70,7 +69,7 @@ public class PanelFuncionEscogida extends JPanel {
 		lblCine.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCine.setForeground(new Color(134, 167, 252));
 		lblCine.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblCine.setBounds(171, 288, 56, 49);
+		lblCine.setBounds(131, 272, 75, 49);
 		add(lblCine);
 
 		// [!] LBL NOMBRE DEL CINE - TRAE DE BD
@@ -79,7 +78,7 @@ public class PanelFuncionEscogida extends JPanel {
 		lblNombreDelCine.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNombreDelCine.setForeground(new Color(211, 213, 248));
 		lblNombreDelCine.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblNombreDelCine.setBounds(235, 289, 797, 49);
+		lblNombreDelCine.setBounds(216, 272, 797, 49);
 		add(lblNombreDelCine);
 
 		// LBL FUNCIÓN
@@ -87,7 +86,7 @@ public class PanelFuncionEscogida extends JPanel {
 		lblFuncin.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblFuncin.setForeground(new Color(134, 167, 252));
 		lblFuncin.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblFuncin.setBounds(156, 362, 72, 49);
+		lblFuncin.setBounds(159, 335, 72, 49);
 		add(lblFuncin);
 
 		// [!] LBL SALA Y HORA - TRAE DE BD
@@ -96,8 +95,23 @@ public class PanelFuncionEscogida extends JPanel {
 		lblSalaYHora.setHorizontalAlignment(SwingConstants.LEFT);
 		lblSalaYHora.setForeground(new Color(211, 213, 248));
 		lblSalaYHora.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblSalaYHora.setBounds(235, 363, 797, 49);
+		lblSalaYHora.setBounds(241, 335, 797, 49);
 		add(lblSalaYHora);
+		
+		JLabel lblCantidad = new JLabel("Cantidad:");
+		lblCantidad.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCantidad.setForeground(new Color(134, 167, 252));
+		lblCantidad.setFont(new Font("Verdana", Font.PLAIN, 16));
+		lblCantidad.setBounds(156, 395, 86, 49);
+		add(lblCantidad);
+		
+		JLabel lblCantidadSeleccionada = new JLabel();
+		lblCantidadSeleccionada.setText(gestionINF.pasarCantidadSeleccionada() + "");
+		lblCantidadSeleccionada.setHorizontalAlignment(SwingConstants.LEFT);
+		lblCantidadSeleccionada.setForeground(new Color(211, 213, 248));
+		lblCantidadSeleccionada.setFont(new Font("Verdana", Font.BOLD, 16));
+		lblCantidadSeleccionada.setBounds(252, 395, 797, 49);
+		add(lblCantidadSeleccionada);
 
 		addMouseListener(new MouseAdapter() {
 

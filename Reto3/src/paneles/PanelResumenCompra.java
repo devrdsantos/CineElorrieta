@@ -32,7 +32,6 @@ public class PanelResumenCompra extends JPanel {
 		gestionINF.recogerDescuento();
 //		gestionINF.crearCompra(gestionINF.pasarIdCompra(), gestionINF.pasarDNI(), gestionINF.pasarDescuento());
 		
-		
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);

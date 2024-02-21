@@ -14,6 +14,9 @@ import controlador.GestionDeLaInformacion;
 import modelo.Entrada;
 import vista.VentanaPrincipal;
 import javax.swing.JButton;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import javax.swing.JComboBox;
 
@@ -32,6 +35,27 @@ public class PanelSeleccionCine extends JPanel {
 		setLayout(null);
 		setFont(new Font("Tahoma", Font.BOLD, 11));
 		setBackground(Color.decode("#142850"));
+		
+		// BOTÓN SECUNDARIO - - VOLVER ATRÁS
+				JButton btnVoler = new JButton("<html><u>Volver al Login<u><html>");
+				btnVoler.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						v.cambiarDePanel(1);
+					}
+				});
+				btnVoler.setFont(new Font("Verdana", Font.PLAIN, 16));
+				btnVoler.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				btnVoler.setOpaque(true);
+				btnVoler.setContentAreaFilled(true);
+				btnVoler.setForeground(Color.decode("#C67ACE"));
+				btnVoler.setBorderPainted(false);
+				btnVoler.setBackground(Color.decode("#142850"));
+				btnVoler.setBounds(21, 23, 254, 39);
+				add(btnVoler);
 
 		// MSJ BIENVENIDA
 		JLabel mensajeBienvenida = new JLabel("Iniciaste sesión en Cines ESA");

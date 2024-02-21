@@ -24,6 +24,7 @@ public class GestionBD {
 	 */
 	private Connection conexion;
 	private GestionDeLaInformacion gestionINF;
+	
 	// private VentanaPrincipal ventana = new VentanaPrincipal();
 
 	/**
@@ -55,7 +56,7 @@ public class GestionBD {
 			// Se inicializa el objeto CONEXION que conecta y hace referencia a dónde está
 			// ubicada la BD a través del usuario ROOT
 
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/reto3", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/reto3", "root", "");
 
 		} catch (ClassNotFoundException e) {
 			// System.out.println("No se ha encontrado la Libreria.");
@@ -93,8 +94,10 @@ public class GestionBD {
 	 * para poder utilizar el metodo cambiarDePanel
 	 * 
 	 */
-	public void verificarLogin(String dni, String pass, VentanaPrincipal v) throws Exception {
-		// Se inicializa el objeto gestionINF
+	public boolean verificarLogin(String dni, String pass, VentanaPrincipal v) throws Exception {
+		
+		
+		boolean verificarLogin = false;
 
 		try {
 			// System.out.println("Iniciando consulta...");
@@ -120,8 +123,11 @@ public class GestionBD {
 					&& pass.equals(passDesencriptada)) {
 				JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión");
 				v.cambiarDePanel(3);
+				verificarLogin = true;
+				
 			} else {
 				JOptionPane.showMessageDialog(null, "Los valores ingresados no son correctos");
+				
 			}
 			// Una vez que ejecuta la consulta la cierra.
 			// System.out.println("Cerrando consulta...");
@@ -129,6 +135,7 @@ public class GestionBD {
 		} catch (SQLException e) {
 			// System.out.println("Conexion incorrecta con la base de datos");
 		}
+		return verificarLogin;
 	}
 
 	/*

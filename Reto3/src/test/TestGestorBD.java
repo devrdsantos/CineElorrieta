@@ -2,7 +2,9 @@ package test;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.junit.BeforeClass;
@@ -12,6 +14,7 @@ import controlador.GestionBD;
 import modelo.Cine;
 import modelo.Funcion;
 import modelo.Pelicula;
+import vista.VentanaPrincipal;
 
 public class TestGestorBD {
 
@@ -154,6 +157,16 @@ public class TestGestorBD {
 		int salaPelicula = gestion.sacarInformacionDeUnaPeliculaDelCineSeleccionado(1, "Cine Zubiarte").get(0).getIdsala();
 		
 		assertEquals(salaEsperada, salaPelicula);
+	}
+	
+	@Test
+	public void verificarLogin() throws Exception  {
+		
+			assertTrue(gestion.verificarLogin("12345678A", "123456", new VentanaPrincipal()));
+			
+		
+		
+		
 	}
 	
 	

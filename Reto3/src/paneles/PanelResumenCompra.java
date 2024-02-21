@@ -30,7 +30,7 @@ public class PanelResumenCompra extends JPanel {
 		
 		ArrayList<Entrada> entradas = gestionINF.enseñarEntradas();
 		System.out.println(entradas);
-		gestionBD.insertarEntrada(entradas);
+		
 		
 
 		setSize(1200, 720);

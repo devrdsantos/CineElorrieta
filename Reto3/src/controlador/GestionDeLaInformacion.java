@@ -280,17 +280,34 @@ public class GestionDeLaInformacion {
 
 	public double descuento(double precioReal, int cantidad) {
 		double precioConDescuento = 0;
-		int numero = entradas.size();
-		if (numero == 2) {
+//		int numero = entradas.size();
+		if (entradas.size() == 2) {
 			precioConDescuento = ((precioReal * cantidad) * 20) / 100;
 			return precioConDescuento;
-		} else if (numero >= 3) {
+		} else if (entradas.size() >= 3) {
 			precioConDescuento = ((precioReal * cantidad) * 30) / 100;
 			return precioConDescuento;
 		}
 		return precioConDescuento;
 	}
 
+	public void recogerDescuento() {
+		String descuento = "";
+		if (entradas.size() == 2) {
+			descuento = "20%";
+			 compra.setDescuento(descuento);
+		} else if (entradas.size() >= 3) {
+			descuento = "30%";
+			compra.setDescuento(descuento);
+		}
+		compra.setDescuento(descuento);
+	}
+	
+	public String pasarDescuento() {
+		String descuento = compra.getDescuento();
+		return descuento;
+	}
+	
 	public boolean verificarPasoDePanel() {
 		boolean verificar = false;
 		if (entradas.isEmpty()) {
@@ -320,6 +337,7 @@ public class GestionDeLaInformacion {
 			mensajeVolverAlInicio(v);
 			break;
 		case 1:
+			gestionBD.insertarEntrada(entradas);
 			mensajeVolverAlInicio(v);
 			break;
 		}

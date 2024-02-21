@@ -63,7 +63,7 @@ public class PanelLogin extends JPanel {
 
 				String pass = passwordField.getText();
 
-//				gestionBD.sacarIdCompra();
+				gestionBD.sacarIdCompra();
 				
 				try {
 					gestionBD.verificarLogin(dni, pass, v);

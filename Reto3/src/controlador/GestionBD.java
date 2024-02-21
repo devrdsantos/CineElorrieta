@@ -336,5 +336,23 @@ public class GestionBD {
 
 		return idCompra;
 	}
+	
+	public void insertarCompra(ArrayList<Compra> compras) {
+		try {
+			Statement consulta = conexion.createStatement();
+			for (int i = 0; i < compras.size(); i++) {
+				String insert = "INSERT INTO entrada VALUES ()";
+				consulta.executeUpdate(insert);
+			}
+
+			JOptionPane.showMessageDialog(null, "Compra hecha");
+
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+	}
 
 }

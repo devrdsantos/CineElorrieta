@@ -9,16 +9,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import controlador.GestionDeLaInformacion;
-import modelo.Entrada;
 import vista.VentanaPrincipal;
 import javax.swing.JSeparator;
 
 public class PanelFuncionEscogida extends JPanel {
-
-	private Entrada entrada;
-
+	
 	public PanelFuncionEscogida(VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
-
+		
+		gestionINF.generarIdCompra();
+		
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);
@@ -119,9 +118,9 @@ public class PanelFuncionEscogida extends JPanel {
 			public void mouseEntered(MouseEvent e) {
 				try {
 					TimeUnit.SECONDS.sleep(2);
-					gestionINF.crearEntrada(gestionINF.pasarFechaSeleccionada(), gestionINF.pasarNombrePelicula(),
+					gestionINF.crearEntrada(0,gestionINF.pasarFechaSeleccionada(), gestionINF.pasarNombrePelicula(),
 							gestionINF.pasarHoraSeleccionada(), gestionINF.pasarIdSalaSeleccionada(),
-							gestionINF.pasarPrecio(), gestionINF.pasarNombreCine(), gestionINF.pasarCantidadSeleccionada());
+							gestionINF.pasarPrecio(), gestionINF.pasarNombreCine(), gestionINF.pasarCantidadSeleccionada(), gestionINF.pasarIdCompra());
 					v.cambiarDePanel(3);
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();

@@ -7,10 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
 import modelo.Cine;
+import modelo.Compra;
 import modelo.Entrada;
 import modelo.Funcion;
 import modelo.Pelicula;
@@ -29,7 +31,7 @@ public class GestionBD {
 	 */
 	public GestionBD() {
 		iniciarconexion();
-
+		
 	}
 
 	/*********************
@@ -199,6 +201,7 @@ public class GestionBD {
 	}
 
 	public String sacarPasswordEncriptada(String dni) throws Exception {
+		gestionINF = new GestionDeLaInformacion();
 		String passDesencriptada = "";
 		try {
 			// System.out.println("Iniciando consulta sacarPasswordEncriptada...");
@@ -265,18 +268,86 @@ public class GestionBD {
 	}
 
 	public void insertarEntrada(ArrayList<Entrada> entradas) {
-		System.out.println(entradas.get(0).getIdEntrada());
 		try {
 			Statement consulta = conexion.createStatement();
+			for (int i = 0; i < entradas.size(); i++) {
+				String insert = "INSERT INTO entrada (`fecha`, `nombrepelicula`, `horario`, `idsala`, `precio`, `cine`, `cantidad`, `idcompra`) VALUES ('"
+						+ entradas.get(i).getFecha() + "','"
+						+ entradas.get(i).getNombrePelicula() + "','" + entradas.get(i).getHorario() + "', '"
+						+ entradas.get(i).getIdsala() + "','" + entradas.get(i).getPrecio() + "','"
+						+ entradas.get(i).getCine() + "','" + entradas.get(i).getCantidad() + "','"
+						+ entradas.get(i).getIdCompra() + "')";
+				consulta.executeUpdate(insert);
+			}
 
-			String insert = "INSERT INTO entrada VALUES ('" + entradas.get(0).getIdEntrada() + "','"
-					+ entradas.get(0).getFecha() + "','" + entradas.get(0).getNombrePelicula() + "','"
-					+ entradas.get(0).getHorario() + "', '" + entradas.get(0).getIdsala() + "','"
-					+ entradas.get(0).getPrecio() + "','" + entradas.get(0).getCine() + "','"
-					+ entradas.get(0).getCantidad() + "','1')";
-
-			consulta.executeUpdate(insert);
 			JOptionPane.showMessageDialog(null, "Entrada hecha");
+
+			consulta.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+		}
+	}
+
+	public ArrayList<Entrada> sacarIdEntrada() {
+		ArrayList<Entrada> idEntrada = new ArrayList<Entrada>();
+		try {
+
+			String query = "SELECT * FROM entrada ORDER BY identrada DESC";
+
+			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
+
+			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
+
+			while (resultadoConsulta.next()) {
+				idEntrada.add(new Entrada(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
+						resultadoConsulta.getString(3), resultadoConsulta.getString(4), resultadoConsulta.getInt(5),
+						resultadoConsulta.getDouble(6), resultadoConsulta.getString(7), resultadoConsulta.getInt(8),
+						resultadoConsulta.getInt(9)));
+			}
+			consultaPreparada.close();
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+		return idEntrada;
+	}
+
+	public ArrayList<Compra> sacarIdCompra() {
+		ArrayList<Compra> idCompra = new ArrayList<Compra>();
+		try {
+
+			String query = "SELECT * FROM compra ORDER BY idcompra DESC";
+
+			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
+
+			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
+
+			while (resultadoConsulta.next()) {
+				idCompra.add(new Compra(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
+						resultadoConsulta.getString(3), resultadoConsulta.getString(4),
+						resultadoConsulta.getString(5)));
+			}
+			consultaPreparada.close();
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+		return idCompra;
+	}
+	
+	public void insertarCompra(ArrayList<Compra> compras) {
+		try {
+			Statement consulta = conexion.createStatement();
+			for (int i = 0; i < compras.size(); i++) {
+				String insert = "INSERT INTO entrada VALUES ()";
+				consulta.executeUpdate(insert);
+			}
+
+			JOptionPane.showMessageDialog(null, "Compra hecha");
 
 			consulta.close();
 

@@ -2,7 +2,7 @@ package modelo;
 
 public class Entrada {
 
-	private String idEntrada = null;
+	private int idEntrada = 0;
 	private String fecha = null;
 	private String nombrePelicula = null;
 	private String horario = null;
@@ -10,13 +10,15 @@ public class Entrada {
 	private double precio = 0;
 	private String cine = null;
 	private int cantidad = 0;
+	private int idCompra = 0;
 
 	public Entrada() {
-		this.idEntrada = null;
+		
 	}
 
-	public Entrada(String fecha, String nombrePelicula, String horario, int idsala, double precio, String cine,
-			int cantidad) {
+	public Entrada(int idEntrada, String fecha, String nombrePelicula, String horario, int idsala, double precio, String cine,
+			int cantidad, int idCompra) {
+		this.idEntrada = idEntrada;
 		this.fecha = fecha;
 		this.nombrePelicula = nombrePelicula;
 		this.horario = horario;
@@ -24,13 +26,14 @@ public class Entrada {
 		this.precio = precio;
 		this.cine = cine;
 		this.cantidad = cantidad;
+		this.idCompra = idCompra;
 	}
 	
-	public String getIdEntrada() {
+	public int getIdEntrada() {
 		return idEntrada;
 	}
 
-	public void setIdEntrada(String idEntrada) {
+	public void setIdEntrada(int idEntrada) {
 		this.idEntrada = idEntrada;
 	}
 
@@ -88,6 +91,14 @@ public class Entrada {
 
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+	
+	public int getIdCompra() {
+		return idCompra;
+	}
+
+	public void setIdCompra(int idCompra) {
+		this.idCompra = idCompra;
 	}
 
 	@Override

@@ -1,14 +1,18 @@
 package modelo;
 
 public class Compra {
-	
+
 	private int idCompra = 0;
 	private String dni = null;
-	private double descuento = 0;
+	private String descuento = null;
 	private String fechaCompra = null;
 	private String horaCompra = null;
+
+	public Compra() {
+		
+	}
 	
-	public Compra(int idCompra, String dni, double descuento, String fechaCompra, String horaCompra) {
+	public Compra(int idCompra, String dni, String descuento, String fechaCompra, String horaCompra) {
 
 		this.idCompra = idCompra;
 		this.dni = dni;
@@ -33,11 +37,11 @@ public class Compra {
 		this.dni = dni;
 	}
 
-	public double getDescuento() {
+	public String getDescuento() {
 		return descuento;
 	}
 
-	public void setDescuento(double descuento) {
+	public void setDescuento(String descuento) {
 		this.descuento = descuento;
 	}
 
@@ -62,5 +66,5 @@ public class Compra {
 		return "Compra [idCompra=" + idCompra + ", dni=" + dni + ", descuento=" + descuento + ", fechaCompra="
 				+ fechaCompra + ", horaCompra=" + horaCompra + "]";
 	}
-	
+
 }

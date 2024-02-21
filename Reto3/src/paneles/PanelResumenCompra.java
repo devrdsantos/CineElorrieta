@@ -27,8 +27,10 @@ public class PanelResumenCompra extends JPanel {
 	private GestionBD gestionBD = new GestionBD();
 	
 	public PanelResumenCompra (VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
+		
 		ArrayList<Entrada> entradas = gestionINF.enseñarEntradas();
 		System.out.println(entradas);
+		
 		
 
 		setSize(1200, 720);

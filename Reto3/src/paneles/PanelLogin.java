@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import controlador.GestionBD;
+import controlador.GestionDeLaInformacion;
 import modelo.Compra;
 import vista.VentanaPrincipal;
 import javax.swing.JPasswordField;
@@ -21,7 +22,7 @@ public class PanelLogin extends JPanel {
 	private GestionBD gestionBD = new GestionBD();
 	private Compra compra;
 	
-	public PanelLogin(VentanaPrincipal v) {
+	public PanelLogin(VentanaPrincipal v , GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);
@@ -60,9 +61,9 @@ public class PanelLogin extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String dni = textFieldDNI.getText();
-
+				
 				String pass = passwordField.getText();
-
+				gestionINF.recogerDNI(dni);
 				gestionBD.sacarIdCompra();
 				
 				try {

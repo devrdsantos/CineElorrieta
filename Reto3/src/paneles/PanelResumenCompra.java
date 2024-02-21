@@ -7,11 +7,10 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import controlador.GestionBD;
+
 import controlador.GestionDeLaInformacion;
 import modelo.Entrada;
 import vista.VentanaPrincipal;
@@ -24,15 +23,16 @@ import javax.swing.JSeparator;
 public class PanelResumenCompra extends JPanel {
 
 	private double precioReal;
-	private GestionBD gestionBD = new GestionBD();
+//	private GestionBD gestionBD = new GestionBD();
 	
 	public PanelResumenCompra (VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		
 		ArrayList<Entrada> entradas = gestionINF.enseñarEntradas();
 		System.out.println(entradas);
+		gestionINF.recogerDescuento();
+//		gestionINF.crearCompra(gestionINF.pasarIdCompra(), gestionINF.pasarDNI(), gestionINF.pasarDescuento());
 		
 		
-
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);
@@ -269,6 +269,9 @@ public class PanelResumenCompra extends JPanel {
 		lblTotalValor.setFont(new Font("Verdana", Font.PLAIN, 14));
 		lblTotalValor.setBounds(907, 588, 52, 20);
 		add(lblTotalValor);
+		
+		
+		
 		// LBL EURO TOTAL
 		JLabel lblTotalEuro = new JLabel("€");
 		lblTotalEuro.setHorizontalAlignment(SwingConstants.RIGHT);

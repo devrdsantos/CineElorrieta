@@ -34,7 +34,7 @@ public class PanelResumenCompra extends JPanel {
 		ArrayList<Entrada> entradas = gestionINF.enseñarEntradas();
 		System.out.println(entradas);
 		gestionINF.recogerDescuento();
-		gestionINF.crearCompra(gestionINF.pasarIdCompra(), gestionINF.pasarDNI(), "0", gestionINF.pasarFechaCompra(), gestionINF.pasarHoraCompra());
+		gestionINF.crearCompra(gestionINF.pasarIdCompra(), gestionINF.pasarDNI(), gestionINF.pasarDescuento(), gestionINF.pasarFechaCompra(), gestionINF.pasarHoraCompra());
 		
 		setSize(1200, 720);
 		setVisible(true);
@@ -58,25 +58,16 @@ public class PanelResumenCompra extends JPanel {
 		lblEntradas.setBounds(254, 54, 102, 34);
 		add(lblEntradas);
 
-		//Meterlo en un metodo!!!!!!!
-		//---------------------------------------------------------------------------------------
-		DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm", Locale.US);
-		DateTimeFormatter formato1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	
 		LocalTime horaSinFormato = LocalTime.now();
 		LocalDate fechaSinFormato = LocalDate.now();
-		String hora = formato.format(horaSinFormato);;
-		String fecha =formato1.format(fechaSinFormato);
-		//----------------------------------------------------------------------------------------
-		
-		gestionINF.recogerFechaCompra(fecha);
-		gestionINF.recogerHoraCompra(hora);
 		// BTN PRINCIPAL -- FINALIZAR COMPRA
 		JButton btnFinalizarCompra = new JButton("Finalizar compra");
 		btnFinalizarCompra.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				
+				gestionINF.formatoParaFecha(fechaSinFormato);
+				gestionINF.formatoParaHora(horaSinFormato);
 				gestionINF.mensajeDeRecibo(v);
 				
 			}

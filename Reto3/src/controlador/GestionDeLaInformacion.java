@@ -1,8 +1,12 @@
 package controlador;
 
 import java.security.Key;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.crypto.Cipher;
@@ -225,8 +229,9 @@ public class GestionDeLaInformacion {
 	public void crearEntrada(int idEntrada, String fecha, String nombrePelicula, String horario, int sala,
 			double precio, String cine, int cantidad, int idCompra) {
 
+//		System.out.println(cantidad);
 		entrada = new Entrada(idEntrada, fecha, nombrePelicula, horario, sala, precio, cine, cantidad, idCompra);
-		System.out.println(entrada);
+//		System.out.println(entrada);
 		añadirEntradas(entrada);
 	}
 
@@ -293,7 +298,7 @@ public class GestionDeLaInformacion {
 	}
 
 	public void recogerDescuento() {
-		String descuento = null;
+		String descuento = "";
 		if (entradas.size() == 2) {
 			descuento = "20%";
 			compra.setDescuento(descuento);
@@ -308,7 +313,7 @@ public class GestionDeLaInformacion {
 	
 	public String pasarDescuento() {
 		String descuento = compra.getDescuento();
-		System.out.println(descuento);
+//		System.out.println(descuento);
 		return descuento;
 	}
 	
@@ -323,7 +328,7 @@ public class GestionDeLaInformacion {
 	
 	public void crearCompra(int idCompra, String dni, String descuento, String fecha, String hora) {
 		compra = new Compra(idCompra, dni, descuento, fecha, hora);
-		System.out.println(compra);
+//		System.out.println(compra);
 		añadirCompra(compra);
 	}
 	
@@ -336,24 +341,22 @@ public class GestionDeLaInformacion {
 	}
 	
 	public void recogerFechaCompra(String fechaCompra) {
-		
 		compra.setFechaCompra(fechaCompra);
 	}
 	
 	public String pasarFechaCompra() {
 		String fechaCompra = compra.getFechaCompra();
-		System.out.println(fechaCompra);
+//		System.out.println(fechaCompra);
 		return fechaCompra;
 	}
 	
 	public void recogerHoraCompra(String horaCompra) {
-		
 		compra.setHoraCompra(horaCompra);
 	}
 	
 	public String pasarHoraCompra() {
 		String horaCompra = compra.getHoraCompra();
-		System.out.println(horaCompra);
+//		System.out.println(horaCompra);
 		return horaCompra;
 	}
 	
@@ -419,12 +422,12 @@ public class GestionDeLaInformacion {
 		int idCompra = 1;
 		if (compras.isEmpty()) {
 			compra.setIdCompra(idCompra);
-			System.out.println(idCompra);
+//			System.out.println(idCompra);
 		} else {
 			idCompra = compras.get(0).getIdCompra();
 			idCompra++;
 			compra.setIdCompra(idCompra);
-			System.out.println(idCompra);
+//			System.out.println(idCompra);
 		}	
 	}
 	
@@ -440,6 +443,19 @@ public class GestionDeLaInformacion {
 		}
 		return precioReal;
 	}
+	
+	public void formatoParaFecha(LocalDate fechaSinFormato) {
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String fecha =formato.format(fechaSinFormato);
+		recogerFechaCompra(fecha);
+	}
+	
+	public void formatoParaHora(LocalTime horaSinFormato) {
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm", Locale.US);
+		String hora = formato.format(horaSinFormato);
+		recogerHoraCompra(hora);
+	}
+	
 
 	// ---------------------------------------------------------------------------
 

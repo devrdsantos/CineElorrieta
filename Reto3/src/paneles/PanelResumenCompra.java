@@ -4,14 +4,17 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import controlador.GestionBD;
+
 import controlador.GestionDeLaInformacion;
 import modelo.Entrada;
 import vista.VentanaPrincipal;
@@ -24,15 +27,15 @@ import javax.swing.JSeparator;
 public class PanelResumenCompra extends JPanel {
 
 	private double precioReal;
-	private GestionBD gestionBD = new GestionBD();
+//	private GestionBD gestionBD = new GestionBD();
 	
 	public PanelResumenCompra (VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		
 		ArrayList<Entrada> entradas = gestionINF.enseñarEntradas();
 		System.out.println(entradas);
+		gestionINF.recogerDescuento();
+		gestionINF.crearCompra(gestionINF.pasarIdCompra(), gestionINF.pasarDNI(), "0", gestionINF.pasarFechaCompra(), gestionINF.pasarHoraCompra());
 		
-		
-
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);
@@ -55,11 +58,20 @@ public class PanelResumenCompra extends JPanel {
 		lblEntradas.setBounds(254, 54, 102, 34);
 		add(lblEntradas);
 
+		
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm:ss", Locale.US);
+		LocalTime horaSinFormato = LocalTime.now();
+		String hora = formato.format(horaSinFormato);;
+		String fecha =LocalDate.now() + "";
+		gestionINF.recogerFechaCompra(fecha);
+		gestionINF.recogerHoraCompra(hora);
 		// BTN PRINCIPAL -- FINALIZAR COMPRA
 		JButton btnFinalizarCompra = new JButton("Finalizar compra");
 		btnFinalizarCompra.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
+				
 				gestionINF.mensajeDeRecibo(v);
 				
 			}
@@ -196,10 +208,8 @@ public class PanelResumenCompra extends JPanel {
 		add(lblPrecioReal);
 		// [¡BD!] LBL VALOR REAL
 
-		precioReal = 0;
-		for (int j = 0; j < entradas.size(); j++) {
-			precioReal = precioReal + (entradas.get(j).getPrecio() * gestionINF.cantidadTotalDeEntradas());
-		}
+		precioReal = gestionINF.precioReal();
+		
 
 		JLabel lblValorReal = new JLabel();
 		lblValorReal.setText(precioReal + "");
@@ -261,7 +271,6 @@ public class PanelResumenCompra extends JPanel {
 		double precioTotal = precioReal - descuento;
 		DecimalFormat df = new DecimalFormat("#.00");
 		
-		
 		JLabel lblTotalValor = new JLabel();
 		lblTotalValor.setText(df.format(precioTotal) + "");
 		lblTotalValor.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -269,6 +278,9 @@ public class PanelResumenCompra extends JPanel {
 		lblTotalValor.setFont(new Font("Verdana", Font.PLAIN, 14));
 		lblTotalValor.setBounds(907, 588, 52, 20);
 		add(lblTotalValor);
+		
+		
+		
 		// LBL EURO TOTAL
 		JLabel lblTotalEuro = new JLabel("€");
 		lblTotalEuro.setHorizontalAlignment(SwingConstants.RIGHT);

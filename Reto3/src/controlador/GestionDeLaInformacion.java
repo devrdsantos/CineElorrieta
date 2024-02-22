@@ -26,6 +26,7 @@ public class GestionDeLaInformacion {
 	private Funcion funcion;
 	private Sala sala;
 	private ArrayList<Entrada> entradas;
+	private ArrayList<Compra> compras;
 	private GestionDeFicheros ficheros;
 	private Compra compra;
 	private final String CLAVE_ENCRIPTADA = "clavecompartidanorevelarnuncamas";
@@ -41,6 +42,7 @@ public class GestionDeLaInformacion {
 		entradas = new ArrayList<Entrada>();
 		ficheros = new GestionDeFicheros();
 		compra = new Compra();
+		compras = new ArrayList<Compra>();
 	}
 
 	/*
@@ -253,7 +255,6 @@ public class GestionDeLaInformacion {
 	public String pasarFuncionSeleccionada() {
 		String horaSeleccionada = pasarHoraSeleccionada();
 		int salaSeleccionada = pasarIdSalaSeleccionada();
-		;
 		String horaYFecha = horaSeleccionada + "- Sala " + salaSeleccionada;
 		return horaYFecha;
 	}
@@ -292,21 +293,72 @@ public class GestionDeLaInformacion {
 	}
 
 	public void recogerDescuento() {
-		String descuento = "";
+		String descuento = null;
 		if (entradas.size() == 2) {
 			descuento = "20%";
-			 compra.setDescuento(descuento);
+			compra.setDescuento(descuento);
 		} else if (entradas.size() >= 3) {
 			descuento = "30%";
 			compra.setDescuento(descuento);
+		} else {
+			compra.setDescuento(descuento);
 		}
-		compra.setDescuento(descuento);
+		
 	}
 	
 	public String pasarDescuento() {
 		String descuento = compra.getDescuento();
+		System.out.println(descuento);
 		return descuento;
 	}
+	
+	public void recogerDNI(String dni) {
+		compra.setDni(dni);
+	}
+	
+	public String pasarDNI() {
+		String dni = compra.getDni();
+		return dni;
+	}
+	
+	public void crearCompra(int idCompra, String dni, String descuento, String fecha, String hora) {
+		compra = new Compra(idCompra, dni, descuento, fecha, hora);
+		System.out.println(compra);
+		añadirCompra(compra);
+	}
+	
+	public void añadirCompra(Compra compra) {
+		compras.add(compra);
+	}
+
+	public ArrayList<Compra> enseñarCompras() {
+		return compras;
+	}
+	
+	public void recogerFechaCompra(String fechaCompra) {
+		
+		compra.setFechaCompra(fechaCompra);
+	}
+	
+	public String pasarFechaCompra() {
+		String fechaCompra = compra.getFechaCompra();
+		System.out.println(fechaCompra);
+		return fechaCompra;
+	}
+	
+	public void recogerHoraCompra(String horaCompra) {
+		
+		compra.setHoraCompra(horaCompra);
+	}
+	
+	public String pasarHoraCompra() {
+		String horaCompra = compra.getHoraCompra();
+		System.out.println(horaCompra);
+		return horaCompra;
+	}
+	
+	
+	
 	
 	public boolean verificarPasoDePanel() {
 		boolean verificar = false;
@@ -334,10 +386,12 @@ public class GestionDeLaInformacion {
 		case 0:
 			ficheros.escribirFichero(entradas);
 			gestionBD.insertarEntrada(entradas);
+			gestionBD.insertarCompra(compras);
 			mensajeVolverAlInicio(v);
 			break;
 		case 1:
 			gestionBD.insertarEntrada(entradas);
+			gestionBD.insertarCompra(compras);
 			mensajeVolverAlInicio(v);
 			break;
 		}
@@ -376,6 +430,14 @@ public class GestionDeLaInformacion {
 	public int pasarIdCompra() {
 		int idCompra = compra.getIdCompra();
 		return idCompra;
+	}
+	
+	public double precioReal() {
+		double precioReal = 0;
+		for (int j = 0; j < entradas.size(); j++) {
+			precioReal = precioReal + (entradas.get(j).getPrecio() * cantidadTotalDeEntradas());
+		}
+		return precioReal;
 	}
 
 	// ---------------------------------------------------------------------------

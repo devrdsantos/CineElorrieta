@@ -2,8 +2,6 @@ package vista;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-
-import controlador.GestionBD;
 import controlador.GestionDeLaInformacion;
 import paneles.PanelBienvenida;
 import paneles.PanelDePrueba;
@@ -46,7 +44,7 @@ public class VentanaPrincipal extends JFrame {
 			break;
 		
 		case 1: 
-			setContentPane(new PanelLogin(this));
+			setContentPane(new PanelLogin(this, this.gestionINF));
 			break;
 		
 		case 2: 
@@ -67,7 +65,6 @@ public class VentanaPrincipal extends JFrame {
 		
 		case 6:
 			setContentPane(new PanelFuncionEscogida(this, this.gestionINF));
-
 			break;
 		case 7: 
 			setContentPane(new PanelResumenCompra(this, this.gestionINF));
@@ -84,8 +81,9 @@ public class VentanaPrincipal extends JFrame {
 		VentanaPrincipal v = new VentanaPrincipal();
 
 		v.setVisible(true);
-
+		
 		v.cambiarDePanel(0);
+
 
 	}
 }

@@ -1,5 +1,8 @@
 package modelo;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class Compra {
 
 	private int idCompra = 0;
@@ -66,5 +69,7 @@ public class Compra {
 		return "Compra [idCompra=" + idCompra + ", dni=" + dni + ", descuento=" + descuento + ", fechaCompra="
 				+ fechaCompra + ", horaCompra=" + horaCompra + "]";
 	}
+
+	
 
 }

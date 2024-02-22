@@ -65,7 +65,6 @@ public class VentanaPrincipal extends JFrame {
 		
 		case 6:
 			setContentPane(new PanelFuncionEscogida(this, this.gestionINF));
-
 			break;
 		case 7: 
 			setContentPane(new PanelResumenCompra(this, this.gestionINF));
@@ -84,7 +83,7 @@ public class VentanaPrincipal extends JFrame {
 		v.setVisible(true);
 		
 
-		v.cambiarDePanel(3);
+		v.cambiarDePanel(1);
 
 	}
 }

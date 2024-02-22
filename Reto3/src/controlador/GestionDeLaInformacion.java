@@ -326,7 +326,7 @@ public class GestionDeLaInformacion {
 		System.out.println(compra);
 		añadirCompra(compra);
 	}
-
+	
 	public void añadirCompra(Compra compra) {
 		compras.add(compra);
 	}
@@ -334,6 +334,30 @@ public class GestionDeLaInformacion {
 	public ArrayList<Compra> enseñarCompras() {
 		return compras;
 	}
+	
+	public void recogerFechaCompra(String fechaCompra) {
+		
+		compra.setFechaCompra(fechaCompra);
+	}
+	
+	public String pasarFechaCompra() {
+		String fechaCompra = compra.getFechaCompra();
+		System.out.println(fechaCompra);
+		return fechaCompra;
+	}
+	
+	public void recogerHoraCompra(String horaCompra) {
+		
+		compra.setHoraCompra(horaCompra);
+	}
+	
+	public String pasarHoraCompra() {
+		String horaCompra = compra.getHoraCompra();
+		System.out.println(horaCompra);
+		return horaCompra;
+	}
+	
+	
 	
 	
 	public boolean verificarPasoDePanel() {

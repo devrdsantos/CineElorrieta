@@ -4,7 +4,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -30,7 +34,7 @@ public class PanelResumenCompra extends JPanel {
 		ArrayList<Entrada> entradas = gestionINF.enseñarEntradas();
 		System.out.println(entradas);
 		gestionINF.recogerDescuento();
-//		gestionINF.crearCompra(gestionINF.pasarIdCompra(), gestionINF.pasarDNI(), gestionINF.pasarDescuento());
+		gestionINF.crearCompra(gestionINF.pasarIdCompra(), gestionINF.pasarDNI(), "0", gestionINF.pasarFechaCompra(), gestionINF.pasarHoraCompra());
 		
 		setSize(1200, 720);
 		setVisible(true);
@@ -54,11 +58,20 @@ public class PanelResumenCompra extends JPanel {
 		lblEntradas.setBounds(254, 54, 102, 34);
 		add(lblEntradas);
 
+		
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm:ss", Locale.US);
+		LocalTime horaSinFormato = LocalTime.now();
+		String hora = formato.format(horaSinFormato);;
+		String fecha =LocalDate.now() + "";
+		gestionINF.recogerFechaCompra(fecha);
+		gestionINF.recogerHoraCompra(hora);
 		// BTN PRINCIPAL -- FINALIZAR COMPRA
 		JButton btnFinalizarCompra = new JButton("Finalizar compra");
 		btnFinalizarCompra.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
+				
 				gestionINF.mensajeDeRecibo(v);
 				
 			}
@@ -257,7 +270,6 @@ public class PanelResumenCompra extends JPanel {
 		// [¡BD!] LBL PRECIO TOTAL
 		double precioTotal = precioReal - descuento;
 		DecimalFormat df = new DecimalFormat("#.00");
-		
 		
 		JLabel lblTotalValor = new JLabel();
 		lblTotalValor.setText(df.format(precioTotal) + "");

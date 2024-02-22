@@ -34,6 +34,7 @@ public class TestGestorBD {
 	static double precioPeliculaEsperada;
 	//test sala de una pelicula dependiendo del cine y pelicula
 	static int salaEsperada;
+	static int salaEsperada1;
 	
 
 	@BeforeClass
@@ -89,6 +90,7 @@ public class TestGestorBD {
 		 
 		//test sala de una pelicula dependiendo del cine y pelicula
 		 salaEsperada = 1;
+		 salaEsperada1 = 2; 
 		
 	}
 
@@ -155,14 +157,17 @@ public class TestGestorBD {
 	@Test
 	public void salaDeUnaPeliculaDependiendoDelCineYPelicula() {
 		int salaPelicula = gestion.sacarInformacionDeUnaPeliculaDelCineSeleccionado(1, "Cine Zubiarte").get(0).getIdsala();
-		
+		int salaPelicula1 = gestion.sacarInformacionDeUnaPeliculaDelCineSeleccionado(1, "Cine Zubiarte").get(1).getIdsala();
 		assertEquals(salaEsperada, salaPelicula);
+		assertEquals(salaEsperada1, salaPelicula1);
 	}
 	
 	@Test
 	public void verificarLogin() throws Exception  {
 		
 			assertTrue(gestion.verificarLogin("12345678A", "123456", new VentanaPrincipal()));
+			assertTrue(gestion.verificarLogin("23456789A", "123456", new VentanaPrincipal()));
+			assertTrue(gestion.verificarLogin("12345678K", "123456", new VentanaPrincipal()));
 			
 		
 		

@@ -195,10 +195,8 @@ public class PanelResumenCompra extends JPanel {
 		add(lblPrecioReal);
 		// [¡BD!] LBL VALOR REAL
 
-		precioReal = 0;
-		for (int j = 0; j < entradas.size(); j++) {
-			precioReal = precioReal + (entradas.get(j).getPrecio() * gestionINF.cantidadTotalDeEntradas());
-		}
+		precioReal = gestionINF.precioReal();
+		
 
 		JLabel lblValorReal = new JLabel();
 		lblValorReal.setText(precioReal + "");

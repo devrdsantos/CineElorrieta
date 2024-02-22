@@ -407,6 +407,14 @@ public class GestionDeLaInformacion {
 		int idCompra = compra.getIdCompra();
 		return idCompra;
 	}
+	
+	public double precioReal() {
+		double precioReal = 0;
+		for (int j = 0; j < entradas.size(); j++) {
+			precioReal = precioReal + (entradas.get(j).getPrecio() * cantidadTotalDeEntradas());
+		}
+		return precioReal;
+	}
 
 	// ---------------------------------------------------------------------------
 

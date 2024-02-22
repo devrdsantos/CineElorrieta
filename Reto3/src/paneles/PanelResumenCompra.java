@@ -58,11 +58,16 @@ public class PanelResumenCompra extends JPanel {
 		lblEntradas.setBounds(254, 54, 102, 34);
 		add(lblEntradas);
 
-		
-		DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm:ss", Locale.US);
+		//Meterlo en un metodo!!!!!!!
+		//---------------------------------------------------------------------------------------
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm", Locale.US);
+		DateTimeFormatter formato1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalTime horaSinFormato = LocalTime.now();
+		LocalDate fechaSinFormato = LocalDate.now();
 		String hora = formato.format(horaSinFormato);;
-		String fecha =LocalDate.now() + "";
+		String fecha =formato1.format(fechaSinFormato);
+		//----------------------------------------------------------------------------------------
+		
 		gestionINF.recogerFechaCompra(fecha);
 		gestionINF.recogerHoraCompra(hora);
 		// BTN PRINCIPAL -- FINALIZAR COMPRA

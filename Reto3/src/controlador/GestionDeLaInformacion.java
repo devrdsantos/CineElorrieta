@@ -405,6 +405,7 @@ public class GestionDeLaInformacion {
 		switch (resp) {
 
 		case 0:
+			entradas.removeAll(entradas);
 			v.cambiarDePanel(1);
 			break;
 		case 1:

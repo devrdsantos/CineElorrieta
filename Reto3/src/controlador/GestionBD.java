@@ -32,7 +32,7 @@ public class GestionBD {
 	 */
 	public GestionBD() {
 		iniciarconexion();
-		
+
 	}
 
 	/*********************
@@ -279,11 +279,10 @@ public class GestionBD {
 			Statement consulta = conexion.createStatement();
 			for (int i = 0; i < entradas.size(); i++) {
 				String insert = "INSERT INTO entrada (`fecha`, `nombrepelicula`, `horario`, `idsala`, `precio`, `cine`, `cantidad`, `idcompra`) VALUES ('"
-						+ entradas.get(i).getFecha() + "','"
-						+ entradas.get(i).getNombrePelicula() + "','" + entradas.get(i).getHorario() + "', '"
-						+ entradas.get(i).getIdsala() + "','" + entradas.get(i).getPrecio() + "','"
-						+ entradas.get(i).getCine() + "','" + entradas.get(i).getCantidad() + "','"
-						+ entradas.get(i).getIdCompra() + "')";
+						+ entradas.get(i).getFecha() + "','" + entradas.get(i).getNombrePelicula() + "','"
+						+ entradas.get(i).getHorario() + "', '" + entradas.get(i).getIdsala() + "','"
+						+ entradas.get(i).getPrecio() + "','" + entradas.get(i).getCine() + "','"
+						+ entradas.get(i).getCantidad() + "','" + entradas.get(i).getIdCompra() + "')";
 				consulta.executeUpdate(insert);
 			}
 
@@ -334,8 +333,7 @@ public class GestionBD {
 
 			while (resultadoConsulta.next()) {
 				idCompra.add(new Compra(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
-						resultadoConsulta.getString(3), resultadoConsulta.getString(4),
-						resultadoConsulta.getString(5)));
+						resultadoConsulta.getString(3), resultadoConsulta.getString(4), resultadoConsulta.getString(5)));
 			}
 			consultaPreparada.close();
 		} catch (SQLException e) {
@@ -345,14 +343,15 @@ public class GestionBD {
 
 		return idCompra;
 	}
-	
+
 	public void insertarCompra(ArrayList<Compra> compras) {
 		try {
 			Statement consulta = conexion.createStatement();
-			for (int i = 0; i < compras.size(); i++) {
-				String insert = "INSERT INTO entrada VALUES ()";
-				consulta.executeUpdate(insert);
-			}
+
+//			String insert = "INSERT INTO compra VALUES ('" + compras.get(0).getIdCompra() + "','"
+//					+ compras.get(0).getDni() + "','" + compras.get(0).getDescuento() + "')";
+			String insert = "INSERT INTO compra VALUES ('" + compras + "')";
+			consulta.executeUpdate(insert);
 
 			JOptionPane.showMessageDialog(null, "Compra hecha");
 

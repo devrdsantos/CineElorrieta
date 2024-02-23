@@ -23,13 +23,6 @@ public class VentanaPrincipal extends JFrame {
 		setVisible(true);
 		setTitle("Cines ESA");
 		setResizable(false);
-
-		/**
-		 * Logo de la ventana
-		 */
-		String rutaLogo = "src\\ventanas\\logoProyecto.png";
-		ImageIcon icono = new ImageIcon(rutaLogo);
-		setIconImage(icono.getImage());
 	}
 
 	/**

@@ -20,7 +20,6 @@ public class PanelLogin extends JPanel {
 	private JPasswordField passwordField;
 	private JTextField textFieldDNI;
 	private GestionBD gestionBD = new GestionBD();
-	private Compra compra;
 	
 	public PanelLogin(VentanaPrincipal v , GestionDeLaInformacion gestionINF) {
 		setSize(1200, 720);

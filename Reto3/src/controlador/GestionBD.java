@@ -7,10 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Iterator;
-
 import javax.swing.JOptionPane;
-
 import modelo.Cine;
 import modelo.Compra;
 import modelo.Entrada;

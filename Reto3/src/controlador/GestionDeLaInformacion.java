@@ -308,30 +308,30 @@ public class GestionDeLaInformacion {
 		} else {
 			compra.setDescuento(descuento);
 		}
-		
+
 	}
-	
+
 	public String pasarDescuento() {
 		String descuento = compra.getDescuento();
 //		System.out.println(descuento);
 		return descuento;
 	}
-	
+
 	public void recogerDNI(String dni) {
 		compra.setDni(dni);
 	}
-	
+
 	public String pasarDNI() {
 		String dni = compra.getDni();
 		return dni;
 	}
-	
+
 	public void crearCompra(int idCompra, String dni, String descuento, String fecha, String hora) {
 		compra = new Compra(idCompra, dni, descuento, fecha, hora);
 //		System.out.println(compra);
 		añadirCompra(compra);
 	}
-	
+
 	public void añadirCompra(Compra compra) {
 		compras.add(compra);
 	}
@@ -339,30 +339,27 @@ public class GestionDeLaInformacion {
 	public ArrayList<Compra> enseñarCompras() {
 		return compras;
 	}
-	
+
 	public void recogerFechaCompra(String fechaCompra) {
 		compra.setFechaCompra(fechaCompra);
 	}
-	
+
 	public String pasarFechaCompra() {
 		String fechaCompra = compra.getFechaCompra();
 //		System.out.println(fechaCompra);
 		return fechaCompra;
 	}
-	
+
 	public void recogerHoraCompra(String horaCompra) {
 		compra.setHoraCompra(horaCompra);
 	}
-	
+
 	public String pasarHoraCompra() {
 		String horaCompra = compra.getHoraCompra();
 //		System.out.println(horaCompra);
 		return horaCompra;
 	}
-	
-	
-	
-	
+
 	public boolean verificarPasoDePanel() {
 		boolean verificar = false;
 		if (entradas.isEmpty()) {
@@ -408,7 +405,7 @@ public class GestionDeLaInformacion {
 		switch (resp) {
 
 		case 0:
-			entradas.removeAll(entradas);
+			reinicio();
 			v.cambiarDePanel(1);
 			break;
 		case 1:
@@ -428,14 +425,14 @@ public class GestionDeLaInformacion {
 			idCompra++;
 			compra.setIdCompra(idCompra);
 //			System.out.println(idCompra);
-		}	
+		}
 	}
-	
+
 	public int pasarIdCompra() {
 		int idCompra = compra.getIdCompra();
 		return idCompra;
 	}
-	
+
 	public double precioReal() {
 		double precioReal = 0;
 		for (int j = 0; j < entradas.size(); j++) {
@@ -443,19 +440,39 @@ public class GestionDeLaInformacion {
 		}
 		return precioReal;
 	}
-	
+
 	public void formatoParaFecha(LocalDate fechaSinFormato) {
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		String fecha =formato.format(fechaSinFormato);
+		String fecha = formato.format(fechaSinFormato);
 		recogerFechaCompra(fecha);
 	}
-	
+
 	public void formatoParaHora(LocalTime horaSinFormato) {
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm", Locale.US);
 		String hora = formato.format(horaSinFormato);
 		recogerHoraCompra(hora);
 	}
-	
+
+	public void reinicio() {
+		entradas.removeAll(entradas);
+	}
+
+	public void verPeliculasRepetidas(String nombrePelicula, VentanaPrincipal v, String nombreCine) {
+		System.out.println(nombreCine);
+		if (entradas.isEmpty()) {
+			v.cambiarDePanel(5);
+		} else {
+			for (int i = 0; i < entradas.size(); i++) {
+				if (entradas.get(i).getNombrePelicula().equals(nombrePelicula)
+						&& entradas.get(i).getCine().equals(nombreCine)) {
+					JOptionPane.showMessageDialog(null, "Ya has elegido " + entradas.get(i).getNombrePelicula()
+							+ " para el " + entradas.get(i).getCine());
+				} else {
+					v.cambiarDePanel(5);
+				}
+			}
+		}
+	}
 
 	// ---------------------------------------------------------------------------
 

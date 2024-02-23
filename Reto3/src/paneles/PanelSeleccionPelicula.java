@@ -128,8 +128,10 @@ public class PanelSeleccionPelicula extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				gestionINF.recogerPeliculaSeleccionada(peli.get(peliActual).getNombrePelicula());
 				gestionINF.recogerIdPeliculaSeleccionada(peli.get(peliActual).getIdPelicula());
+				gestionINF.verPeliculasRepetidas(peli.get(peliActual).getNombrePelicula(), v, gestionINF.pasarNombreCine());
 				
-				v.cambiarDePanel(5);
+				
+//				v.cambiarDePanel(5);
 				
 			}
 		});

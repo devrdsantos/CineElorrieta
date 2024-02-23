@@ -45,7 +45,7 @@ public class GestionDeLaInformacion {
 		compras = new ArrayList<Compra>();
 	}
 
-	/*
+	/**
 	 * metodo recojerInformacionFormulario param dniFormulario param passFormulario
 	 * param apellidoFormulario param sexoFormulario param VentanaPrincipal
 	 * 
@@ -110,11 +110,21 @@ public class GestionDeLaInformacion {
 		gestionBD.insertUsuario(datosUsuario, v);
 	}
 
+	/**
+	 * almacena los cines en un arraylist de tipo Cine, utilizando el metodo sacarCines de GestionBD
+	 * @return cines
+	 */
 	public ArrayList<Cine> almacenarCines() {
 		ArrayList<Cine> cines = gestionBD.sacarCines();
 		return cines;
 	}
 
+	/**
+	 * metodo que funciona para encriptar la contraseña
+	 * @param mensaje
+	 * @return devuelve la contraseña encriptada en formato string
+	 * @throws Exception
+	 */
 	public String encriptar(String mensaje) throws Exception {
 		Key claveAES = new SecretKeySpec(CLAVE_ENCRIPTADA.getBytes(), "AES");
 		Cipher cipher = Cipher.getInstance("AES");
@@ -125,6 +135,12 @@ public class GestionDeLaInformacion {
 		return Base64.getEncoder().encodeToString(mensajeEncriptado);
 	}
 
+	/**
+	 * metodo que funciona para desencriptar la contraseña
+	 * @param mensajeEncriptado
+	 * @return devuelve la contraseña desencriptada
+	 * @throws Exception
+	 */
 	public String desencriptar(String mensajeEncriptado) throws Exception {
 
 		byte[] mensajeBytes = Base64.getDecoder().decode(mensajeEncriptado);
@@ -140,56 +156,89 @@ public class GestionDeLaInformacion {
 		return desencriptado;
 	}
 
-	/*
-	 * DIRIA QUE NO ES NECESARIO PASAR DE UN METODO A OTRO!!
-	 */
-
+/**
+ * Metodo que sirve para colocarle el nombre al cine
+ * @param cineSeleccionado
+ */
 	public void recogerCineSeleccionado(String cineSeleccionado) {
 
 		cine.setNombreCine(cineSeleccionado);
 	}
+	
+	/**
+	 * Metodo que sirve para pasar el nombre del cine
+	 * @return
+	 */
 
 	public String pasarNombreCine() {
 		String nombreCine = cine.getNombreCine();
 		return nombreCine;
 	}
 
+	/**
+	 * metodo que sirve para colocarle el nombre a la pelicula
+	 * @param peliculaSeleccionada
+	 */
 	public void recogerPeliculaSeleccionada(String peliculaSeleccionada) {
 
 		pelicula.setNombrePelicula(peliculaSeleccionada);
 	}
 
+	/**
+	 * Metodo que sirve para pasar el nombre de la pelicula
+	 * @return
+	 */
 	public String pasarNombrePelicula() {
 		String nombrePelicula = pelicula.getNombrePelicula();
 		return nombrePelicula;
 	}
 
+	/**
+	 * metodo que sirve para colocarle la id a la pelicula
+	 * @param idPelicula
+	 */
 	public void recogerIdPeliculaSeleccionada(int idPelicula) {
 		pelicula.setIdPelicula(idPelicula);
 	}
 
+	/**
+	 * metodo que sirve para pasar el id de la pelicula
+	 * @return idPelicula
+	 */
 	public int pasarIdPeliculaSeleccionada() {
 		int idPelicula = pelicula.getIdPelicula();
 		return idPelicula;
 	}
-
+/**
+ * metodo que sirve para almacenar las peliculas que sacamos de la base de datos en un arraylist llamado peliculas
+ * @return arraylist peliculas
+ */
 	public ArrayList<Pelicula> almacenarPeliculas() {
 		ArrayList<Pelicula> peliculas = gestionBD.sacarPeliculasDependiendoDelCineSeleccionado(pasarNombreCine());
 		return peliculas;
 	}
-
+/**
+ * metodo que sirve para sacar las funciones de un cine y una pelicula determinada
+ * @param idPelicula
+ * @param nombreCine
+ * @return arraylist funciones
+ */
 	public ArrayList<Funcion> almacenarFunciones(int idPelicula, String nombreCine) {
 		ArrayList<Funcion> funciones = gestionBD.sacarInformacionDeUnaPeliculaDelCineSeleccionado(idPelicula,
 				nombreCine);
 		return funciones;
 	}
 
-	// Metodo para crear el idEntrada
+	/**
+	 * Metodo para recoger la fecha de la compra
+	 * @param fecha
+	 */
 
 	public void recogerFechaSeleccionada(String fecha) {
 		funcion.setFechafuncion(fecha);
 	}
-
+	
+	
 	public String pasarFechaSeleccionada() {
 		String fecha = funcion.getFechafuncion();
 		return fecha;

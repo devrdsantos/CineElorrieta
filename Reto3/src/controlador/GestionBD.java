@@ -296,30 +296,7 @@ public class GestionBD {
 		}
 	}
 
-	public ArrayList<Entrada> sacarIdEntrada() {
-		ArrayList<Entrada> idEntrada = new ArrayList<Entrada>();
-		try {
-
-			String query = "SELECT * FROM entrada ORDER BY identrada DESC";
-
-			PreparedStatement consultaPreparada = conexion.prepareStatement(query);
-
-			ResultSet resultadoConsulta = consultaPreparada.executeQuery();
-
-			while (resultadoConsulta.next()) {
-				idEntrada.add(new Entrada(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
-						resultadoConsulta.getString(3), resultadoConsulta.getString(4), resultadoConsulta.getInt(5),
-						resultadoConsulta.getDouble(6), resultadoConsulta.getString(7), resultadoConsulta.getInt(8),
-						resultadoConsulta.getInt(9)));
-			}
-			consultaPreparada.close();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
-
-		return idEntrada;
-	}
+	
 
 	public ArrayList<Compra> sacarIdCompra() {
 		ArrayList<Compra> idCompra = new ArrayList<Compra>();

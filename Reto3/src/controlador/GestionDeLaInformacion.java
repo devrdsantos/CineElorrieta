@@ -719,8 +719,6 @@ public class GestionDeLaInformacion {
 
 //			System.out.println(idCompra);
 
-			System.out.println(idCompra);
-
 		}
 	}
 

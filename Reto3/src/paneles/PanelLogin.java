@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import controlador.GestionBD;
 import controlador.GestionDeLaInformacion;
-import modelo.Compra;
 import vista.VentanaPrincipal;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -23,6 +22,7 @@ public class PanelLogin extends JPanel {
 	
 	
 	public PanelLogin(VentanaPrincipal v , GestionDeLaInformacion gestionINF) {
+		gestionINF.generarIdCompra();
 		setSize(1200, 720);
 		setVisible(true);
 		setLayout(null);

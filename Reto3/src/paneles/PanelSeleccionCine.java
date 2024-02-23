@@ -28,8 +28,8 @@ public class PanelSeleccionCine extends JPanel {
 //		int idEntrada = gestionINF.generarIdEntrada();
 //		System.out.println(idEntrada);
 		
-		//PARA LA ENTREGA, PASARLO AL PANEL LOGIN!!!!!!
-		gestionINF.generarIdCompra();
+		
+		
 		
 		setSize(1200, 720);
 		setVisible(true);

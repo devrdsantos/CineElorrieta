@@ -7,21 +7,21 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
-import java.util.Date;
+
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
-import com.toedter.calendar.JDateChooser;
+
 import controlador.GestionDeLaInformacion;
 import modelo.Entrada;
-import modelo.Funcion;
+
 import vista.VentanaPrincipal;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
+
 
 public class PanelDePrueba extends JPanel {
 

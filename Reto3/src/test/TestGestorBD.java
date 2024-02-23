@@ -4,7 +4,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 
 import org.junit.BeforeClass;
@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import controlador.GestionBD;
 import modelo.Cine;
-import modelo.Funcion;
+
 import modelo.Pelicula;
 import vista.VentanaPrincipal;
 

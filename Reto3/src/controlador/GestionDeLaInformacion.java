@@ -111,7 +111,9 @@ public class GestionDeLaInformacion {
 	}
 
 	/**
-	 * almacena los cines en un arraylist de tipo Cine, utilizando el metodo sacarCines de GestionBD
+	 * almacena los cines en un arraylist de tipo Cine, utilizando el metodo
+	 * sacarCines de GestionBD
+	 * 
 	 * @return cines
 	 */
 	public ArrayList<Cine> almacenarCines() {
@@ -121,6 +123,7 @@ public class GestionDeLaInformacion {
 
 	/**
 	 * metodo que funciona para encriptar la contraseña
+	 * 
 	 * @param mensaje
 	 * @return devuelve la contraseña encriptada en formato string
 	 * @throws Exception
@@ -137,6 +140,7 @@ public class GestionDeLaInformacion {
 
 	/**
 	 * metodo que funciona para desencriptar la contraseña
+	 * 
 	 * @param mensajeEncriptado
 	 * @return devuelve la contraseña desencriptada
 	 * @throws Exception
@@ -156,17 +160,19 @@ public class GestionDeLaInformacion {
 		return desencriptado;
 	}
 
-/**
- * Metodo que sirve para colocarle el nombre al cine
- * @param cineSeleccionado
- */
+	/**
+	 * Metodo que sirve para colocarle el nombre al cine
+	 * 
+	 * @param cineSeleccionado
+	 */
 	public void recogerCineSeleccionado(String cineSeleccionado) {
 
 		cine.setNombreCine(cineSeleccionado);
 	}
-	
+
 	/**
 	 * Metodo que sirve para pasar el nombre del cine
+	 * 
 	 * @return
 	 */
 
@@ -177,6 +183,7 @@ public class GestionDeLaInformacion {
 
 	/**
 	 * metodo que sirve para colocarle el nombre a la pelicula
+	 * 
 	 * @param peliculaSeleccionada
 	 */
 	public void recogerPeliculaSeleccionada(String peliculaSeleccionada) {
@@ -186,6 +193,7 @@ public class GestionDeLaInformacion {
 
 	/**
 	 * Metodo que sirve para pasar el nombre de la pelicula
+	 * 
 	 * @return
 	 */
 	public String pasarNombrePelicula() {
@@ -195,6 +203,7 @@ public class GestionDeLaInformacion {
 
 	/**
 	 * metodo que sirve para colocarle la id a la pelicula
+	 * 
 	 * @param idPelicula
 	 */
 	public void recogerIdPeliculaSeleccionada(int idPelicula) {
@@ -203,26 +212,33 @@ public class GestionDeLaInformacion {
 
 	/**
 	 * metodo que sirve para pasar el id de la pelicula
+	 * 
 	 * @return idPelicula
 	 */
 	public int pasarIdPeliculaSeleccionada() {
 		int idPelicula = pelicula.getIdPelicula();
 		return idPelicula;
 	}
-/**
- * metodo que sirve para almacenar las peliculas que sacamos de la base de datos en un arraylist llamado peliculas
- * @return arraylist peliculas
- */
+
+	/**
+	 * metodo que sirve para almacenar las peliculas que sacamos de la base de datos
+	 * en un arraylist llamado peliculas
+	 * 
+	 * @return arraylist peliculas
+	 */
 	public ArrayList<Pelicula> almacenarPeliculas() {
 		ArrayList<Pelicula> peliculas = gestionBD.sacarPeliculasDependiendoDelCineSeleccionado(pasarNombreCine());
 		return peliculas;
 	}
-/**
- * metodo que sirve para sacar las funciones de un cine y una pelicula determinada
- * @param idPelicula
- * @param nombreCine
- * @return arraylist funciones
- */
+
+	/**
+	 * metodo que sirve para sacar las funciones de un cine y una pelicula
+	 * determinada
+	 * 
+	 * @param idPelicula
+	 * @param nombreCine
+	 * @return arraylist funciones
+	 */
 	public ArrayList<Funcion> almacenarFunciones(int idPelicula, String nombreCine) {
 		ArrayList<Funcion> funciones = gestionBD.sacarInformacionDeUnaPeliculaDelCineSeleccionado(idPelicula,
 				nombreCine);
@@ -230,47 +246,95 @@ public class GestionDeLaInformacion {
 	}
 
 	/**
-	 * Metodo para recoger la fecha de la compra
+	 * Metodo para recoger la fecha de la funcion seleccionada
+	 * 
 	 * @param fecha
 	 */
 
 	public void recogerFechaSeleccionada(String fecha) {
 		funcion.setFechafuncion(fecha);
 	}
-	
-	
+
+	/**
+	 * metodo para pasar la fecha de la funcion seleccionada
+	 * 
+	 * @return fecha
+	 */
 	public String pasarFechaSeleccionada() {
 		String fecha = funcion.getFechafuncion();
 		return fecha;
 	}
 
+	/**
+	 * metodo que recoge la fecha de la funcion seleccionada
+	 * 
+	 * @param hora
+	 */
 	public void recogerHoraSeleccionada(String hora) {
 		funcion.setHorafuncion(hora);
 	}
 
+	/**
+	 * metodo que pasa la fecha de la funcion seleccionada
+	 * 
+	 * @return hora
+	 */
 	public String pasarHoraSeleccionada() {
 		String hora = funcion.getHorafuncion();
 		return hora;
 	}
 
+	/**
+	 * metodo que asigna la id de la sala asignada (que le pasamos como parametro)
+	 * al objeto Sala
+	 * 
+	 * @param idSala
+	 */
 	public void recogerIdSalaSeleccionada(int idSala) {
 		sala.setIdSala(idSala);
 	}
 
+	/**
+	 * metodo que pasa la id de la sala asignada
+	 * 
+	 * @return idSala
+	 */
 	public int pasarIdSalaSeleccionada() {
 		int idSala = sala.getIdSala();
 		return idSala;
 	}
 
+	/**
+	 * metodo que recoge el precio de la funcion seleccionada
+	 * 
+	 * @param precio
+	 */
 	public void recogerPrecio(double precio) {
 		funcion.setPrecio(precio);
 	}
 
+	/**
+	 * metodo para pasar el precio de la funcion seleccionada
+	 */
 	public double pasarPrecio() {
 		double precio = funcion.getPrecio();
 		return precio;
 	}
 
+	/**
+	 * metodo para crear la entrada, utilizamos de base el objeto Entrada que tiene
+	 * los siguientes parametros:
+	 * 
+	 * @param idEntrada
+	 * @param fecha
+	 * @param nombrePelicula
+	 * @param horario
+	 * @param sala
+	 * @param precio
+	 * @param cine
+	 * @param cantidad
+	 * @param idCompra
+	 */
 	public void crearEntrada(int idEntrada, String fecha, String nombrePelicula, String horario, int sala,
 			double precio, String cine, int cantidad, int idCompra) {
 
@@ -279,28 +343,62 @@ public class GestionDeLaInformacion {
 		añadirEntradas(entrada);
 	}
 
+	/**
+	 * metodo que sirve para añadir la entrada al arraylist entradas(le pasamos como
+	 * parametro la entrada)
+	 * 
+	 * @param entrada
+	 */
 	public void añadirEntradas(Entrada entrada) {
 		entradas.add(entrada);
 	}
 
+	/**
+	 * metodo que devuelve el arraylist entradas
+	 * 
+	 * @return
+	 */
 	public ArrayList<Entrada> enseñarEntradas() {
 		return entradas;
 	}
 
+	/**
+	 * metodo que convierte la cantidad seleccionada como String a Int
+	 * 
+	 * @param cantidadSeleccionada
+	 */
 	public void convertirAIntCantidad(String cantidadSeleccionada) {
 		int cantidad = Integer.parseInt(cantidadSeleccionada);
 		recogerCantidadSeleccionada(cantidad);
 	}
 
+	/**
+	 * metodo que recoge la cantidad de entradas que seleccionamos y se la setea a
+	 * el objeto entrada
+	 * 
+	 * @param cantidad
+	 */
 	public void recogerCantidadSeleccionada(int cantidad) {
 		entrada.setCantidad(cantidad);
 	}
 
+	/**
+	 * metodo para pasar la cantidad de entradas seleccionadas
+	 * 
+	 * @return
+	 */
 	public int pasarCantidadSeleccionada() {
 		int cantidad = entrada.getCantidad();
 		return cantidad;
 	}
 
+	/**
+	 * Metodo para pasar la funcion seleccionada, llama a el metodo
+	 * pasarHoraSeleccionada y pasarIdSalaSeleccionada para luego crear una variable
+	 * en la cual concatena ambos resultados y devuelve la variable
+	 * 
+	 * @return horayFecha
+	 */
 	public String pasarFuncionSeleccionada() {
 		String horaSeleccionada = pasarHoraSeleccionada();
 		int salaSeleccionada = pasarIdSalaSeleccionada();
@@ -308,16 +406,34 @@ public class GestionDeLaInformacion {
 		return horaYFecha;
 	}
 
+	/**
+	 * metodo que convierte un String a double
+	 * 
+	 * @param convertir
+	 */
 	public void convertirADouble(String convertir) {
 		double precio = Double.parseDouble(convertir);
 		recogerPrecio(precio);
 	}
 
+	/**
+	 * metodo que convierte un String en int, le pasamos como parametro un string
+	 * "sala"
+	 * 
+	 * @param sala
+	 */
 	public void convertirAIntSala(String sala) {
 		int idSala = Integer.parseInt(sala);
 		recogerIdSalaSeleccionada(idSala);
 
 	}
+
+	/**
+	 * metodo que separa la funcion seleccionada con un split para mostrarla
+	 * correctamente
+	 * 
+	 * @param funcionSeleccionada
+	 */
 
 	public void separarFuncionSeleccionada(String funcionSeleccionada) {
 		String horaSeleccionada = funcionSeleccionada.split("-")[0];
@@ -328,6 +444,13 @@ public class GestionDeLaInformacion {
 
 	}
 
+	/**
+	 * metodo que calcula el descuento en el resumen de compra
+	 * 
+	 * @param precioReal
+	 * @param cantidad
+	 * @return
+	 */
 	public double descuento(double precioReal, int cantidad) {
 		double precioConDescuento = 0;
 //		int numero = entradas.size();
@@ -341,6 +464,9 @@ public class GestionDeLaInformacion {
 		return precioConDescuento;
 	}
 
+	/**
+	 * metodo que recoge el descuento y lo setea en el objeto Compra
+	 */
 	public void recogerDescuento() {
 		String descuento = null;
 		if (entradas.size() == 2) {
@@ -352,63 +478,123 @@ public class GestionDeLaInformacion {
 		} else {
 			compra.setDescuento(descuento);
 		}
-		
+
 	}
-	
+
+	/**
+	 * metodo que pasa el descuento, lo saca del objeto compra
+	 * 
+	 * @return descuento
+	 */
 	public String pasarDescuento() {
 		String descuento = compra.getDescuento();
 		System.out.println(descuento);
 		return descuento;
 	}
-	
+
+	/**
+	 * metodo que setea el dni en el objeto compra
+	 * 
+	 * @param dni
+	 */
 	public void recogerDNI(String dni) {
 		compra.setDni(dni);
 	}
-	
+
+	/**
+	 * metodo que pasa el dni de la compra
+	 * 
+	 * @return
+	 */
 	public String pasarDNI() {
 		String dni = compra.getDni();
 		return dni;
 	}
-	
+
+	/**
+	 * metodo para crear la compra, recibe como parametro los atributos del objeto
+	 * Compra
+	 * 
+	 * @param idCompra
+	 * @param dni
+	 * @param descuento
+	 * @param fecha
+	 * @param hora
+	 */
 	public void crearCompra(int idCompra, String dni, String descuento, String fecha, String hora) {
 		compra = new Compra(idCompra, dni, descuento, fecha, hora);
 		System.out.println(compra);
 		añadirCompra(compra);
 	}
-	
+
+	/**
+	 * metodo que añade el objeto compra al arraylist compras
+	 * 
+	 * @param compra
+	 */
 	public void añadirCompra(Compra compra) {
 		compras.add(compra);
 	}
 
+	/**
+	 * metodo que muestra las compras...
+	 * 
+	 * @return arraylist compras
+	 */
 	public ArrayList<Compra> enseñarCompras() {
 		return compras;
 	}
-	
+
+	/**
+	 * metodo que setea la fecha de la compra en el objeto compra
+	 * 
+	 * @param fechaCompra
+	 */
 	public void recogerFechaCompra(String fechaCompra) {
-		
+
 		compra.setFechaCompra(fechaCompra);
 	}
-	
+
+	/**
+	 * metodo que pasa la fecha de la compra
+	 * 
+	 * @return fechaCompra
+	 */
 	public String pasarFechaCompra() {
 		String fechaCompra = compra.getFechaCompra();
-		System.out.println(fechaCompra);
+		// System.out.println(fechaCompra);
 		return fechaCompra;
 	}
-	
+
+	/**
+	 * metodo que setea la hora compra al objeto compra
+	 * 
+	 * @param horaCompra
+	 */
 	public void recogerHoraCompra(String horaCompra) {
-		
+
 		compra.setHoraCompra(horaCompra);
 	}
-	
+
+	/**
+	 * metodo que pasa la horaCompra, la saca del objeto compra
+	 * 
+	 * @return
+	 */
 	public String pasarHoraCompra() {
 		String horaCompra = compra.getHoraCompra();
-		System.out.println(horaCompra);
+		// System.out.println(horaCompra);
 		return horaCompra;
 	}
-	
-	
-	
-	
+
+	/**
+	 * metodo que verifica si debe cambiar el panel en el panel de seleccion de cine
+	 * al apretar el boton finalizar o si debe llevarte al resumen de compra,
+	 * comprueba si hay entradas seleccionadas, si no hay entradas te cierra la
+	 * aplicacion, si hay entradas te lleva al resumen de compra
+	 * 
+	 * @return verificar
+	 */
 	public boolean verificarPasoDePanel() {
 		boolean verificar = false;
 		if (entradas.isEmpty()) {
@@ -419,6 +605,11 @@ public class GestionDeLaInformacion {
 		}
 	}
 
+	/**
+	 * metodo que calcula la cantidad total de entradas
+	 * 
+	 * @return
+	 */
 	public int cantidadTotalDeEntradas() {
 		int cantidadTotal = 0;
 		for (int i = 0; i < entradas.size(); i++) {
@@ -427,6 +618,13 @@ public class GestionDeLaInformacion {
 		return cantidadTotal;
 	}
 
+	/**
+	 * metodo que te muestra un mensaje si quieres una copia del recibo, si la
+	 * respuesta es si te sobreescribe el fichero Recibo.txt con los datos de la
+	 * compra, si respondes que no, no se escribe el fichero
+	 * 
+	 * @param v
+	 */
 	public void mensajeDeRecibo(VentanaPrincipal v) {
 		int resp = JOptionPane.showConfirmDialog(null, "Quiere una copia del recibo? ", "Recibo",
 				JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
@@ -446,8 +644,12 @@ public class GestionDeLaInformacion {
 		}
 	}
 
-	// Inecesario este metodo si pones un boton de salir de la aplicacion en el
-	// panelLogin
+	/**
+	 * metodo que pregunta por si quieres volver al inicio, si la respuesta es si te
+	 * manda al login, si es no te cierra el programa
+	 * 
+	 * @param v
+	 */
 	public void mensajeVolverAlInicio(VentanaPrincipal v) {
 		int resp = JOptionPane.showConfirmDialog(null, "Quiere volver a la pantalla de inicio? ", "Pantalla de inicio",
 				JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
@@ -473,14 +675,14 @@ public class GestionDeLaInformacion {
 			idCompra++;
 			compra.setIdCompra(idCompra);
 			System.out.println(idCompra);
-		}	
+		}
 	}
-	
+
 	public int pasarIdCompra() {
 		int idCompra = compra.getIdCompra();
 		return idCompra;
 	}
-	
+
 	public double precioReal() {
 		double precioReal = 0;
 		for (int j = 0; j < entradas.size(); j++) {

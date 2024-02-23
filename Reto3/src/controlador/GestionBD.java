@@ -24,7 +24,7 @@ public class GestionBD {
 	 */
 	private Connection conexion;
 	private GestionDeLaInformacion gestionINF;
-	
+
 	// private VentanaPrincipal ventana = new VentanaPrincipal();
 
 	/**
@@ -95,8 +95,7 @@ public class GestionBD {
 	 * 
 	 */
 	public boolean verificarLogin(String dni, String pass, VentanaPrincipal v) throws Exception {
-		
-		
+
 		boolean verificarLogin = false;
 
 		try {
@@ -124,10 +123,10 @@ public class GestionBD {
 				JOptionPane.showMessageDialog(null, "\nSe ha iniciado sesión");
 				v.cambiarDePanel(3);
 				verificarLogin = true;
-				
+
 			} else {
 				JOptionPane.showMessageDialog(null, "Los valores ingresados no son correctos");
-				
+
 			}
 			// Una vez que ejecuta la consulta la cierra.
 			// System.out.println("Cerrando consulta...");
@@ -207,6 +206,14 @@ public class GestionBD {
 		return cines;
 	}
 
+	/**
+	 * Metodo para sacar la password encriptada y desencriptarla
+	 * 
+	 * @param dni como parametro le pasamos el dni
+	 * @return password desencriptada
+	 * @throws Exception
+	 */
+
 	public String sacarPasswordEncriptada(String dni) throws Exception {
 		gestionINF = new GestionDeLaInformacion();
 		String passDesencriptada = "";
@@ -226,6 +233,16 @@ public class GestionBD {
 		}
 		return passDesencriptada;
 	}
+
+	/**
+	 * Metodo que saca informacion de una pelicula dependiendo el cine y el id de la
+	 * pelicula para luego almacenarla en un objeto funcion que almacena en un
+	 * arraylist de tipo Funcion llamado funciones devuelve el arraylist funciones
+	 * 
+	 * @param idPelicula
+	 * @param nombreCine
+	 * @return arraylist funciones
+	 */
 
 	public ArrayList<Funcion> sacarInformacionDeUnaPeliculaDelCineSeleccionado(int idPelicula, String nombreCine) {
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
@@ -251,6 +268,14 @@ public class GestionBD {
 		return funciones;
 	}
 
+	/**
+	 * Metodo que saca las peliculas dependiendo del cine que hayas seleccionado y
+	 * lo almacena en un arraylist de tipo Pelicula llamado peliculas
+	 * 
+	 * @param cineSeleccionado como parametro le pasamos el cine que seleccionamos
+	 *                         previamente
+	 * @return arraylist peliculas
+	 */
 	public ArrayList<Pelicula> sacarPeliculasDependiendoDelCineSeleccionado(String cineSeleccionado) {
 		ArrayList<Pelicula> peliculas = new ArrayList<Pelicula>();
 		try {
@@ -274,6 +299,12 @@ public class GestionBD {
 		return peliculas;
 	}
 
+	/**
+	 * metodo que recibe como parametro un arrayList de tipo Entrada, lo recorre y
+	 * inserta en la bdd los objetos Entrada que tenga el arraylist
+	 * 
+	 * @param entradas
+	 */
 	public void insertarEntrada(ArrayList<Entrada> entradas) {
 		try {
 			Statement consulta = conexion.createStatement();
@@ -296,8 +327,12 @@ public class GestionBD {
 		}
 	}
 
-	
-
+	/**
+	 * metodo que trae todas las compras de la bdd por la idcompra, luego añade esas
+	 * compras a un arraylist llamado idCompra y devuelve el arraylist idCompra
+	 * 
+	 * @return arraylist idCompra
+	 */
 	public ArrayList<Compra> sacarIdCompra() {
 		ArrayList<Compra> idCompra = new ArrayList<Compra>();
 		try {
@@ -310,7 +345,8 @@ public class GestionBD {
 
 			while (resultadoConsulta.next()) {
 				idCompra.add(new Compra(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
-						resultadoConsulta.getString(3), resultadoConsulta.getString(4), resultadoConsulta.getString(5)));
+						resultadoConsulta.getString(3), resultadoConsulta.getString(4),
+						resultadoConsulta.getString(5)));
 			}
 			consultaPreparada.close();
 		} catch (SQLException e) {
@@ -321,12 +357,18 @@ public class GestionBD {
 		return idCompra;
 	}
 
+	/**
+	 * Metodo que inserta la compra en la bdd
+	 * recibe como parametro un arraylist de tipo Compra
+	 * @param compras
+	 */
 	public void insertarCompra(ArrayList<Compra> compras) {
 		try {
 			Statement consulta = conexion.createStatement();
 
 			String insert = "INSERT INTO compra VALUES ('" + compras.get(0).getIdCompra() + "','"
-					+ compras.get(0).getDni() + "','" + compras.get(0).getDescuento() + "','" + compras.get(0).getFechaCompra() + "','" + compras.get(0).getHoraCompra() + "')";
+					+ compras.get(0).getDni() + "','" + compras.get(0).getDescuento() + "','"
+					+ compras.get(0).getFechaCompra() + "','" + compras.get(0).getHoraCompra() + "')";
 			consulta.executeUpdate(insert);
 
 			JOptionPane.showMessageDialog(null, "Compra hecha");

@@ -6,15 +6,10 @@ import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Locale;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
-
 import controlador.GestionDeLaInformacion;
 import modelo.Entrada;
 import vista.VentanaPrincipal;
@@ -27,12 +22,10 @@ import javax.swing.JSeparator;
 public class PanelResumenCompra extends JPanel {
 
 	private double precioReal;
-//	private GestionBD gestionBD = new GestionBD();
 	
 	public PanelResumenCompra (VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		
 		ArrayList<Entrada> entradas = gestionINF.enseñarEntradas();
-		System.out.println(entradas);
 		gestionINF.recogerDescuento();
 		gestionINF.crearCompra(gestionINF.pasarIdCompra(), gestionINF.pasarDNI(), gestionINF.pasarDescuento(), gestionINF.pasarFechaCompra(), gestionINF.pasarHoraCompra());
 		

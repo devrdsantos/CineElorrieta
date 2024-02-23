@@ -149,7 +149,6 @@ public class GestionDeLaInformacion {
 	 */
 
 	public void recogerCineSeleccionado(String cineSeleccionado) {
-
 		cine.setNombreCine(cineSeleccionado);
 	}
 
@@ -231,7 +230,6 @@ public class GestionDeLaInformacion {
 
 //		System.out.println(cantidad);
 		entrada = new Entrada(idEntrada, fecha, nombrePelicula, horario, sala, precio, cine, cantidad, idCompra);
-//		System.out.println(entrada);
 		añadirEntradas(entrada);
 	}
 
@@ -288,10 +286,10 @@ public class GestionDeLaInformacion {
 		double precioConDescuento = 0;
 //		int numero = entradas.size();
 		if (entradas.size() == 2) {
-			precioConDescuento = ((precioReal * cantidad) * 20) / 100;
+			precioConDescuento = (precioReal * 20) / 100;
 			return precioConDescuento;
 		} else if (entradas.size() >= 3) {
-			precioConDescuento = ((precioReal * cantidad) * 30) / 100;
+			precioConDescuento = (precioReal * 30) / 100;
 			return precioConDescuento;
 		}
 		return precioConDescuento;
@@ -433,10 +431,18 @@ public class GestionDeLaInformacion {
 		return idCompra;
 	}
 
+	public double precioTotalCalculado() {
+		double precioTotal = 0;
+		for (int j = 0; j < entradas.size(); j++) {
+			precioTotal = entradas.get(j).getPrecio() + precioTotal;
+		}
+		return precioTotal;
+	}
+	
 	public double precioReal() {
 		double precioReal = 0;
 		for (int j = 0; j < entradas.size(); j++) {
-			precioReal = precioReal + (entradas.get(j).getPrecio() * cantidadTotalDeEntradas());
+			precioReal = precioReal + (precioTotalCalculado() * pasarCantidadSeleccionada());
 		}
 		return precioReal;
 	}
@@ -458,7 +464,6 @@ public class GestionDeLaInformacion {
 	}
 
 	public void verPeliculasRepetidas(String nombrePelicula, VentanaPrincipal v, String nombreCine) {
-		System.out.println(nombreCine);
 		if (entradas.isEmpty()) {
 			v.cambiarDePanel(5);
 		} else {
@@ -473,13 +478,5 @@ public class GestionDeLaInformacion {
 			}
 		}
 	}
-
-	// ---------------------------------------------------------------------------
-
-//	// [GET] - - RECOGE SALA Y HORA
-//		public void recogerFuncionSeleccionada(String horaSeleccionada, int salaSeleccionada) {
-//			funcion.setHorafuncion(horaSeleccionada);
-//			funcion.setIdsala(salaSeleccionada);
-//		}
 
 }

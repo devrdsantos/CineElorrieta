@@ -286,13 +286,10 @@ public class GestionBD {
 				consulta.executeUpdate(insert);
 			}
 
-			JOptionPane.showMessageDialog(null, "Entrada hecha");
-
 			consulta.close();
 
 		} catch (Exception e) {
-			System.out.println(e);
-//			JOptionPane.showMessageDialog(null, "Campos inválidos");
+			JOptionPane.showMessageDialog(null, "Campos inválidos");
 		}
 	}
 
@@ -348,12 +345,9 @@ public class GestionBD {
 		try {
 			Statement consulta = conexion.createStatement();
 
-//			String insert = "INSERT INTO compra VALUES ('" + compras.get(0).getIdCompra() + "','"
-//					+ compras.get(0).getDni() + "','" + compras.get(0).getDescuento() + "')";
-			String insert = "INSERT INTO compra VALUES ('" + compras + "')";
+			String insert = "INSERT INTO compra VALUES ('" + compras.get(0).getIdCompra() + "','"
+					+ compras.get(0).getDni() + "','" + compras.get(0).getDescuento() + "','" + compras.get(0).getFechaCompra() + "','" + compras.get(0).getHoraCompra() + "')";
 			consulta.executeUpdate(insert);
-
-			JOptionPane.showMessageDialog(null, "Compra hecha");
 
 			consulta.close();
 

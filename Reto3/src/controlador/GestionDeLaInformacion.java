@@ -1,8 +1,12 @@
 package controlador;
 
 import java.security.Key;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.crypto.Cipher;
@@ -145,7 +149,6 @@ public class GestionDeLaInformacion {
 	 */
 
 	public void recogerCineSeleccionado(String cineSeleccionado) {
-
 		cine.setNombreCine(cineSeleccionado);
 	}
 
@@ -225,8 +228,8 @@ public class GestionDeLaInformacion {
 	public void crearEntrada(int idEntrada, String fecha, String nombrePelicula, String horario, int sala,
 			double precio, String cine, int cantidad, int idCompra) {
 
+//		System.out.println(cantidad);
 		entrada = new Entrada(idEntrada, fecha, nombrePelicula, horario, sala, precio, cine, cantidad, idCompra);
-		System.out.println(entrada);
 		añadirEntradas(entrada);
 	}
 
@@ -283,17 +286,17 @@ public class GestionDeLaInformacion {
 		double precioConDescuento = 0;
 //		int numero = entradas.size();
 		if (entradas.size() == 2) {
-			precioConDescuento = ((precioReal * cantidad) * 20) / 100;
+			precioConDescuento = (precioReal * 20) / 100;
 			return precioConDescuento;
 		} else if (entradas.size() >= 3) {
-			precioConDescuento = ((precioReal * cantidad) * 30) / 100;
+			precioConDescuento = (precioReal * 30) / 100;
 			return precioConDescuento;
 		}
 		return precioConDescuento;
 	}
 
 	public void recogerDescuento() {
-		String descuento = null;
+		String descuento = "";
 		if (entradas.size() == 2) {
 			descuento = "20%";
 			compra.setDescuento(descuento);
@@ -303,27 +306,27 @@ public class GestionDeLaInformacion {
 		} else {
 			compra.setDescuento(descuento);
 		}
-		
+
 	}
-	
+
 	public String pasarDescuento() {
 		String descuento = compra.getDescuento();
-		System.out.println(descuento);
+//		System.out.println(descuento);
 		return descuento;
 	}
-	
+
 	public void recogerDNI(String dni) {
 		compra.setDni(dni);
 	}
-	
+
 	public String pasarDNI() {
 		String dni = compra.getDni();
 		return dni;
 	}
-	
+
 	public void crearCompra(int idCompra, String dni, String descuento, String fecha, String hora) {
 		compra = new Compra(idCompra, dni, descuento, fecha, hora);
-		System.out.println(compra);
+//		System.out.println(compra);
 		añadirCompra(compra);
 	}
 
@@ -334,8 +337,27 @@ public class GestionDeLaInformacion {
 	public ArrayList<Compra> enseñarCompras() {
 		return compras;
 	}
-	
-	
+
+	public void recogerFechaCompra(String fechaCompra) {
+		compra.setFechaCompra(fechaCompra);
+	}
+
+	public String pasarFechaCompra() {
+		String fechaCompra = compra.getFechaCompra();
+//		System.out.println(fechaCompra);
+		return fechaCompra;
+	}
+
+	public void recogerHoraCompra(String horaCompra) {
+		compra.setHoraCompra(horaCompra);
+	}
+
+	public String pasarHoraCompra() {
+		String horaCompra = compra.getHoraCompra();
+//		System.out.println(horaCompra);
+		return horaCompra;
+	}
+
 	public boolean verificarPasoDePanel() {
 		boolean verificar = false;
 		if (entradas.isEmpty()) {
@@ -381,6 +403,7 @@ public class GestionDeLaInformacion {
 		switch (resp) {
 
 		case 0:
+			reinicio();
 			v.cambiarDePanel(1);
 			break;
 		case 1:
@@ -394,34 +417,66 @@ public class GestionDeLaInformacion {
 		int idCompra = 1;
 		if (compras.isEmpty()) {
 			compra.setIdCompra(idCompra);
-			System.out.println(idCompra);
+//			System.out.println(idCompra);
 		} else {
 			idCompra = compras.get(0).getIdCompra();
 			idCompra++;
 			compra.setIdCompra(idCompra);
-			System.out.println(idCompra);
-		}	
+//			System.out.println(idCompra);
+		}
 	}
-	
+
 	public int pasarIdCompra() {
 		int idCompra = compra.getIdCompra();
 		return idCompra;
+	}
+
+	public double precioTotalCalculado() {
+		double precioTotal = 0;
+		for (int j = 0; j < entradas.size(); j++) {
+			precioTotal = entradas.get(j).getPrecio() + precioTotal;
+		}
+		return precioTotal;
 	}
 	
 	public double precioReal() {
 		double precioReal = 0;
 		for (int j = 0; j < entradas.size(); j++) {
-			precioReal = precioReal + (entradas.get(j).getPrecio() * cantidadTotalDeEntradas());
+			precioReal = precioReal + (precioTotalCalculado() * pasarCantidadSeleccionada());
 		}
 		return precioReal;
 	}
 
-	// ---------------------------------------------------------------------------
+	public void formatoParaFecha(LocalDate fechaSinFormato) {
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String fecha = formato.format(fechaSinFormato);
+		recogerFechaCompra(fecha);
+	}
 
-//	// [GET] - - RECOGE SALA Y HORA
-//		public void recogerFuncionSeleccionada(String horaSeleccionada, int salaSeleccionada) {
-//			funcion.setHorafuncion(horaSeleccionada);
-//			funcion.setIdsala(salaSeleccionada);
-//		}
+	public void formatoParaHora(LocalTime horaSinFormato) {
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm", Locale.US);
+		String hora = formato.format(horaSinFormato);
+		recogerHoraCompra(hora);
+	}
+
+	public void reinicio() {
+		entradas.removeAll(entradas);
+	}
+
+	public void verPeliculasRepetidas(String nombrePelicula, VentanaPrincipal v, String nombreCine) {
+		if (entradas.isEmpty()) {
+			v.cambiarDePanel(5);
+		} else {
+			for (int i = 0; i < entradas.size(); i++) {
+				if (entradas.get(i).getNombrePelicula().equals(nombrePelicula)
+						&& entradas.get(i).getCine().equals(nombreCine)) {
+					JOptionPane.showMessageDialog(null, "Ya has elegido " + entradas.get(i).getNombrePelicula()
+							+ " para el " + entradas.get(i).getCine());
+				} else {
+					v.cambiarDePanel(5);
+				}
+			}
+		}
+	}
 
 }

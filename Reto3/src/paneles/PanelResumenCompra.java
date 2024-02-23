@@ -4,13 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
-
 import controlador.GestionDeLaInformacion;
 import modelo.Entrada;
 import vista.VentanaPrincipal;
@@ -23,14 +22,12 @@ import javax.swing.JSeparator;
 public class PanelResumenCompra extends JPanel {
 
 	private double precioReal;
-//	private GestionBD gestionBD = new GestionBD();
 	
 	public PanelResumenCompra (VentanaPrincipal v, GestionDeLaInformacion gestionINF) {
 		
 		ArrayList<Entrada> entradas = gestionINF.enseñarEntradas();
-		System.out.println(entradas);
 		gestionINF.recogerDescuento();
-//		gestionINF.crearCompra(gestionINF.pasarIdCompra(), gestionINF.pasarDNI(), gestionINF.pasarDescuento());
+		gestionINF.crearCompra(gestionINF.pasarIdCompra(), gestionINF.pasarDNI(), gestionINF.pasarDescuento(), gestionINF.pasarFechaCompra(), gestionINF.pasarHoraCompra());
 		
 		setSize(1200, 720);
 		setVisible(true);
@@ -54,11 +51,16 @@ public class PanelResumenCompra extends JPanel {
 		lblEntradas.setBounds(254, 54, 102, 34);
 		add(lblEntradas);
 
+	
+		LocalTime horaSinFormato = LocalTime.now();
+		LocalDate fechaSinFormato = LocalDate.now();
 		// BTN PRINCIPAL -- FINALIZAR COMPRA
 		JButton btnFinalizarCompra = new JButton("Finalizar compra");
 		btnFinalizarCompra.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				gestionINF.formatoParaFecha(fechaSinFormato);
+				gestionINF.formatoParaHora(horaSinFormato);
 				gestionINF.mensajeDeRecibo(v);
 				
 			}
@@ -257,7 +259,6 @@ public class PanelResumenCompra extends JPanel {
 		// [¡BD!] LBL PRECIO TOTAL
 		double precioTotal = precioReal - descuento;
 		DecimalFormat df = new DecimalFormat("#.00");
-		
 		
 		JLabel lblTotalValor = new JLabel();
 		lblTotalValor.setText(df.format(precioTotal) + "");

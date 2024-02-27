@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JLabel;
@@ -105,8 +107,11 @@ public class PanelSeleccionFuncion extends JPanel {
 		 */
 		add(dateChooserDia);
 		try {
-			String date = "27 Feb 2024";
-			Date fechaCine = new SimpleDateFormat("dd MMM yyyy").parse(date);
+			LocalDate fechaSinFormato = LocalDate.now();
+			DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd MMM yyyy");
+			String fecha = formatoFecha.format(fechaSinFormato);
+//			String fecha = "27 Feb 2024";
+			Date fechaCine = new SimpleDateFormat("dd MMM yyyy").parse(fecha);
 			dateChooserDia.setMinSelectableDate(fechaCine);
 		} catch (Exception e) {
 			// TODO: handle exception
